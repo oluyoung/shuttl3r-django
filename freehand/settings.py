@@ -84,6 +84,9 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend'
 )
 
+config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
 
 WSGI_APPLICATION = 'freehand.wsgi.application'
 
@@ -134,7 +137,7 @@ USE_TZ = True
 # Login/Logout URLs
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'home' # '/accounts/profile/'
+LOGIN_REDIRECT_URL = '/' # '/accounts/profile/'
 LOGOUT_REDIRECT_URL = 'login'
 
 
