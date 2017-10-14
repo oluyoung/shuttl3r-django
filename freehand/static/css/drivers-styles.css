@@ -1,0 +1,183 @@
+/** INDEX
+**/
+
+.drivers-wrap {}
+
+.driver-license {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  background-color: #ebedec;
+  width: 30%;
+  min-width: 345px;
+  max-width: 350px;
+  height: 175px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 1.5%;
+}
+
+.driver-license .title {
+  background-color: #000;
+  height: 35px;
+  width: 100%;
+}
+
+.driver-license .image {
+  margin-top: 0px;
+  background-color: crimson;
+  width: 100px;
+  height: 100px;
+}
+
+.driver-license .info{
+
+}
+.driver-license .name,
+.driver-license .type {
+  margin-top: 10px;
+  height: 20px;
+  width: 200px;  
+}
+
+.driver-license .name {
+  background-color: crimson;
+}
+
+.driver-license .type {
+  background-color: lightgreen;
+}
+
+
+
+
+/* .photo_id {
+  border: 1px solid;
+  width: 28%;
+  margin-bottom: 2%;
+}
+
+.name {
+  text-transform: uppercase;
+} */
+
+.category {}
+
+.isAvailable {}
+
+.apply_btn {
+    width: 100%;
+}
+
+/** DRIVER
+**/
+.driver-sheet {
+  margin: 2em auto;
+  max-width: 500px;
+  padding: 1em;
+  font-size: 15px;
+  font-family: 'Open Sans';
+  line-height: 1.5;
+  
+}
+
+.driver {
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.top-info {
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #e9e9e9;
+  box-shadow: 2px 2px 4px #ccc;
+  padding: 3.5%;
+  background-color: #fafafa;
+  border-radius: 5px;
+}
+
+.driver-photo {
+  border: 1px solid #e9e9e9;
+  box-shadow: 2px 2px 3px #ccc;
+  margin-right: 5%;
+  padding: 5px;
+  width: 100px;
+}
+
+.driver-photo_id {
+  width: 100%;
+}
+
+.driver-info {}
+
+.driver-info td {
+}
+
+.driver-info th {
+  text-align: right;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.driver-info td {
+  border-bottom: 1px solid #ccc;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 13px;
+}
+
+.driver-bio p {
+  text-align: justify;
+}
+
+.order-form {
+  margin-top: 1em;
+  width: 100%;
+  border: 1px solid #e9e9e9;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px #ccc;
+  background-color: #fafafa;
+}
+
+.order-form .form {
+  justify-content: space-between;
+  padding: 3.5%;
+}
+
+
+/*******************************
+    MEDIA QUERIES
+*******************************/
+
+/*
+small devices: 480px
+*/
+@media (min-width: 480px) {}
+
+/*
+tablets 768px
+*/
+@media (min-width:768px) {}
+
+/*
+    large screens 1024px
+*/
+@media (min-width: 1024px){}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1600px){}
+
+/**/
+@media (max-width: 1023px) and (min-width: 768px){}
+
+/**/
+@media (max-width: 1024px) and (max-width: 768px) {}
+
+/**/
+@media (max-width: 1024px){}
+
+@media (max-width: 767px){}

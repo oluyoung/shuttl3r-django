@@ -1,0 +1,57 @@
+
+.car {
+  width: 23%;
+  min-width: 278px;
+  cursor: pointer;
+}
+
+.car > div {
+  background-color: #fafafa;
+  padding: 15px 15px 30px;
+  margin-top: 15px;
+}
+
+  .image {
+    background-color: #000;
+    height: 235px;
+  }
+  
+  .title {
+    margin-top: 10px;
+    background-color: #aaa;
+    height: 25px;
+  }
+
+/*******************************
+    MEDIA QUERIES
+*******************************/
+
+/*
+small devices: 480px
+*/
+@media (min-width: 480px) {}
+
+/*
+tablets 768px
+*/
+@media (min-width:768px) {}
+
+/*
+    large screens 1024px
+*/
+@media (min-width: 1024px){}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1600px){}
+
+/**/
+@media (max-width: 1023px) and (min-width: 768px){}
+
+/**/
+@media (max-width: 1024px) and (max-width: 768px) {}
+
+/**/
+@media (max-width: 1024px){}
+
+@media (max-width: 767px){}

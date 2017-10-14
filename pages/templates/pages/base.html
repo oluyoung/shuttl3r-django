@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<title>Freehand {% block title %}{% endblock %}</title>
+	{% load staticfiles  %}
+	<link rel="shortcut icon" href="{% static 'img/favicon_1.ico' %}" />
+	<meta property="og:image" content="" />
+	<meta name="twitter:image" content="" />
+	<meta property="og:type" content="article" />
+	<meta property="og:description" content="" />
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:url" content="">
+	<meta name="twitter:title" content="">
+	<meta name="twitter:description" content="">
+	<meta property="og:description" content="" />
+	<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	{% block stylesheet %}{% endblock %}
+</head>
+<body>
+<nav class="nav" style="position:absolute">
+	<div class="nav-logo">
+		<a href="/" id="nav-logo"></a>
+	</div>
+	<div class="u-clear">
+		<div class="nav-sections-dropdown">
+			<div class="nav-sections-dropdown-toggle">
+				<a href="{% url 'drivers:index' %}" class="nav-sections" id="">Drivers</a>
+				<a href="{% url 'cars:index' %}" class="nav-sections" id="">Car Hire</a>
+				<a href="{% url 'shuttle:index' %}" class="nav-sections" id="">Shuttle</a>
+				<a href="{% url 'pages:contact' %}" class="nav-sections" id="">Contact</a>
+				<a href="{% url 'pages:apply' %}" class="nav-sections" id="">Apply</a>
+				<a href="{% url 'pages:faq' %}" class="nav-sections" id="">FAQ/Manual</a>
+			</div>
+		</div>
+		<ul class="nav-icons">
+			<li>
+				<a href="#" id="search-open">
+					<i class="icon icon--search--dark"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="nav-mob-toggle" id="nav-mob-toggle">
+					<span></span>
+					<span></span>
+					<span></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="nav-mob">
+		<div class="nav-mob-content">
+			<ul class="nav-mob-follow"></ul>
+			<div class="u-row nav-mob-urow">
+				<h5></h5>
+				<h5></h5>
+				<h5></h5>
+				<h5></h5>
+			</div>
+		</div>
+	</div>
+</nav>
+
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
