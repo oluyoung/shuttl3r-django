@@ -1,1 +1,1 @@
-web: gunicorn freehandng.wsgi --log-file -
+web: gunicorn freehand.wsgi --log-file -
