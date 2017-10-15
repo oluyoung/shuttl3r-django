@@ -3,6 +3,10 @@
     src: url(../fonts/Shentox-Medium.ttf);
 }
 
+body {
+  line-height: 1.2;
+}
+
 /** OOP
 */
 .full-width {
@@ -19,6 +23,10 @@
 
 .text-align-center {
   text-align: center;
+}
+
+.text-align-justify {
+  text-align: justify;
 }
 
 .pos-rel {
@@ -350,75 +358,74 @@ a, button {
     background-position:-1168px -1168px
 }
 .icon--xing--light {
-    background-position:-1184px -1184px
+  background-position:-1184px -1184px
 }
 .icon--youtube {
-    background-position:-1200px -1200px
+  background-position:-1200px -1200px
 }
 .icon--youtube--dark {
-    background-position:-1216px -1216px
+  background-position:-1216px -1216px
 }
 .icon--youtube--light {
-    background-position:-1232px -1232px
+  background-position:-1232px -1232px
 }
 
 .u-row {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-flex-flow: row wrap;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    margin: -8px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  /* justify-content: space-between; */
+  margin: -8px;
 }
 
 .nav-mob-urow {
-    display: flex !important;
-    flex-flow: row nowrap;
+  flex-flow: column wrap;
 }
 
 /**   NAV
 **/
 
 body.is-navSticky .nav {
-    position: fixed;
-    top: -10px;
+  position: fixed;
+  top: -10px;
 }
 
 .nav {
-    background: #FFF;
-    box-shadow: 0 3px 15px #d6d6d6;
-    height: 48px;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: -10px;
-    z-index: 10;
+  background: #FFF;
+  box-shadow: 0 3px 15px #d6d6d6;
+  height: 48px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: -10px;
+  z-index: 10;
 }
 
 .nav-logo {
-    left: 0;
-    position: absolute;
-    top: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
 }
 
 .nav-logo>a {
-    background-color: #F42;
-    background: -webkit-linear-gradient(left top,#C09,#F42 85%);
-    background: -moz-linear-gradient(bottom right,#C09,#F42 85%);
-    background: -o-linear-gradient(bottom right,#C09,#F42 85%);
-    background: linear-gradient(to bottom right,#c09,#f42 85%);
-    display: block;
-    height: 16px;
-    padding: 16px 20px;
-    width: 66px;
-    will-change: height;
+  background-color: #F42;
+  background: -webkit-linear-gradient(left top,#C09,#F42 85%);
+  background: -moz-linear-gradient(bottom right,#C09,#F42 85%);
+  background: -o-linear-gradient(bottom right,#C09,#F42 85%);
+  background: linear-gradient(to bottom right,#c09,#f42 85%);
+  display: block;
+  height: 16px;
+  padding: 16px 20px;
+  width: 66px;
+  will-change: height;
 }
 
 .nav-logo>a {
-    position: relative;
-    z-index: 100;
+  position: relative;
+  z-index: 100;
 }
 
 .nav-logo img {
@@ -451,7 +458,6 @@ nav .u-clear {
 }
 
 .nav-icons li {
-    border-left: 1px solid #EEE;
     float: left;
     height: 48px;
     width: 48px;
@@ -590,10 +596,10 @@ body.is-showNavFollow .nav-follow-extra {
     -ms-transform: translateX(100%);
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
-    background: -webkit-linear-gradient(left top,#C09,#F42 85%);
-    background: -moz-linear-gradient(bottom right,#C09,#F42 85%);
-    background: -o-linear-gradient(bottom right,#C09,#F42 85%);
-    background: linear-gradient(to bottom right,#c09,#f42 85%);
+    background: -webkit-linear-gradient(left top,#607D8B,#212121 85%);
+    background: -moz-linear-gradient(bottom right,#607D8B,#212121 85%);
+    background: -o-linear-gradient(bottom right,#607D8B,#212121 85%);
+    background: linear-gradient(to bottom right,#607D8B,#212121 85%);
     height: 100vh;
     left: 0;
     padding: 48px 20px;
@@ -618,7 +624,7 @@ body.is-showNavFollow .nav-follow-extra {
 
 .nav-mob-follow {
     border-bottom: 1px solid rgba(255,255,255,.15);
-    margin: 0 -20px 2em;
+    /* margin: 0 -20px 2em; */
     padding: 0 20px 20px;
 }
 
@@ -778,4 +784,19 @@ small devices: 480px
 @media (max-width: 1024px){}
 
 /**/
-@media (max-width: 767px){}
+@media (max-width: 767px){
+  .nav-logo>a {
+    width: 100%;
+  }
+
+  nav .u-clear {
+    top: -14px;
+  }
+
+}
+
+@media (max-width: 343px){
+  nav .u-clear {
+    top: -32px;
+  }
+}
