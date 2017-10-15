@@ -1,0 +1,49 @@
+{% extends 'pages/base.html' %}
+{% load staticfiles  %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/drivers-styles.css' %}">
+{% endblock %}
+{% block content %}
+<section class="container drivers-container" id="driver-index-container">
+  <nav class="filters"></nav>
+  <section class="wrap drivers-wrap" style="background:url({% static 'img/bgnoise_lg_@2X.png' %})">
+      
+    <div class="driver-license flex row-wrap just-between pos-rel" id="driver-">
+      <img src="{% static 'img/tack-green.png' %}" class="thumb-tack" style="transform: scaleX(-1);"/>
+      <div class="title"></div>
+      <div class="image"></div>
+      <div class="info">
+        <div class="name"></div>
+        <div class="type"></div>
+        <div class="type"></div>
+      </div>
+        <!-- isavailable, view -->
+    </div>
+
+    <div class="driver-license flex row-wrap just-between pos-rel" id="driver-">
+      <img src="{% static 'img/tack-green.png' %}" class="thumb-tack" style="transform: scaleX(1);"/>
+      <div class="title"></div>
+      <div class="image"></div>
+      <div class="info">
+        <div class="name"></div>
+        <div class="type"></div>
+        <div class="type"></div>
+      </div>
+        <!-- isavailable, view -->
+    </div>
+
+    <div class="driver-license flex row-wrap just-between pos-rel" id="driver-">
+      <img src="{% static 'img/tack-green.png' %}" class="thumb-tack" style="transform: scaleX(1);"/>
+      <div class="title"></div>
+      <div class="image"></div>
+      <div class="info">
+        <div class="name"></div>
+        <div class="type"></div>
+        <div class="type"></div>
+      </div>
+        <!-- isavailable, view -->
+    </div>
+
+  </section>
+</section>
+{% endblock %}

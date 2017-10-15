@@ -4,45 +4,33 @@
 .drivers-wrap {}
 
 .driver-license {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
   background-color: #ebedec;
-  width: 30%;
-  min-width: 345px;
   max-width: 350px;
-  height: 175px;
   border-radius: 5px;
-  border: 1px solid #ccc;
   padding: 10px;
-  margin-bottom: 1.5%;
+  margin-bottom: 5%;
 }
 
 .driver-license .title {
   background-color: #000;
-  height: 35px;
   width: 100%;
 }
 
 .driver-license .image {
   margin-top: 0px;
   background-color: crimson;
-  width: 100px;
-  height: 100px;
 }
 
-.driver-license .info{
+.driver-license .info{}
 
-}
 .driver-license .name,
 .driver-license .type {
   margin-top: 10px;
-  height: 20px;
-  width: 200px;  
 }
 
 .driver-license .name {
   background-color: crimson;
+  margin-top: 0;
 }
 
 .driver-license .type {
@@ -79,7 +67,6 @@
   font-size: 15px;
   font-family: 'Open Sans';
   line-height: 1.5;
-  
 }
 
 .driver {
@@ -153,6 +140,71 @@
 *******************************/
 
 /*
+small devices: 320px
+*/
+@media (min-width: 320px) {
+  .wrap {
+    box-shadow: none;
+    border: none;
+  }
+
+  .wrap .thumb-tack {
+    height: 35px;
+    left: 42%;
+  }
+
+  .driver-license {
+    width: 100%;
+    height: 140px;
+  }
+
+  .driver-license .title {
+    height: 25px;
+  }
+
+  .driver-license .image {
+    width: 75px;
+    height: 75px;
+  }
+
+  .driver-license .info{}
+
+  .driver-license .name,
+  .driver-license .type {
+    height: 20px;
+    width: 170px;
+  }
+}
+
+@media (min-width: 375px) {
+  .wrap {
+    border: 2.5px solid #ccc;
+  }
+  
+  .wrap .thumb-tack {
+    height: 35px;
+  }
+
+  .driver-license .title {
+    height: 30px;
+  }
+
+  .driver-license .image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .driver-license .info{}
+
+  .driver-license .name,
+  .driver-license .type {
+    width: 185px;
+  }
+}
+
+
+
+/*
 small devices: 480px
 */
 @media (min-width: 480px) {}
@@ -160,24 +212,121 @@ small devices: 480px
 /*
 tablets 768px
 */
-@media (min-width:768px) {}
+@media (min-width:768px) {
+  .driver-license {
+    width: 45%;
+    height: 175px;
+  }
+
+  .driver-license .title {
+    height: 35px;
+  }
+
+  .driver-license .image {    
+    width: 100px;
+    height: 100px;
+  }
+
+  .driver-license .info{}
+
+  .driver-license .name,
+  .driver-license .type {
+    height: 20px;
+    width: 200px;  
+  }
+}
 
 /*
     large screens 1024px
 */
-@media (min-width: 1024px){}
+@media (min-width: 1024px){
+
+  .wrap .thumb-tack {
+    height: 45px;
+  }
+  
+  .driver-license {
+    width: 30%;
+    min-width: 345px;
+    height: 175px;
+  }
+
+  .driver-license .title {
+    height: 35px;
+  }
+
+  .driver-license .image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .driver-license .info{
+
+  }
+  .driver-license .name,
+  .driver-license .type {
+    height: 20px;
+    width: 200px;  
+  }
+}
 
 @media (min-width: 1280px) {}
 
-@media (min-width: 1600px){}
+@media (min-width: 1600px){
+  .wrap .thumb-tack {
+    height: 66px;
+  }
+
+  .driver-license {
+      width: 23%;
+      min-width: 23%;
+      height: 265px;
+  }
+}
 
 /**/
 @media (max-width: 1023px) and (min-width: 768px){}
-
+/*  */
 /**/
 @media (max-width: 1024px) and (max-width: 768px) {}
 
 /**/
 @media (max-width: 1024px){}
 
-@media (max-width: 767px){}
+@media (max-width: 767px){
+/*   .wrap {
+  border: none; 
+}
+
+.wrap .thumb-tack {
+  height: 35px;
+  left: 42%;
+}
+
+.driver-license {
+  width: 100%;
+  height: 140px;
+}
+
+.driver-license .title {
+  height: 25px;
+}
+
+.driver-license .image {
+  width: 75px;
+  height: 75px;
+}
+
+.driver-license .info{}
+
+.driver-license .name,
+.driver-license .type {
+  height: 20px;
+  width: 170px;
+} */
+}
+
+@media (max-width: 343px){
+
+
+}
