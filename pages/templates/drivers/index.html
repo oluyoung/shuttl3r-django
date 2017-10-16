@@ -11,7 +11,7 @@
       <div class="driver-license flex row-wrap just-between pos-rel" id="driver-{{driver.id}}" style="background:url({% static 'img/topography.png' %})">
         <!-- <img src="{% static 'img/tack-red.png' %}" class="thumb-tack" /> -->
         <div class="title"><h4 class="text-align-center">FREEHAND DEPT. OF VEHICLE DRIVERS</h4></div>
-        <div class="image" style="background-image: url({% static 'img/0f37a1aa86cf4425620f2b3dcabffa99.585x366x1.png' %})"></div>
+        <div class="image" style="background-image: url({{driver.image.path}}})"></div>
         <div class="info">
           <p class="name">{{driver.last_name}}, {{driver.first_name}}</p>
           <p class="type"><span class="key">CLASS</span> {{driver.category}}</p>
