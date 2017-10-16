@@ -13,6 +13,10 @@ body {
   width: 100%;
 }
 
+.half-width {
+  width: 48.5%;
+}
+
 .text-align-right {
   text-align: right;
 }
@@ -95,6 +99,10 @@ body {
 
 .align-flex-end {
   align-items: flex-end;
+}
+
+.display-none {
+  display: none;
 }
 
 /**
@@ -669,6 +677,10 @@ INDEX
   position: absolute;
   left: 45%;
   top: 0;
+}
+
+.wrap .thumb-tack.scaleX-1 {
+  transform: scaleX(-1);
 }
 
 
