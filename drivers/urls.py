@@ -5,5 +5,5 @@ app_name = "drivers"
 
 urlpatterns = [
     url(r'^$', views.index, name="index"),
-    url(r'^(?P<id>[0-9]+)/$', views.driver_info, name="driver"),
+    url(r'^(?P<id>[0-9]+)/$', views.driver_info, name="info"),
 ]

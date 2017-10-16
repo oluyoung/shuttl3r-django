@@ -37,16 +37,22 @@
 
   	/** OPEN DRIVER INFO MODAL
   	*/
-    /*
-    $('.driver-license').each(function(){
-  		$(this).on('click', function(){
-  			$(this).find('.driver-portfolio').trigger('click');
+    
+    $('.driver-license .view-btn').each(function(){
+  		$(this).on('click', function(e){
+        e.preventDefault();
+  		  $(this).magnificPopup({
+          type: 'inline',
+        });
   		});
-  	});*/
+  	});
 
+
+    /* CHANGE CHOOSE BUTTON TO CHECK CHECKBOX
+    */
   	$('.driver-order-form .choose-btn').each(function(){
       var btn = $(this),
-          $checkbox = $('.driver-order-form #within');
+        $checkbox = $('.driver-order-form #within');
       btn.on('click', function(e){
         e.preventDefault();
         if(btn.hasClass('yes')){
@@ -60,5 +66,7 @@
         btn.addClass('selected');
       });
   	});
+
+
 
 })(jQuery);

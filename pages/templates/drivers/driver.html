@@ -32,25 +32,28 @@
         </table>
       </div>
     </div>
-    <div class="order-form driver-order-form">
+    <div class="order-form d">
+      <div class="text-align-center">
+        <h3>To make a request just fill the form below</h3>
+      </div>
       <form action="" class="form flex col-wrap">
         {% csrf_token %}
         <input type="hidden" name="driver_id" value="{{driver.id}}">
         <input type="hidden" name="user_id" value="20">
         <div class="flex col-nowrap">
-          <label for="first-name" class="display-none">First Name</label>
+          <label for="first-name" class="none">First Name</label>
           <input type="text" id="first-name" name="first_name" placeholder="First Name">
         </div>
         <div class="flex col-nowrap">
-          <label for="last-name" class="display-none">Last Name</label>
+          <label for="last-name" class="none">Last Name</label>
           <input type="text" id="last-name" name="last_name" placeholder="Last Name">    
         </div>
         <div class="flex row-wrap just-between">
           <div class="half-width">
-            <label for="phone-num" class="display-none">Phone Number</label>
+            <label for="phone-num" class="none">Phone Number</label>
             <input type="tel" id="phone-num" name="phone_num" placeholder="Phone Number" maxlength=11>   
           </div>
-          <div class="flex row-wrap just-start align-flex-center half-width" style="margin-top:-15px;">
+          <div class="flex row-wrap just-start align-flex-center half-width">
             <label for="within">Leaving Lagos?</label>
             <input type="checkbox" id="within" name="within_lagos" hidden>
             <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no">NO</a>
@@ -68,10 +71,10 @@
         </div>
         
         <div class="flex col-nowrap">
-          <label for="pickup-addr" class="display-none">Address</label>
+          <label for="pickup-addr" class="none">Address</label>
           <input type="text" id="pickup-addr" name="pickup_addr" placeholder="Address">
         </div>
-        <input type="submit" />
+        <input type="submit" class="submit-btn" />
       </form>
     </div>
   </div>

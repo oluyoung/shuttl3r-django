@@ -14,7 +14,7 @@
   max-width: 350px;
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 5%;
+  margin-bottom: 2em;
   box-shadow: 1px 1px 3px #757575;
   text-transform: uppercase;
 }
@@ -59,8 +59,22 @@ font-family: 'Raleway', sans-serif; */
 .driver-license .type {
 }
 
-.apply_btn {
-    width: 100%;
+.driver-license .view-btn {
+  background-color: #009688;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: .95em;
+}
+
+.driver-license .view-btn:hover,
+.driver-license .view-btn:focus {
+  background-color: #111;
+}
+
+.driver-license .info .key {
+  color: #D84315;
 }
 
 /** DRIVER
@@ -87,7 +101,7 @@ font-family: 'Raleway', sans-serif; */
   border: 1px solid #e9e9e9;
   box-shadow: 2px 2px 4px #ccc;
   padding: 3.5%;
-  background-color: #fafafa;
+  background-color: #fdfdfd;
   border-radius: 5px;
 }
 
@@ -104,7 +118,7 @@ font-family: 'Raleway', sans-serif; */
 }
 
 .driver-info {
-  min-width: 250px;
+  min-width: 70%;
 }
 
 .driver-info table {
@@ -122,6 +136,7 @@ font-family: 'Raleway', sans-serif; */
   padding-left: 15px;
   padding-right: 15px;
   font-size: 1em;
+  text-transform: uppercase;
 }
 
 .driver-bio p {
@@ -134,7 +149,7 @@ font-family: 'Raleway', sans-serif; */
   border: 1px solid #e9e9e9;
   border-radius: 5px;
   box-shadow: 2px 2px 4px #ccc;
-  background-color: #fafafa;
+  background-color: #fdfdfd;
 }
 
 .order-form .form {
@@ -184,6 +199,15 @@ font-family: 'Raleway', sans-serif; */
   background-color: #111;
 }
 
+.order-form .submit-btn {
+  border: none;
+  background-color: #607D8B;
+  padding: 10px 0;
+  text-transform: uppercase;
+  border-radius: 5px;
+  color: #fff;
+}
+
 
 /*******************************
     MEDIA QUERIES
@@ -205,7 +229,7 @@ small devices: 320px
 
   .driver-license {
     width: 100%;
-    height: 140px;
+    height: 155px;
   }
 
   .driver-license .title {
@@ -223,6 +247,15 @@ small devices: 320px
   .driver-license .type {
     height: 20px;
     width: 170px;
+    font-size: .9em;
+  }
+
+  .driver-license .view-btn {
+    font-size: .8em;
+  }
+
+  .driver-info td {
+    font-size: .8em;
   }
 }
 
@@ -239,16 +272,20 @@ small devices: 320px
     height: 30px;
   }
 
+  .driver-license .title h4 {
+    padding-top: 4px
+  }
+
   .driver-license .image {
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
   }
 
   .driver-license .info{}
 
   .driver-license .name,
   .driver-license .type {
-    width: 185px;
+    font-size: 1em;
   }
 }
 
@@ -257,12 +294,57 @@ small devices: 320px
 /*
 small devices: 480px
 */
-@media (min-width: 480px) {}
+@media (min-width: 480px) {
+  .wrap {
+    justify-content: center;
+  }
+
+  .wrap .thumb-tack {
+    height: 35px;
+    left: 42%;
+  }
+
+  .driver-license {
+    width: 100%;
+    height: 210px;
+    max-width: 450px
+  }
+
+  .driver-license .title {
+    height: 40px;
+  }
+
+  .driver-license .title h4 {
+    font-size: 1.1em;
+    padding-top: 8px
+  }
+
+  .driver-license .image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .driver-license .info {
+    width: 55%;
+  }
+
+  .driver-license .name,
+  .driver-license .type {
+    height: 25px;
+  }
+
+  .driver-info td {
+    font-size: 1em;
+  }
+}
 
 /*
 tablets 768px
 */
 @media (min-width:768px) {
+  .wrap {
+    justify-content: space-between;
+  }
   .driver-license {
     width: 45%;
     height: 175px;
@@ -273,7 +355,6 @@ tablets 768px
   }
 
   .driver-license .title  h4 {
-    padding-top: 10px;
   }
 
   .driver-license .image {    
@@ -288,12 +369,16 @@ tablets 768px
     height: 20px;
     width: 200px;  
   }
+
 }
 
 /*
     large screens 1024px
 */
 @media (min-width: 1024px){
+  .wrap {
+    justify-content: space-between;
+  }
 
   .wrap .thumb-tack {
     height: 45px;
@@ -323,9 +408,6 @@ tablets 768px
     width: 220px;  
   }
 
-  .driver-license .info .key {
-    color: #5858E5;
-  }
 }
 
 @media (min-width: 1280px) {}
@@ -352,36 +434,7 @@ tablets 768px
 @media (max-width: 1024px){}
 
 @media (max-width: 767px){
-/*   .wrap {
-  border: none; 
-}
-
-.wrap .thumb-tack {
-  height: 35px;
-  left: 42%;
-}
-
-.driver-license {
-  width: 100%;
-  height: 140px;
-}
-
-.driver-license .title {
-  height: 25px;
-}
-
-.driver-license .image {
-  width: 75px;
-  height: 75px;
-}
-
-.driver-license .info{}
-
-.driver-license .name,
-.driver-license .type {
-  height: 20px;
-  width: 170px;
-} */
+  
 }
 
 @media (max-width: 343px){
