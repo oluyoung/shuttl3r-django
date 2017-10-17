@@ -1,0 +1,26 @@
+{% extends 'pages/base.html' %}
+{% load staticfiles  %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/cars-styles.css' %}">
+{% endblock %}
+{% block content %}
+<section class="container cars-container" style="background:url()">
+  <nav class="filters"></nav>
+  <section class="wrap cars-wrap" style="background:url({% static 'img/bgnoise_lg_@2X.png' %})" >
+  {% for car in cars %}
+  <div class="car-license car-{{car.id}}">
+    <div class="pos-rel" >
+      <img src="{% static 'img/tack-red.png' %}" style="height:30px;position:absolute;left:42%;top:0"/>
+      <div class="image" style="background-image: url({% static 'img/lights-car.jpg' %})"></div>
+      <p class="title text-center capitalize">{{car.make}} {{car.name}}</p>
+      <p class="type">
+        <span class="key">Av.</span> {% if car.isAvailable %}Y
+        {%else%}X<span class="key">FF</span> {{car.nextAvailability}}
+        {% endif %}
+      </p>
+      <p class="subtitle poppins"><a href="{% url 'cars:info' car.id %}">VIEW</a></p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}

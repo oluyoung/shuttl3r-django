@@ -2,10 +2,14 @@
 {% load staticfiles  %}
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/drivers-styles.css' %}">
+<style>
+nav.nav {
+  display: none;
+}
+</style>
 {% endblock %}
 {% block content %}
-
-<section class="driver-sheet" id="">
+<section class="container sheet driver-sheet" id="">
   <div class="driver flex row-wrap just-start" id="driver-{{driver.id}}">
     <div class="top-info flex row-nowrap">
       <div class="driver-photo">
@@ -32,8 +36,8 @@
         </table>
       </div>
     </div>
-    <div class="order-form d">
-      <div class="text-align-center">
+    <div class="order-form driver">
+      <div class="text-center">
         <h3>To make a request just fill the form below</h3>
       </div>
       <form action="" class="form flex col-wrap">

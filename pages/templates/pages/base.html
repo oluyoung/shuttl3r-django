@@ -21,23 +21,42 @@
   {% block stylesheet %}{% endblock %}
 </head>
 <body>
-<nav class="nav" style="position:absolute">
+<nav class="nav poppins" style="position:absolute">
   <div class="nav-logo">
     <a href="/" id="nav-logo"></a>
   </div>
   <div class="u-clear">
     <div class="nav-sections-dropdown">
       <div class="nav-sections-dropdown-toggle">
-        <a href="{% url 'drivers:index' %}" class="nav-sections" id="">Hire Driver</a>
-        <a href="" class="nav-sections" id="">Hire Car</a>
-        <a href="" class="nav-sections" id="">Book Shuttle</a>
-        <a href="{% url 'pages:contact' %}" class="nav-sections" id="">Contact</a>
-        <a href="{% url 'pages:apply' %}" class="nav-sections" id="">Apply</a>
+        <a href="{% url 'drivers:index' %}" class="nav-sections uppercase" id="">Hire Driver</a>
+        <a href="{% url 'cars:index' %}" class="nav-sections uppercase" id="">Hire Car</a>
+        <a href="" class="nav-sections uppercase" id="">Book Shuttle</a>
+        <a href="{% url 'pages:contact' %}" class="nav-sections uppercase" id="">Contact</a>
+        <a href="{% url 'pages:apply' %}" class="nav-sections uppercase" id="">Apply</a>
         <!-- <a href="{% url 'pages:faq' %}" class="nav-sections" id="">FAQ/Manual</a> -->
       </div>
     </div>
     <ul class="nav-icons">
-
+      <li class="user-nav">
+      {% if user.is_authenticated %}
+        <a href="" class="user-nav-icon block isloggedin">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon" viewBox="0 0 16 16">
+            <path d="M9 11.041v-0.825c1.102-0.621 2-2.168 2-3.716 0-2.485 0-4.5-3-4.5s-3 2.015-3 4.5c0 1.548 0.898 3.095 2 3.716v0.825c-3.392 0.277-6 1.944-6 3.959h14c0-2.015-2.608-3.682-6-3.959z"></path>
+          </svg>
+        </a>
+        <ul class="user-nav-menu">
+          <li>DASHBOARD</li>
+          <li>SETTINGS</li>
+          <li>LOGOUT</li>
+        </ul>
+      {% else %}
+        <a href="" class="user-nav-icon block notloggedin">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon" viewBox="0 0 16 16">
+            <path d="M9 11.041v-0.825c1.102-0.621 2-2.168 2-3.716 0-2.485 0-4.5-3-4.5s-3 2.015-3 4.5c0 1.548 0.898 3.095 2 3.716v0.825c-3.392 0.277-6 1.944-6 3.959h14c0-2.015-2.608-3.682-6-3.959z"></path>
+          </svg>
+        </a>
+      {% endif %}
+      </li>
       <li>
         <a href="#" class="nav-mob-toggle" id="nav-mob-toggle">
           <span></span>
@@ -50,17 +69,22 @@
   <div class="nav-mob">
     <div class="nav-mob-content flex row-nowrap just-around">
       <div class="u-row nav-mob-urow">
-        <h5><a href="{% url 'drivers:index' %}" id="">Drivers</a></h5>
-        <h5>Car Hire</h5>
-        <h5>Shuttle</h5>
-        <h5><a href="{% url 'pages:contact' %}">Contact</a></h5>
-        <h5><a href="{% url 'pages:apply' %}">Apply</a></h5>
-        <h5><a href="{% url 'pages:faq' %}">FAQ/Manual</a></h5>
+        <h5 class="uppercase"><a href="{% url 'drivers:index' %}" id="">Drivers</a></h5>
+        <h5 class="uppercase"><a href="{% url 'cars:index' %}" id="">Car Hire</a></h5>
+        <h5 class="uppercase">Shuttle</h5>
+        <h5 class="uppercase"><a href="{% url 'pages:contact' %}">Contact</a></h5>
+        <h5 class="uppercase"><a href="{% url 'pages:apply' %}">Apply</a></h5>
+        <!-- <h5><a href="{% url 'pages:faq' %}">FAQ/Manual</a></h5> -->
       </div>
       <ul class="nav-mob-follow">
-        <li>Facebook</li>
-        <li></li>
-        <li></li>
+        <li>F</li>
+        <li>T</li>
+        <li>I</li>
+      </ul>
+      <ul class="nav-mob-acct">
+        <h5><a href="">D</a></h5>
+        <h5><a href="">A</a></h5>
+        <h5><a href="">L</a></h5>
       </ul>
     </div>
   </div>

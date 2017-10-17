@@ -22,9 +22,9 @@ class DriverInfo(models.Model):
     )
     category = models.CharField(max_length=7, choices=CATEGORY_CHOICES)
     # should be manipulated by user or gotten from last order date
-    isAvailabile = models.BooleanField()
+    isAvailable = models.BooleanField()
     # get this from last order end date
-    nextAvailibility = models.DateField()
+    nextAvailability = models.DateField()
 
     class Meta:
         verbose_name = 'DriverInfo'

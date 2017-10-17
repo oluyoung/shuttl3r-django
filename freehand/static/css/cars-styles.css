@@ -1,26 +1,53 @@
 
-.car {
+.car-license {
   width: 23%;
   min-width: 278px;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
-.car > div {
+.car-license > div {
   background-color: #fafafa;
   padding: 15px 15px 30px;
   margin-top: 15px;
 }
 
-  .image {
-    background-color: #000;
-    height: 235px;
-  }
-  
-  .title {
-    margin-top: 10px;
-    background-color: #aaa;
-    height: 25px;
-  }
+.car-license .image {
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 235px;
+}
+
+.car-license .title {
+  margin-top: 10px;
+  height: 25px;
+  font-family: 'Pacifico', cursive;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.2em;
+}
+
+.car-license .subtitle {}
+
+/** Sheet **/
+.sheet .car-license {
+  width: auto;
+  min-width: 0;
+}
+
+.sheet .car-license > div {
+  background-color: #fff;
+  padding: 10px 10px 20px;
+  margin-top: 0;
+}
+
+.sheet .car-license .image {
+  width: 150px;
+  height: 150px;
+}
+
+.sheet .car-license .title {
+  font-size: 1.05em;
+}
 
 /*******************************
     MEDIA QUERIES
@@ -39,11 +66,11 @@ tablets 768px
 /*
     large screens 1024px
 */
-@media (min-width: 1024px){}
+@media (min-width: 1024px) {}
 
 @media (min-width: 1280px) {}
 
-@media (min-width: 1600px){}
+@media (min-width: 1600px) {}
 
 /**/
 @media (max-width: 1023px) and (min-width: 768px){}

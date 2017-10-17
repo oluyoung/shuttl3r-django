@@ -6,3 +6,4 @@ venv
 .info
 uploads/*
 migrations/
+.mine/

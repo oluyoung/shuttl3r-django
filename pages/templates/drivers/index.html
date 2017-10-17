@@ -10,17 +10,20 @@
     {% for driver in drivers %}
       <div class="driver-license flex row-wrap just-between pos-rel driver-{{driver.id}}" style="background:url({% static 'img/topography.png' %})">
         <!-- <img src="{% static 'img/tack-red.png' %}" class="thumb-tack" /> -->
-        <div class="title"><h4 class="text-align-center">FREEHAND DEPT. OF MOTOR VEHICLES</h4></div>
+        <div class="title"><h4 class="text-center">FREEHAND DEPT. OF MOTOR VEHICLES</h4></div>
         <div class="image" style="background-image: url({{driver.image.url}}})"></div>
         <div class="info">
           <p class="name">{{driver.last_name}}, {{driver.first_name}}</p>
           <p class="type"><span class="key">CLASS</span> {{driver.category}}</p>
           <p class="type"><span class="key">Av.</span> {% if driver.isAvailable %}Yes{%else%}No{% endif %}</p>
-          <p class="type"><span class="key">FF</span> {{driver.nextAvailibility}}</p>
-          <a href="#driver-{{driver.id}}" class="view-btn text-align-center block" data-id={{driver.id}} data-name="{{driver.last_name}}, {{driver.first_name}}" data-cat="{{driver.category}}">VIEW</a>
+          <p class="type">
+          {% if driver.isAvailable %}{%else%}
+          <span class="key">FF</span> {{driver.nextAvailability}}{% endif %}
+          </p>
+          <a href="#driver-{{driver.id}}" class="view-btn text-center block" data-id={{driver.id}} data-name="{{driver.last_name}}, {{driver.first_name}}" data-cat="{{driver.category}}">VIEW</a>
         </div>
       </div>
-      <section class="driver-sheet mfp-hide" id="driver-{{driver.id}}">
+      <section class="sheet driver-sheet mfp-hide" id="driver-{{driver.id}}">
         <div class="driver flex row-wrap just-start">
           <div class="top-info flex row-nowrap">
             <div class="driver-photo">
@@ -41,34 +44,25 @@
                   <td>{% if driver.isAvailable %}Yes{%else%}No{% endif %}</td>
                 </tr>
                 <tr>
+                  {% if driver.isAvailable %}{%else%}
                   <th class="key">FF</th>
-                  <td>{% if driver.isAvailable %}{%else%}{{driver.nextAvailibility}}{% endif %}</td>
+                  <td>{{driver.nextAvailability}}</td>
+                  {% endif %}
                 </tr>
               </table>
             </div>
           </div>
           <div class="order-form driver-order-form">
-            
-            <form action="" class="form flex col-wrap">
-              <div class="text-align-center">
+            <!-- use action for ajax call -->
+            <form action="" method="post" class="form flex col-wrap">
+              <div class="text-center">
                 <h3>To make a request just fill the form below</h3>
               </div>
               {% csrf_token %}
               <input type="hidden" name="driver_id" value="{{driver.id}}">
-              <input type="hidden" name="user_id" value="20">
-              <div class="flex col-nowrap">
-                <label for="first-name" class="none">First Name</label>
-                <input type="text" id="first-name" name="first_name" placeholder="First Name">
-              </div>
-              <div class="flex col-nowrap">
-                <label for="last-name" class="none">Last Name</label>
-                <input type="text" id="last-name" name="last_name" placeholder="Last Name">    
-              </div>
+              <input type="hidden" name="user_id" value="{{user.id}}">
+              <input type='tel' pattern="^\(?\d{3}\)?\d{3}\d{4}?$" />
               <div class="flex row-wrap just-between">
-                <div class="half-width">
-                  <label for="phone-num" class="none">Phone Number</label>
-                  <input type="tel" id="phone-num" name="phone_num" placeholder="Phone Number" maxlength=11>   
-                </div>
                 <div class="flex row-wrap just-start align-flex-center half-width" style="margin-top:-15px;">
                   <label for="within">Leaving Lagos?</label>
                   <input type="checkbox" id="within" name="within_lagos" hidden>
@@ -78,25 +72,37 @@
               <div class="flex row-wrap just-between">
                 <div class="half-width">
                   <label for="start-date">Start Date</label>
-                  <input type="date" id="start-date" name="start_date">
+                  {% if driver.isAvailable %}
+                  <input type="date" class="order-date" id="start-date" name="start_date" min="{% now 'Y-m-d' %}">
+                  {%else%}
+                  <input type="date" class="order-date" id="start-date" name="start_date" min="{{driver.nextAvailability|date:'Y-m-d'}}">
+                  {% endif %}
                 </div>
                 <div class="half-width">
                   <label for="end-date">End Date</label>
-                  <input type="date" id="end-date" name="end_date">
+                  {% if driver.isAvailable %}
+                  <input type="date" class="order-date" id="end-date" name="end_date" min="{% now 'Y-m-d' %}">
+                  {%else%}
+                  <input type="date" class="order-date" id="start-date" name="start_date" min="{{driver.nextAvailability|date:'Y-m-d'}}">
+                  {% endif %}
                 </div>
               </div>
               
               <div class="flex col-nowrap">
-                <label for="pickup-addr" class="none">Address</label>
-                <input type="text" id="pickup-addr" name="pickup_addr" placeholder="Address">
+                <label for="pickup-addr" class="none">Pickup Address</label>
+                <input type="text" id="pickup-addr" name="pickup_addr" placeholder="Pickup Address">
               </div>
-              <input type="submit" class="submit-btn" />
+              {% if user.is_authenticated %}
+              <input type="submit" class="btn submit-btn" />
+              {% else %}
+              <a href="#login" class="btn login-btn">Login</a>
+              {% endif %}
             </form>
           </div>
         </div>
       </section>
     {% endfor %}
-    
+
   </section>
 </section>
 {% endblock %}

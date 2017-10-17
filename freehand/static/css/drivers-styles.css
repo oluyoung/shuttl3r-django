@@ -1,9 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css?family=Manuale');
-/** sans-serif **/
-@import url('https://fonts.googleapis.com/css?family=PT+Sans|Poppins|Raleway|Source+Sans+Pro|Titillium+Web:400,600');
-
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 /** INDEX
 **/
@@ -40,13 +35,6 @@ font-family: 'Raleway', sans-serif; */
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-.driver-license .info .key,
-.driver-info .key {
-  font-family: 'Titillium Web', sans-serif;
-  font-weight: 600;
-  font-size: .8em;
-}
-
 .driver-license .name,
 .driver-license .type {
   margin-top: 5px;
@@ -79,30 +67,10 @@ font-family: 'Raleway', sans-serif; */
 
 /** DRIVER
 **/
-.driver-sheet {
-  margin: 2em auto;
-  max-width: 500px;
-  padding: 1em;
-  font-size: 15px;
-  font-family: 'Open Sans';
-  line-height: 1.5;
-}
-
 .driver {
   width: 100%;
   justify-content: flex-start;
   align-items: center;
-}
-
-.top-info {
-  width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  border: 1px solid #e9e9e9;
-  box-shadow: 2px 2px 4px #ccc;
-  padding: 3.5%;
-  background-color: #fdfdfd;
-  border-radius: 5px;
 }
 
 .driver-photo {
@@ -199,15 +167,6 @@ font-family: 'Raleway', sans-serif; */
   background-color: #111;
 }
 
-.order-form .submit-btn {
-  border: none;
-  background-color: #607D8B;
-  padding: 10px 0;
-  text-transform: uppercase;
-  border-radius: 5px;
-  color: #fff;
-}
-
 
 /*******************************
     MEDIA QUERIES
@@ -217,15 +176,6 @@ font-family: 'Raleway', sans-serif; */
 small devices: 320px
 */
 @media (min-width: 320px) {
-  .wrap {
-    box-shadow: none;
-    border: none;
-  }
-
-  .wrap .thumb-tack {
-    height: 35px;
-    left: 42%;
-  }
 
   .driver-license {
     width: 100%;
@@ -295,14 +245,6 @@ small devices: 320px
 small devices: 480px
 */
 @media (min-width: 480px) {
-  .wrap {
-    justify-content: center;
-  }
-
-  .wrap .thumb-tack {
-    height: 35px;
-    left: 42%;
-  }
 
   .driver-license {
     width: 100%;
@@ -342,9 +284,7 @@ small devices: 480px
 tablets 768px
 */
 @media (min-width:768px) {
-  .wrap {
-    justify-content: space-between;
-  }
+
   .driver-license {
     width: 45%;
     height: 175px;
@@ -376,13 +316,6 @@ tablets 768px
     large screens 1024px
 */
 @media (min-width: 1024px){
-  .wrap {
-    justify-content: space-between;
-  }
-
-  .wrap .thumb-tack {
-    height: 45px;
-  }
   
   .driver-license {
     width: 30%;
@@ -413,9 +346,6 @@ tablets 768px
 @media (min-width: 1280px) {}
 
 @media (min-width: 1600px){
-  .wrap .thumb-tack {
-    height: 66px;
-  }
 
   .driver-license {
       width: 23%;

@@ -5,4 +5,5 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     url(r'^drivers/', include('drivers.urls')),
+    url(r'^cars/', include('cars.urls')),
 ]
