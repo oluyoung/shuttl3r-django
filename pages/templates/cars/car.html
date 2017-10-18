@@ -5,12 +5,10 @@
 {% endblock %}
 {% block content %}
 <section class="container sheet car-sheet" id="">
-  <div class="car flex row-wrap just-start" id="car-{{car.id}}">
+  <div class="content car flex row-wrap just-start" id="car-{{car.id}}">
     <div class="top-info flex row-nowrap">
       <div class="car-license">
-        <div class="pos-rel" >
-          <div class="image" style="background-image: url({% static 'img/lights-car.jpg' %})"></div>
-        </div>
+          <img class="image" src="{% static 'img/lights-car.jpg' %}" alt="{{car.make}} {{car.name}}">
       </div>
       <div class="car-info">
         <table>

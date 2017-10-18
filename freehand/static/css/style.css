@@ -295,6 +295,7 @@ nav .u-clear {
 
 .nav-icons .user-nav {
   display: none;
+  overflow: hidden;
 }
 
 .nav-icons .user-nav-icon {
@@ -531,7 +532,13 @@ INDEX
 }
 
 .container.sheet {
-  padding: 4em;
+  padding-top: 4em;
+}
+
+.sheet .content {
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .sheet .top-info {
@@ -808,7 +815,7 @@ small devices: 480px
 
 }
 
-@media (max-width: 343px){
+@media (max-width: 403px){
   nav .u-clear {
     top: -32px;
   }

@@ -32,17 +32,16 @@
 .sheet .car-license {
   width: auto;
   min-width: 0;
-}
-
-.sheet .car-license > div {
-  background-color: #fff;
-  padding: 10px 10px 20px;
+  margin-right: 5%;
   margin-top: 0;
+  width: 30%;
 }
 
 .sheet .car-license .image {
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  height: auto;
+  box-shadow: 2px 2px 3px #ccc;
+  border-radius: 5px;
 }
 
 .sheet .car-license .title {
