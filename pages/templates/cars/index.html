@@ -8,7 +8,7 @@
   <nav class="filters"></nav>
   <section class="wrap cars-wrap" style="background:url({% static 'img/bgnoise_lg_@2X.png' %})" >
   {% for car in cars %}
-  <div class="car-license car-{{car.id}}">
+  <div class="license car-license car-{{car.id}}">
     <div class="pos-rel" >
       <img src="{% static 'img/tack-red.png' %}" style="height:30px;position:absolute;left:42%;top:0"/>
       <div class="image" style="background-image: url({% static 'img/lights-car.jpg' %})"></div>
@@ -18,9 +18,79 @@
         {%else%}X<span class="key">FF</span> {{car.nextAvailability}}
         {% endif %}
       </p>
-      <p class="subtitle poppins"><a href="{% url 'cars:info' car.id %}">VIEW</a></p>
+      <p class="subtitle poppins"><a href="#car-{{car.id}}" class="btn view-btn">VIEW</a></p>
     </div>
   </div>
+  <section class="container sheet car-sheet mfp-hide" id="car-{{car.id}}">
+    <div class="content car flex row-wrap just-start" >
+      <div class="top-info flex row-nowrap">
+        <div class="car-license">
+            <img class="image" src="{% static 'img/lights-car.jpg' %}" alt="{{car.make}} {{car.name}}">
+        </div>
+        <div class="car-info">
+          <table>
+            <tr>
+              <th class="key"></th>
+              <td class="capitalize">{{car.make}} {{car.name}}</td>
+            </tr>
+            <tr>
+              <th class="key">Av.</th>
+              <td class="capitalize">{% if car.isAvailable %}Y{%else%}X{% endif %}</td>
+            </tr>
+            <tr>
+              {% if car.isAvailable %}{%else%}
+              <th class="key">FF</th>
+              <td>{{car.nextAvailability}}</td>
+              {% endif %}
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="order-form car-order-form">
+        <div class="text-center">
+          <h3>To make a request just fill the form below</h3>
+        </div>
+        <form action="" class="form flex col-wrap">
+          {% csrf_token %}
+          <input type="hidden" name="car_id" value="{{car.id}}">
+          <input type="hidden" name="user_id" value="{{user.id}}">
+          <div class="flex row-wrap just-between">
+            <div class="flex row-wrap just-start align-flex-center half-width">
+              <label for="within">Leaving Lagos?</label>
+              <input type="checkbox" id="within" name="within_lagos" hidden>
+              <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no">NO</a>
+            </div>
+          </div>
+          <div class="flex row-wrap just-between">
+            <div class="half-width">
+              <label for="start-date">Start Date</label>
+              {% if car.isAvailable %}
+              <input type="date" class="order-date" id="start-date" name="start_date" min="{% now 'Y-m-d' %}">
+              {%else%}
+              <input type="date" class="order-date" id="start-date" name="start_date" min="{{car.nextAvailibility|date:'Y-m-d'}}">
+              {% endif %}
+            </div>
+            <div class="half-width">
+              <label for="end-date">End Date</label>
+              {% if car.isAvailable %}
+              <input type="date" class="order-date" id="end-date" name="end_date" min="{% now 'Y-m-d' %}">
+              {%else%}
+              <input type="date" class="order-date" id="start-date" name="start_date" min="{{car.nextAvailibility|date:'Y-m-d'}}">
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="flex col-nowrap">
+            <label for="pickup-addr" class="none">Pickup Address</label>
+            <input type="text" id="pickup-addr" name="pickup_addr" placeholder="Pickup Address">
+          </div>
+
+          <input type="submit" class="btn submit-btn" />
+        </form>
+      </div>
+    </div>
+  </section>
   {% endfor %}
 </section>
 {% endblock %}

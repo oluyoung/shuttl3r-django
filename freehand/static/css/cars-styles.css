@@ -28,6 +28,20 @@
 
 .car-license .subtitle {}
 
+.car-license .view-btn {
+  background-color: #009688;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: .95em;
+}
+
+.car-license .view-btn:hover,
+.car-license .view-btn:focus {
+  background-color: #111;
+}
+
 /** Sheet **/
 .sheet .car-license {
   width: auto;

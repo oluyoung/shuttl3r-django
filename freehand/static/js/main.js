@@ -35,10 +35,9 @@
 	    }
   	});
 
-  	/** OPEN DRIVER INFO MODAL
+  	/** OPEN DRIVER ORDER MODAL
   	*/
-    
-    $('.driver-license .view-btn').each(function(){
+    $('.license .view-btn').each(function(){
   		$(this).on('click', function(e){
         e.preventDefault();
   		  $(this).magnificPopup({
@@ -50,7 +49,7 @@
 
     /* CHANGE CHOOSE BUTTON TO CHECK CHECKBOX
     */
-  	$('.driver-order-form .choose-btn').each(function(){
+  	$('.order-form .choose-btn').each(function(){
       var btn = $(this),
         $checkbox = $('.driver-order-form #within');
       btn.on('click', function(e){

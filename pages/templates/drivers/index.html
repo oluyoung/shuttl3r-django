@@ -8,7 +8,7 @@
   <nav class="filters"></nav>
   <section class="wrap drivers-wrap" style="background:url({% static 'img/bgnoise_lg_@2X.png' %})">
     {% for driver in drivers %}
-      <div class="driver-license flex row-wrap just-between pos-rel driver-{{driver.id}}" style="background:url({% static 'img/topography.png' %})">
+      <div class="license driver-license flex row-wrap just-between pos-rel driver-{{driver.id}}" style="background:url({% static 'img/topography.png' %})">
         <!-- <img src="{% static 'img/tack-red.png' %}" class="thumb-tack" /> -->
         <div class="title"><h4 class="text-center">FREEHAND DEPT. OF MOTOR VEHICLES</h4></div>
         <div class="image" style="background-image: url({{driver.image.url}}})"></div>
