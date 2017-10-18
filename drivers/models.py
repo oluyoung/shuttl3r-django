@@ -39,14 +39,12 @@ class DriverOrder(models.Model):
     Description: Model Description
     """
     timestamp = models.DateField(auto_now_add=True)
-    requester_name = models.CharField(max_length=255)
-    requester_addr = models.CharField(max_length=255)
-    requester_phone = models.CharField(max_length=255)
     start_date = models.DateField()
     end_date = models.DateField()
     is_within_lagos = models.BooleanField()
     pickup_address = models.CharField(max_length=255)
     # pickup_time = models.DateTimeField() # time not needed
+    # user = models.ForeignKey(User)
     driver = models.ForeignKey(DriverInfo, on_delete=models.CASCADE, related_name='driver')
 
     class Meta:

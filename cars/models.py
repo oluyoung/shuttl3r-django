@@ -11,7 +11,8 @@ class CarInfo(models.Model):
         ('Space Bus', 'Space Bus'),
         ('SUV', 'SUV'),
         ('Saloon Car', 'Saloon Car'),
-        ('Bus', 'Bus'),
+        ('Coaster Bus', 'Coaster Bus'),
+        ('Mini Bus', 'Mini Bus'),
     )
     vehicle_type = models.CharField(max_length=15, choices=VEHICLE_TYPE)
     make = models.CharField(max_length=255)
