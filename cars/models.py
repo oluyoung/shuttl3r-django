@@ -41,7 +41,7 @@ class CarOrders(models.Model):
     timestamp = models.DateField(auto_now_add=True)
     car = models.ForeignKey(CarInfo, on_delete=models.CASCADE)
     driver = models.ForeignKey(DriverInfo, on_delete=models.CASCADE)
-    user = models.ForeignKey(User)
+    # user = models.ForeignKey(User)
     start_date = models.DateField()
     end_date = models.DateField()
     is_within_lagos = models.BooleanField()
