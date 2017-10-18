@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'pages',
     'hire',
     'drivers',
-    'cars'
+    'cars',
 ]
 
 MIDDLEWARE = [
@@ -146,8 +146,11 @@ USE_TZ = True
 # Login/Logout URLs
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+# redirect to previous URL
 LOGIN_REDIRECT_URL = '/' # '/accounts/profile/'
+# take to home page
 LOGOUT_REDIRECT_URL = '/'
+
 
 
 # Static files (CSS, JavaScript, Images)
