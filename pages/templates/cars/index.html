@@ -11,7 +11,7 @@
   <div class="license car-license car-{{car.id}}">
     <div class="pos-rel" >
       <img src="{% static 'img/tack-red.png' %}" style="height:30px;position:absolute;left:42%;top:0"/>
-      <div class="image" style="background-image: url({% static 'img/lights-car.jpg' %})"></div>
+      <div class="image" style="background-image: url({{car.image.url}})"></div>
       <p class="title text-center capitalize">{{car.make}} {{car.name}}</p>
       <p class="type">
         <span class="key">Av.</span> {% if car.isAvailable %}Y

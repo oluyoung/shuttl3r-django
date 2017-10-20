@@ -18,7 +18,8 @@ class CarInfo(models.Model):
     make = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
     color = models.CharField(max_length=20)
-    image = models.FileField(upload_to='uploads/cars')
+    # image = models.FileField(upload_to='uploads/cars')
+    image_url = models.URLField()
     license_plate = models.CharField(max_length=15) # admin
     luxury = models.BooleanField()
     available_for_use = models.BooleanField() # admin

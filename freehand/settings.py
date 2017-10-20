@@ -34,6 +34,10 @@ ALLOWED_HOSTS = ['localhost', 'freehandng.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'pages',
+    'hire',
+    'drivers',
+    'cars',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,10 +46,6 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic', # whitenoise app
     'django.contrib.staticfiles',
     'social_django',
-    'pages',
-    'hire',
-    'drivers',
-    'cars',
 ]
 
 MIDDLEWARE = [

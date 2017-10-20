@@ -8,7 +8,7 @@
   <div class="content car flex row-wrap just-start" id="car-{{car.id}}">
     <div class="top-info flex row-nowrap">
       <div class="car-license">
-          <img class="image" src="{% static 'img/lights-car.jpg' %}" alt="{{car.make}} {{car.name}}">
+          <img class="image" src="{{car.image.url}}" alt="{{car.make}} {{car.name}}">
       </div>
       <div class="car-info">
         <table>
