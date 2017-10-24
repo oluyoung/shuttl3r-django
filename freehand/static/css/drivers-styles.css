@@ -172,7 +172,6 @@ small devices: 320px
 @media (min-width: 320px) {
 
   .driver-license {
-    width: 100%;
     height: 155px;
   }
 
@@ -204,13 +203,6 @@ small devices: 320px
 }
 
 @media (min-width: 375px) {
-  .wrap {
-    border: 2.5px solid #ccc;
-  }
-  
-  .wrap .thumb-tack {
-    height: 35px;
-  }
 
   .driver-license .title {
     height: 30px;
@@ -241,7 +233,6 @@ small devices: 480px
 @media (min-width: 480px) {
 
   .driver-license {
-    width: 100%;
     height: 210px;
     max-width: 450px
   }
@@ -280,7 +271,6 @@ tablets 768px
 @media (min-width:768px) {
 
   .driver-license {
-    width: 45%;
     height: 175px;
   }
 
@@ -312,14 +302,11 @@ tablets 768px
 @media (min-width: 1024px){
   
   .driver-license {
-    width: 30%;
     min-width: 345px;
     height: 175px;
   }
 
-  .driver-license .title {
-    
-  }
+  .driver-license .title {}
 
   .driver-license .image {
     width: 100px;
@@ -342,8 +329,6 @@ tablets 768px
 @media (min-width: 1600px){
 
   .driver-license {
-      width: 23%;
-      min-width: 23%;
       height: 265px;
   }
 }

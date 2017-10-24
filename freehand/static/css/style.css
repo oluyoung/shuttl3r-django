@@ -637,6 +637,11 @@ small devices: 320px
     height: 35px;
     left: 42%;
   }
+
+  .license {
+    width: 100%;
+  }
+
 }
 
 @media (min-width: 375px) {
@@ -663,10 +668,17 @@ small devices: 480px
     height: 35px;
     left: 42%;
   }
+
+  /* .license {
+    width: 100%
+  } */
 }
 
 /**   768PX   **/
 @media (min-width: 768px) {
+  .license {
+    width: 45%;
+  }
   
   .u-row {
     margin: -10px;
@@ -783,6 +795,10 @@ small devices: 480px
   .wrap .thumb-tack {
     height: 45px;
   }
+
+  .license {
+    width: 30%;
+  }
 }
 
 @media (min-width: 1280px) {}
@@ -790,6 +806,11 @@ small devices: 480px
 @media (min-width: 1600px){
   .wrap .thumb-tack {
     height: 66px;
+  }
+
+  .license {
+    width: 23%;
+    min-width: 23%;
   }
 }
 

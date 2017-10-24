@@ -11,7 +11,7 @@
       <div class="license driver-license flex row-wrap just-between pos-rel driver-{{driver.id}}" style="background:url({% static 'img/topography.png' %})">
         <!-- <img src="{% static 'img/tack-red.png' %}" class="thumb-tack" /> -->
         <div class="title"><h4 class="text-center">FREEHAND DEPT. OF MOTOR VEHICLES</h4></div>
-        <div class="image" style="background-image: url({{driver.image.url}}})"></div>
+        <div class="image" style="background-image: url({{driver.image.url}})"></div>
         <div class="info">
           <p class="name">{{driver.last_name}}, {{driver.first_name}}</p>
           <p class="type"><span class="key">CLASS</span> {{driver.category}}</p>
@@ -41,7 +41,7 @@
                 </tr>
                 <tr>
                   <th class="key">Av.</th>
-                  <td>{% if driver.isAvailable %}Yes{%else%}No{% endif %}</td>
+                  <td>{% if driver.isAvailable %}Yes{%else%}Not Available{% endif %}</td>
                 </tr>
                 <tr>
                   {% if driver.isAvailable %}{%else%}
@@ -52,6 +52,7 @@
               </table>
             </div>
           </div>
+          <!-- if user not logged in -->
           <div class="order-form driver-order-form">
             <!-- use action for ajax call -->
             <form action="" method="post" class="form flex col-wrap">
