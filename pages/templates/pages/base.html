@@ -45,9 +45,9 @@
           </svg>
         </a>
         <ul class="user-nav-menu">
-          <li>DASHBOARD</li>
-          <li>SETTINGS</li>
-          <li>LOGOUT</li>
+          <li><a href="{% url 'users:dashboard' user.id%}">DASHBOARD</a></li>
+          <li><a href="{% url 'users:account' user.id %}">ACCOUNT</a></li>
+          <li><a href="{% url 'users:logout' %}">LOGOUT</a></li>
         </ul>
       {% else %}
         <a href="" class="user-nav-icon block notloggedin">
@@ -56,7 +56,8 @@
           </svg>
         </a>
         <ul class="user-nav-menu">
-          <li>LOGIN</li>
+          <li><a href="{% url 'users:login' %}">LOGIN</a></li>
+          <li><a href="{% url 'users:register' %}">SIGN UP</a></li>
         </ul>
       {% endif %}
       </li>
@@ -86,11 +87,12 @@
       </ul>
       <ul class="nav-mob-acct">
         {% if user.is_authenticated %}
-        <h5><a href="">D</a></h5>
-        <h5><a href="">A</a></h5>
-        <h5><a href="">L</a></h5>
+        <h5><a href="{% url 'users:dashboard' user.id%}">D</a></h5>
+        <h5><a href="{% url 'users:account' user.id %}">A</a></h5>
+        <h5><a href="{% url 'users:logout' %}">L</a></h5>
         {% else %}
-        <h5><a href="">L</a></h5>
+        <h5><a href="{% url 'users:login' %}">L</a></a></h5>
+        <h5><a href="{% url 'users:register' %}">S</a></h5>
         {% endif %}
       </ul>
     </div>

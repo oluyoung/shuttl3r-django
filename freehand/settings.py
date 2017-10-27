@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'hire',
     'drivers',
     'cars',
+    'users',
+    'shuttle',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -98,6 +100,12 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY='1089522462895-2u68u3cu7u4f7fru1joq4fl9u41pq4i6.ap
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET='cEV5kM9ij5oTtgYl0RdKGq1T'
 
 WSGI_APPLICATION = 'freehand.wsgi.application'
+
+
+# Custom Authentication
+# Custom authentication model and backend
+
+AUTH_USER_MODEL = 'users.User'
 
 
 # Database
@@ -167,3 +175,11 @@ STATICFILES_DIRS = [
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
+# Email Host Server Configuration
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'blancpointinc@gmail.com'
+EMAIL_HOST_PASSWORD = 'i3nic34//'
+EMAIL_PORT = 587

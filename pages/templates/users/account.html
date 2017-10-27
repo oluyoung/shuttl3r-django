@@ -3,17 +3,16 @@
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/users-styles.css' %}">
 {% endblock %}
-{% block title %}Login{% endblock %}
+
+{% block title %}Account{% endblock %}
 
 {% block content %}
-<section class="container" id="login-container">
-    <h2>Login</h2>
+<section class="container register-container">
+    <h2>Account Details</h2>
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit">Save Changes</button>
     </form>
-    <p>--OR--</p>
-    <p><a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a></p>
 </section>
 {% endblock %}
