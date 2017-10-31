@@ -1,0 +1,61 @@
+.shuttle-wrap {
+    flex-flow: column nowrap;
+    justify-content: center;
+    border: none;
+}
+.article {
+  margin: 0 auto 5%;
+}
+.article.how {
+  
+}
+.article.routes {}
+.title {}
+.subtitle {
+  margin-bottom: 2em;
+}
+.route {
+  margin-bottom: 7%;
+  margin-top: 5%
+}
+.route-title {
+  top: -40px;
+}
+.route-line {
+  min-width: 500px;
+  width: 100%;
+  background-color: #607D8B;
+  height: 5px;
+  margin-bottom: 5%;
+}
+.route-line .route-start,
+.route-line .route-end {
+  position:absolute;
+  background-color: red;
+  height: 15px;
+  width: 15px;
+  top: -5px;
+}
+.route-line .route-start {
+  left: 0;
+}
+.route-line .route-end {
+  right:0
+}
+.route-stops {
+  top: -3px;
+  max-width: 80%;
+  margin: auto;
+}
+.route-stop {
+  width: 10px;
+  height: 10px;
+  background-color: #F44336;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+.stop-info {
+  font-size: .7em;
+  bottom: 120%;
+}
+.apply-btn {}

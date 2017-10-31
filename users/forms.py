@@ -13,7 +13,7 @@ class UserForm(forms.ModelForm):
     )
     password = forms.CharField(widget=forms.PasswordInput(), required=True, label='* Password')
     password2 = forms.CharField(widget=forms.PasswordInput, required=True, label='* Confirm password')
-    default_pickup_addr = forms.CharField(required=True)
+    default_pickup_addr = forms.CharField(required=False)
 
     class Meta:
         model = User

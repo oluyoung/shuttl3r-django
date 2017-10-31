@@ -40,7 +40,7 @@ class CarOrders(models.Model):
     Description: Stores information for each car's order
     """
     # use timestamp to create charts in admin dash with API
-    timestamp = models.DateField(auto_now_add=True)
+    order_date = models.DateTimeField(auto_now_add=True)
     car = models.ForeignKey(CarInfo, on_delete=models.CASCADE)
     driver = models.ForeignKey(DriverInfo, on_delete=models.CASCADE)
     # user = models.ForeignKey(User)

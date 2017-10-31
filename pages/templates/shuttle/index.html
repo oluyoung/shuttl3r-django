@@ -4,10 +4,80 @@
 <link rel="stylesheet" href="{% static 'css/shuttle-styles.css' %}">
 {% endblock %}
 {% block content %}
-<section class="container shuutle-container" id="shuttle-index-container">
-    <div class="filters"></div>
-    <section class="wrap shuttle-wrap">
-        
+<section class="container shuttle-container" id="shuttle-index-container">
+  <div class="filters"></div>
+  <main class="wrap shuttle-wrap">
+    <section class="article how flex col-nowrap just-center align-flex-center">
+      <h3 class="title">HOW IT WORKS</h3>
+      <p>Select a route, Pick a stop, Subscribe, Get token, Meet at stop, Submit token to driver, Move</p>
     </section>
+    <section class="article routes flex col-nowrap just-center align-flex-center">
+      <h3 class="title">ROUTES</h3>
+      <h4 class="subtitle">Select a route</h4>
+      <ul>
+        <li>
+          <div class="route flex col-nowrap just-center align-flex-center">
+            <h4 class="route-title capitalize pos-rel">Ikorodu to Victoria Island</h4>
+            <div class="route-line pos-rel">
+              <div class="route-start pos-rel">
+                <p class="stop-info pos-abs uppercase">
+                  <span class="time">
+                    <time datetime="" class="morning">5:30am</time>/<time datetime="" class="evening">7:30pm</time>
+                  </span>
+                  <span class="location">Ikoroudu</span>
+                </p>
+              </div>
+
+              <div class="route-stops flex row-wrap just-around pos-rel">
+                <div class="route-stop pos-rel">
+                  <p class="stop-info pos-abs uppercase">
+                    <span class="time">
+                      <time datetime="">5:30am</time>/<time datetime="">7:30pm</time>
+                    </span>
+                    <span class="location">Maryland</span>
+                  </p>
+                </div>
+                <div class="route-stop pos-rel">
+                  <p class="stop-info pos-abs uppercase">
+                    <span class="time">
+                      <time datetime="">5:30am</time>/<time datetime="">7:30pm</time>
+                    </span>
+                    <span class="location">Ikeja</span>
+                  </p>
+                </div>
+                <div class="route-stop pos-rel">
+                  <p class="stop-info pos-abs uppercase">
+                    <span class="time">
+                      <time datetime="">5:30am</time>/<time datetime="">7:30pm</time>
+                    </span>
+                    <span class="location">Palmgrove</span>
+                  </p>
+                </div>
+                <div class="route-stop pos-rel">
+                  <p class="stop-info pos-abs uppercase">
+                    <span class="time">
+                      <time datetime="">5:30am</time>/<time datetime="">7:30pm</time>
+                    </span>
+                    <span class="location">Lagos</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="route-end pos-rel">
+                <p class="stop-info pos-abs uppercase">
+                  <span class="time">
+                    <time datetime="">5:30am</time>/<time datetime="">7:30pm</time>
+                  </span>
+                  <span class="location">V.I.</span>
+                </p>
+              </div>
+            </div>
+            <div class="route-stops-mob"></div>
+            <button class="apply-btn">APPLY</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
 </section>
 {% endblock %}

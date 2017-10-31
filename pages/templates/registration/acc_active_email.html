@@ -1,0 +1,7 @@
+
+{% autoescape off %}
+Hi {{ user.username }},
+Please click on the link to confirm your registration,
+
+<div><a target="_blank" href="//127.0.0.1:8000{% url 'users:activate' uidb64=uid token=token %}">Confirm Email</a></div>
+{% endautoescape %}

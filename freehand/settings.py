@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', 'freehandng.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'freehandng.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -85,8 +85,6 @@ TEMPLATES = [
 # Social Auth Authentication Backends
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.github.GithubOAuth2',
-    #'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend'
 )
 
@@ -156,8 +154,7 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 # redirect to previous URL
 LOGIN_REDIRECT_URL = '/' # '/accounts/profile/'
-# take to home page
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/' # take to home page
 
 
 
@@ -174,10 +171,12 @@ STATICFILES_DIRS = [
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
+
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 # Email Host Server Configuration
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'blancpointinc@gmail.com'

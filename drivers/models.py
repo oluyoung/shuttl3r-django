@@ -39,6 +39,7 @@ class DriverOrder(models.Model):
     """
     Description: Model Description
     """
+    order_date = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateField(auto_now_add=True)
     start_date = models.DateField()
     end_date = models.DateField()
