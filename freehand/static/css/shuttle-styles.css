@@ -58,4 +58,10 @@
   font-size: .7em;
   bottom: 120%;
 }
-.apply-btn {}
+.time-separator {
+  color: #FF5722;
+}
+.apply-btn {
+  padding: 10px 1em;
+  background-color: #009688;
+}

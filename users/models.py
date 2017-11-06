@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 
-
 from django.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
@@ -55,4 +54,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
     def __str__(self):
-        return "%s %s" % (self.first_name, self.last_name)
+        return "%d: %s" % (self.id, self.get_full_name())

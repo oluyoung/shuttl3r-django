@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="order-form car-order-form">
+    <div class="order-form car-order-form material-form">
       <div class="text-center">
         <h3>To make a request just fill the form below</h3>
       </div>
@@ -69,7 +69,11 @@
           <input type="text" id="pickup-addr" name="pickup_addr" placeholder="Pickup Address">
         </div>
 
-        <input type="submit" class="btn submit-btn" />
+        {% if user.is_authenticated %}
+        <input type="submit" class="btn submit-btn" id="cars-submit-btn" value="SUBMIT" />
+        {% else %}
+        <a href="#login" class="btn login-btn">Login</a>
+        {% endif %}
       </form>
     </div>
   </div>

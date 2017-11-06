@@ -12,71 +12,122 @@
       <p>Select a route, Pick a stop, Subscribe, Get token, Meet at stop, Submit token to driver, Move</p>
     </section>
     <section class="article routes flex col-nowrap just-center align-flex-center">
+      
       <h3 class="title">ROUTES</h3>
       <h4 class="subtitle">Select a route</h4>
       <ul>
-        <li>
+        {% for route in routes %}
+        <li class="route-outline route-{{route.id}}" style="margin-bottom: 5rem;">
           <div class="route flex col-nowrap just-center align-flex-center">
-            <h4 class="route-title capitalize pos-rel">Ikorodu to Victoria Island</h4>
+            <h4 class="route-title capitalize pos-rel">{{route.route_name}}</h4>
             <div class="route-line pos-rel">
+
+              <!-- Start point -->
               <div class="route-start pos-rel">
                 <p class="stop-info pos-abs uppercase">
-                  <span class="time">
-                    <time datetime="" class="morning">5:30am</time>/<time datetime="" class="evening">7:30pm</time>
-                  </span>
-                  <span class="location">Ikoroudu</span>
+                  <span class="location">{{route.get_first_stop.stop_location}}</span>
                 </p>
               </div>
-
+              
+              <!-- Route stops -->
               <div class="route-stops flex row-wrap just-around pos-rel">
+                {% for stop in route.get_mid_stops %}
                 <div class="route-stop pos-rel">
-                  <p class="stop-info pos-abs uppercase">
-                    <span class="time">
-                      <time datetime="">5:30am</time>/<time datetime="">7:30pm</time>
-                    </span>
-                    <span class="location">Maryland</span>
-                  </p>
+                  <div class="stop-info pos-abs uppercase">
+                    <span class="location">{{stop.stop_location}}</span>
+                  </div>
                 </div>
-                <div class="route-stop pos-rel">
-                  <p class="stop-info pos-abs uppercase">
-                    <span class="time">
-                      <time datetime="">5:30am</time>/<time datetime="">7:30pm</time>
-                    </span>
-                    <span class="location">Ikeja</span>
-                  </p>
-                </div>
-                <div class="route-stop pos-rel">
-                  <p class="stop-info pos-abs uppercase">
-                    <span class="time">
-                      <time datetime="">5:30am</time>/<time datetime="">7:30pm</time>
-                    </span>
-                    <span class="location">Palmgrove</span>
-                  </p>
-                </div>
-                <div class="route-stop pos-rel">
-                  <p class="stop-info pos-abs uppercase">
-                    <span class="time">
-                      <time datetime="">5:30am</time>/<time datetime="">7:30pm</time>
-                    </span>
-                    <span class="location">Lagos</span>
-                  </p>
-                </div>
+                {% endfor %}
               </div>
 
+              <!-- Endpoint -->
               <div class="route-end pos-rel">
                 <p class="stop-info pos-abs uppercase">
-                  <span class="time">
-                    <time datetime="">5:30am</time>/<time datetime="">7:30pm</time>
-                  </span>
-                  <span class="location">V.I.</span>
+                  <span class="location">{{route.get_last_stop.stop_location}}</span>
                 </p>
               </div>
             </div>
             <div class="route-stops-mob"></div>
-            <button class="apply-btn">APPLY</button>
+            <a href="#route-{{route.id}}" class="btn apply-btn">SELECT</a>
           </div>
         </li>
+        <section class="container sheet route-sheet mfp-hide" id="route-{{route.id}}">
+          <div class="route flex row-wrap just-start" id="route-{{route.id}}">
+            <div class="top-info full-width">
+              <h3>{{route.route_name|title}}</h3>
+            </div>
+            <div class="order-form route material-form">
+              <div class="text-center">
+                <h3>To subscribe to this route just fill the form below</h3>
+              </div>
+              <form action="/shuttle/subscribe/" class="form flex col-wrap" method="post">
+                {% csrf_token %}
+                <input type="hidden" class="item_id" name="item_id" value="{{route.id}}">
+                <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
+                <div class="flex col-nowrap">
+                  <label for="subscription-choice">Subscription Choice</label>
+                  <select class="subscription-choice" id="subscription-choice"  name="subscription_choice">
+                      <option value="Daily">Daily</option>
+                      <option value="Weekly">Weekly</option>
+                      <option value="Monthly">Monthly</option>
+                  </select>
+                </div>
+                <div class="flex col-nowrap">
+                  <label for="morning-pickup-stop">Morning Pickup Stop</label>
+                  <select name="morning_pickup_stop" class="morning-pickup-stop" id="morning-pickup-stop" >
+                    {% for stop in route.get_all_stops %}
+                    <option value="{{stop.id}}">{{stop.stop_location|upper}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="flex col-nowrap">
+                  <label for="morning-pickup-time">Morning Pickup Time</label>
+                  <select class="morning-pickup-time" id="morning-pickup-time"  name="morning_pickup_time">
+                      <option value="05:00:00">5:00AM</option>
+                      <option value="05:30:00">5:30AM</option>
+                      <option value="06:00:00">6:00AM</option>
+                      <option value="06:30:00">6:30AM</option>
+                      <option value="07:00:00">7:00AM</option>
+                      <option value="07:30:00">7:30AM</option>
+                      <option value="08:00:00">8:00AM</option>
+                      <option value="08:30:00">8:30AM</option>
+                  </select>    
+                </div>
+                <div class="flex col-nowrap">
+                  <label for="evening-pickup-stop">Evening Pickup Stop</label>
+                  <select name="evening_pickup_stop" class="evening-pickup-stop" id="evening-pickup-stop">
+                    {% for stop in route.get_all_stops %}
+                    <option value="{{stop.id}}">{{stop.stop_location|upper}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="flex col-nowrap">
+                  <label for="evening-pickup-time">Evening Pickup Time</label>
+                  <select class="evening-pickup-time" id="evening-pickup-time" name="evening_pickup_time">
+                      <option value="17:00:00">5:00PM</option>
+                      <option value="17:30:00">5:30PM</option>
+                      <option value="18:00:00">6:00PM</option>
+                      <option value="18:30:00">6:30PM</option>
+                      <option value="19:00:00">7:00PM</option>
+                      <option value="19:30:00">7:30PM</option>
+                      <option value="20:00:00">8:00PM</option>
+                      <option value="20:30:00">8:30PM</option>
+                  </select>
+                </div>
+
+                {% if user.is_authenticated %}
+                <input type="submit" class="btn submit-btn shuttle-submit-btn" value="REQUEST" />
+                <input type="reset" value="CLEAR" hidden />
+                {% else %}
+                <a href="#login" class="btn login-btn">LOGIN</a>
+                {% endif %}
+              </form>
+            </div>
+          </div>
+        </section>
+        {% endfor %}
       </ul>
+
     </section>
   </main>
 </section>

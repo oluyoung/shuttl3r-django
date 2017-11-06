@@ -1,5 +1,5 @@
 from django.db import models
-from drivers.models import DriverInfo
+from users.models import User
 
 
 # Create your models here.
@@ -19,13 +19,15 @@ class CarInfo(models.Model):
     name = models.CharField(max_length=255)
     color = models.CharField(max_length=20)
     # image = models.FileField(upload_to='uploads/cars')
-    image_url = models.URLField()
-    license_plate = models.CharField(max_length=15) # admin
+    image_url = models.URLField(null=True, blank=True)
+    # admin
+    license_plate = models.CharField(max_length=15)
     luxury = models.BooleanField()
-    available_for_use = models.BooleanField() # admin
+    # admin
+    available_for_use = models.BooleanField()
     # papers
     isAvailable = models.BooleanField()
-    nextAvailability = models.DateField()
+    nextAvailability = models.DateField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'CarInfo'
@@ -35,24 +37,22 @@ class CarInfo(models.Model):
         return ('%s: %s') % (self.vehicle_type, self.license_plate)
 
 
-class CarOrders(models.Model):
+class CarOrder(models.Model):
     """
     Description: Stores information for each car's order
     """
     # use timestamp to create charts in admin dash with API
     order_date = models.DateTimeField(auto_now_add=True)
     car = models.ForeignKey(CarInfo, on_delete=models.CASCADE)
-    driver = models.ForeignKey(DriverInfo, on_delete=models.CASCADE)
-    # user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
     is_within_lagos = models.BooleanField()
     pickup_address = models.CharField(max_length=255)
-    pickup_time = models.DateTimeField()
 
     class Meta:
         verbose_name = 'CarOrder'
         verbose_name_plural = 'CarOrders'
 
     def __str__(self):
-        pass
+        return "%s: %s" % (self.order_date, self.user.get_full_name())

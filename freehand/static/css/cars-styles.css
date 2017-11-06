@@ -12,21 +12,33 @@
 }
 
 .car-license .image {
-  background-color: #000;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #111;
   height: 235px;
 }
 
 .car-license .title {
   margin-top: 10px;
-  height: 25px;
-  font-family: 'Pacifico', cursive;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.2em;
 }
 
-.car-license .subtitle {}
+.key {
+  color: crimson;
+  font-size: .8rem;
+}
+
+.car-license .type{
+  font-size: .9rem;
+  margin-top: 5px; 
+}
+
+.car-license .type:last-child {
+  margin-left: 1em;
+}
+
+.car-license .view-btn {
+   margin-top: 10px;
+}
 
 .car-license .view-btn {
   background-color: #009688;
