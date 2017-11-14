@@ -6,8 +6,8 @@ from . import views
 app_name = "users"
 
 urlpatterns = [
-    url(r'^(?P<id>[0-9]+)/dashboard$', views.dashboard, name="dashboard"),
-    url(r'^(?P<id>[0-9]+)/account/$', views.account, name="account"),
+    url(r'^user/dashboard/$', views.dashboard, name="dashboard"),
+    url(r'^user/account/$', views.account, name="account"),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^register/$', views.register, name='register'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate, name='activate'),

@@ -9,7 +9,10 @@ def index(request):
     drivers = DriverInfo.objects.all()
     if request.user.is_authenticated:
         user = request.user
-    context = {'drivers': drivers, 'user': user}
+        context = {'drivers': drivers, 'user': user}
+    else:
+        context = {'drivers': drivers}
+
     return render(request, 'drivers/index.html', context)
 
 

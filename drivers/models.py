@@ -35,9 +35,9 @@ class DriverInfo(models.Model):
 
     def get_full_name(self):
         '''
-        Returns the first_name plus the last_name, with a space in between.
+        Returns the first_name plus the last_name.
         '''
-        full_name = '%s, %s %s' % (self.last_name.upper(), self.mid_name.capitalize(), self.first_name.capitalize())
+        full_name = '%s, %s' % (self.last_name.capitalize(), self.first_name.capitalize())
         return full_name.strip()
 
     def __str__(self):
@@ -54,8 +54,10 @@ class DriverOrder(models.Model):
     is_within_lagos = models.BooleanField()
     pickup_address = models.CharField(max_length=255)
     # pickup_time = models.DateTimeField() # time not needed
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
-    driver = models.ForeignKey(DriverInfo, on_delete=models.CASCADE, related_name='driver')
+    STATUS_CHOICES = (('Completed','Completed'),('Ongoing','Ongoing'),('Not Started','Not Started'))
+    # status = models.CharField(max_length=30, choices=STATUS_CHOICES)
+    user = models.ForeignKey(User, related_name='users')
+    driver = models.ForeignKey(DriverInfo, related_name='driver')
 
     class Meta:
         verbose_name = 'DriverOrder'

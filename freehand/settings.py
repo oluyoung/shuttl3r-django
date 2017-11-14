@@ -150,8 +150,8 @@ USE_TZ = True
 
 
 # Login/Logout URLs
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
+LOGIN_URL = '/users/login'
+LOGOUT_URL = '/users/logout'
 # redirect to previous URL
 LOGIN_REDIRECT_URL = '/' # '/accounts/profile/'
 LOGOUT_REDIRECT_URL = '/' # take to home page

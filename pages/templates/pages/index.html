@@ -6,29 +6,100 @@
 {% block title %}NG{% endblock %}
 
 {% block content %}
-<section class="container flex align-flex-center" id="index-container">
-	<div class="aside aside1">
-		<div>
-			<h2 class="title text-center">VISION</h2>
-			<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis atque illum natus error rerum qui, dicta assumenda rem porro, autem optio asperiores quae odit laudantium, et dolores, sint saepe vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor distinctio mollitia, sit ducimus, maiores quis commodi nemo aliquid id consequatur magni odit quibusdam magnam nostrum nam. A explicabo perspiciatis adipisci.</p>
-		</div>
-	</div>
-	<div class="aside aside2">
-		<div>
-			<h2 class="title text-center">MISSION STATEMENT</h2>
-			<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, eum ipsum! Error voluptate nisi quasi eveniet veritatis, voluptatum ut dolor ea tempora sapiente, quidem nam nesciunt illum, nihil dolore non. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quibusdam, recusandae commodi debitis numquam alias, facilis esse eius itaque et eveniet cupiditate, nesciunt magnam ex a explicabo culpa enim, assumenda.</p>
-		</div>
-	</div>
+<section class="container flex col-nowrap just-center align-flex-center" id="index-container">
+  <nav class="filters" style="visibility:hidden;height:0"></nav>
+	<h1 style="font-size: 2rem;">Welcome to <img src="" alt="Freehand"></h1>
+  <h3 style="font-size: 1.4rem;">How can we lend a hand</h3>
+  
+  <!-- Driver -->
+  <div class="index-service flex row-wrap just-center align-flex-center index-driver">
+    <div class="full-width header flex col-nowrap just-center align-flex-center ">
+      <h2 class="inline-block text-center">Need a driver?</h2>
+      <a id="#driver-request" class="inline-block open-request">Hire</a>
+    </div>
+    <div class="flyer">
+      <div class="img-wrap circle">
+        <div class="img odd"></div>
+      </div>
+      <div class="img-title text-center full-width">Interstate</div>
+    </div>
+    <div class="flyer">
+      <div class="img-wrap circle">
+        <div class="img even"></div>
+      </div>
+      <div class="img-title text-center full-width">Cross Country</div>
+    </div>
+    <div class="flyer">
+      <div class="img-wrap circle">
+        <div class="img odd"></div>
+      </div>
+      <div class="img-title text-center full-width">Family Trips</div>
+    </div>
+    <p class="subtitle text-center full-width"><a href="#driver-request" class="inline-block open-request">REQUEST A DRIVER</a></p>
+  </div>
+
+  <!-- Car -->
+  <div class="index-service flex row-wrap just-center align-flex-center index-car">
+    <div class="full-width header flex col-nowrap just-center align-flex-center">
+      <h2 class="text-center inline-block">Need a car?</h2>
+      <a href="#car-request" class="inline-block open-request">Hire</a>
+    </div>
+    <div class="flyer">
+      <div class="img-wrap circle">
+        <div class="img odd"></div>
+      </div>
+      <div class="img-title text-center full-width">Interstate</div>
+    </div>
+    <div class="flyer">
+      <div class="img-wrap circle">
+        <div class="img even"></div>
+      </div>
+      <div class="img-title text-center full-width">Office Trip</div>
+    </div>
+    <div class="flyer">
+      <div class="img-wrap circle">
+        <div class="img odd"></div>
+      </div>
+      <div class="img-title text-center full-width">Staff Bus</div>
+    </div>
+    <div class="flyer">
+      <div class="img-wrap circle">
+        <div class="img even"></div>
+      </div>
+      <div class="img-title text-center full-width">Airport pickup</div>
+    </div>
+    <p class="subtitle text-center full-width"><a href="#car-request" class="inline-block open-request">REQUEST A CAR</a></p>
+  </div>
+
+  <!-- Shuttle -->
+  <div class="index-service flex row-wrap just-center align-flex-center index-shuttle">
+    <div class="full-width header flex col-nowrap just-center align-flex-center">
+      <h2 class="text-center inline-block">Need a ride to work?</h2>
+    </div>
+    <div class="flyer flex col-nowrap just-between align-flex-center">
+      <div class="img-wrap circle">
+        <div class="img odd"></div>
+      </div>
+      <div class="img-title text-center full-width">Get on a shuttle</div>
+      <a href="" class="inline-block">BOOK</a>
+    </div>
+    <div class="flyer flex col-nowrap just-between align-flex-center">
+      <div class="img-wrap circle">
+        <div class="img even"></div>
+      </div>
+      <div class="img-title text-center full-width">Private pickup</div>
+      <a href="" class="inline-block">REQUEST</a>
+    </div>
+    <div class="flyer flex col-nowrap just-between align-flex-center">
+      <div class="img-wrap circle">
+        <div class="img odd"></div>
+      </div>
+      <div class="img-title text-center full-width">Join a carpool</div>
+      <a href="" class="inline-block">JOIN</a>
+    </div>
+    <p class="subtitle text-center full-width"></p>
+  </div>
+  <!-- Who we are -->
 </section>
-<section>
-<!--
-services
-. img, desc, links
- - drivers
- - car hire
- - shuttle
-who we are
-footer
- -->	
-</section>
+
 {% endblock %}

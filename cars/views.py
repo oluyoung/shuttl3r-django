@@ -9,7 +9,10 @@ def index(request):
     cars = CarInfo.objects.all()
     if request.user.is_authenticated:
         user = request.user
-    context = {'cars': cars, 'user': user}
+        context = {'cars': cars, 'user': user}
+    else:
+        context = {'cars': cars}
+
     return render(request, 'cars/index.html', context)
 
 

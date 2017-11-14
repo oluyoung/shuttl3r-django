@@ -5,7 +5,7 @@ from .models import User
 class UserForm(forms.ModelForm):
     first_name = forms.CharField(required=True, label='* First name')
     last_name = forms.CharField(required=True, label='* Last name')
-    email = forms.EmailField(label='Email')
+    email = forms.EmailField(required=True, label='* Email')
     phone_num = forms.CharField(
         widget=forms.TextInput(attrs={'type': 'tel', 'maxlength': 11, }),
         label='* Phone number',
@@ -25,7 +25,7 @@ class UserForm(forms.ModelForm):
         password2 = self.cleaned_data.get('password2')
 
         if password != password2:
-            raise forms.ValidationError("Emails must match.")
+            raise forms.ValidationError("passwords must match.")
 
         email_qs = User.objects.filter(email=email)
         if email_qs:

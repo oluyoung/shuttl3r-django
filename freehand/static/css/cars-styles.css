@@ -16,6 +16,10 @@
   height: 235px;
 }
 
+.car-license .image img {
+  background-color: #fafafa;
+}
+
 .car-license .title {
   margin-top: 10px;
   font-family: 'Source Sans Pro', sans-serif;

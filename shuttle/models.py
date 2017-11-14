@@ -77,6 +77,10 @@ class RouteStop(models.Model):
     route = models.ForeignKey(ShuttleRoute)
     stop_no = models.IntegerField() # gets stop order no from 1
     stop_location = models.CharField(max_length=255)
+    # to be included for G Map API
+    # short_name = models.CharField(max_length=255)
+    # long_name = models.CharField(max_length=255)
+
     morning_start_time = models.TimeField(null=True, blank=True)
     # time that return journey begins
     evening_start_time = models.TimeField(null=True, blank=True)
@@ -102,8 +106,8 @@ class ShuttleOrder(models.Model):
     Description: Model describing a shuttle order/subscription
     """
     order_date = models.DateTimeField(auto_now_add=True)
-    route = models.ForeignKey(ShuttleRoute, on_delete=models.CASCADE, related_name='route')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    route = models.ForeignKey(ShuttleRoute, related_name='route')
+    user = models.ForeignKey(User, related_name='user')
     # if is one way show 
     # is_one_way = models.isBooleanField()
     # ONE_WAY_CHOICES = (('Morning', 'Morning'),('Evening', 'Evening')) # morning or evening
@@ -121,17 +125,17 @@ class ShuttleOrder(models.Model):
      #,('9:00','9:00'),('9:30','9:30') late night shuttle
     morning_pickup_time = models.TimeField(_('User\'s Morning Pickup Time'), choices=TIME_CHOICES)
     evening_pickup_time = models.TimeField(_('User\'s Evening Pickup Time'), choices=TIME_CHOICES)
-    # might have to change to charfield to allow startpoint
-    # then use <select> with loop of stops relating to route chosen
-    morning_pickup_stop = models.ForeignKey(RouteStop, on_delete=models.CASCADE, related_name='morning_pickup_stop')
-    evening_pickup_stop = models.ForeignKey(RouteStop, on_delete=models.CASCADE, related_name='evening_pickup_stop')
+    morning_pickup_stop = models.ForeignKey(RouteStop, related_name='morning_pickup_stop')
+    evening_pickup_stop = models.ForeignKey(RouteStop, related_name='evening_pickup_stop')
     isRenewing = models.BooleanField(_('Is User\'s Subscription Renewed?'))
+    STATUS_CHOICES = (('Completed','Completed'),('Ongoing','Ongoing'),('Not Started','Not Started'))
+    # status = models.CharField(max_length=30, choices=STATUS_CHOICES)
 
     class Meta:
         verbose_name = "ShuttleOrder"
         verbose_name_plural = "ShuttleOrders"
 
     def __str__(self):
-        morning = "Morning: %s on %s route @ %s from %s." % (self.user.get_full_name(), self.route.route_name, self.morning_pickup_time, self.morning_pickup_stop.stop_location)
-        evening = "Evening: %s on %s route @ %s from %s." % (self.user.get_full_name(), self.route.route_name, self.evening_pickup_time, self.evening_pickup_stop.stop_location)
+        morning = "%s: Morning: %s route @ %s from %s." % (self.user.get_full_name(), self.route.route_name, self.morning_pickup_time, self.morning_pickup_stop.stop_location)
+        evening = "Evening: %s route @ %s from %s." % (self.route.route_name, self.evening_pickup_time, self.evening_pickup_stop.stop_location)
         return morning, evening

@@ -1,0 +1,172 @@
+{% extends 'pages/base.html' %}
+{% load staticfiles  %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/pages-styles.css' %}">
+<style>
+    /**********************************
+    SYLESHEET FOR INDEX PAGE
+*********************************/
+
+#index-container {
+    align-items: center;
+}
+
+#index-container .aside div .title {
+}
+
+.aside div p {
+  margin: auto;
+}
+
+
+/**   MEDIA QUERIES
+**/
+
+/*
+small devices: 480px
+*/
+@media (min-width: 480px) {
+    
+}
+
+/**   768PX   **/
+@media (min-width: 768px) {
+  #index-container {
+    flex-flow: column nowrap;
+    height: 100vh;
+  }
+
+  #index-container .aside {
+    padding: 10%;
+    background-color: #ccc;
+  }
+
+  #index-container .aside div .title {
+    font-size: 2em;
+  }
+
+  .aside div p {
+    font-size: 1.2em;
+  }
+}
+
+/**   1024px    **/
+@media (min-width: 1024px){
+  html, 
+  body ,
+  .container {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .container {
+    padding-top: 0;
+  }
+
+  #index-container {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
+  #index-container .aside {
+    height: 100vh;
+    width: 50%;
+  }
+
+  #index-container .aside1 {
+    border-right: 1px solid;
+  }
+
+  #index-container .aside2 {
+    border-left: 1px solid;
+  }
+
+  #index-container .aside div {
+    position: relative;
+    top: 15%;
+    width: 38%;
+    margin: auto;
+    padding: 90px;
+    border: 1px solid #ccc;
+  }
+
+  #index-container .aside div p {
+    position: absolute;
+    top: 65%;
+    left: 0;
+    width: 90%;
+    margin: 0 auto;
+    padding: 5%;
+    background-color: #fff;
+    text-align: justify;
+    border: 1px solid #ccc;
+    font-size: 1.1em;
+    line-height: 1.5;
+  }
+
+}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1600px){}
+
+/**/
+@media (max-width: 1023px) and (min-width: 768px){}
+
+/**/
+@media (max-width: 1024px) and (max-width: 768px) {}
+
+/**/
+@media (max-width: 1024px){}
+
+/**/
+@media (max-width: 767px){
+  #index-container {
+    flex-flow: column nowrap;
+    justify-content: space-around;
+  }
+  .aside {
+    width: 90%;
+  }
+  .aside div {
+    margin-top: 5%;
+  }
+  .aside div p {
+    text-align: justify;
+    width: 90%;
+    margin: auto;
+  }
+
+}
+
+</style>
+{% endblock %}
+{% block title %}NG{% endblock %}
+
+{% block content %}
+<section class="container flex align-flex-center" id="index-container">
+    <div class="aside aside1">
+        <div>
+            <h2 class="title text-center">VISION</h2>
+            <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis atque illum natus error rerum qui, dicta assumenda rem porro, autem optio asperiores quae odit laudantium, et dolores, sint saepe vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor distinctio mollitia, sit ducimus, maiores quis commodi nemo aliquid id consequatur magni odit quibusdam magnam nostrum nam. A explicabo perspiciatis adipisci.</p>
+        </div>
+    </div>
+    <div class="aside aside2">
+        <div>
+            <h2 class="title text-center">MISSION STATEMENT</h2>
+            <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, eum ipsum! Error voluptate nisi quasi eveniet veritatis, voluptatum ut dolor ea tempora sapiente, quidem nam nesciunt illum, nihil dolore non. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quibusdam, recusandae commodi debitis numquam alias, facilis esse eius itaque et eveniet cupiditate, nesciunt magnam ex a explicabo culpa enim, assumenda.</p>
+        </div>
+    </div>
+</section>
+<section>
+<!--
+services
+. img, desc, links
+ - drivers
+ - car hire
+ - shuttle
+who we are
+footer
+ -->    
+</section>
+{% endblock %}

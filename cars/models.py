@@ -28,10 +28,15 @@ class CarInfo(models.Model):
     # papers
     isAvailable = models.BooleanField()
     nextAvailability = models.DateField(null=True, blank=True)
+    STATUS_CHOICES = (('Completed','Completed'),('Ongoing','Ongoing'),('Not Started','Not Started'))
+    # status = models.CharField(max_length=30, choices=STATUS_CHOICES)
 
     class Meta:
         verbose_name = 'CarInfo'
         verbose_name_plural = 'CarInfos'
+
+    def get_full_name(self):
+        return ('%s %s') % (self.make.capitalize(), self.name.capitalize())
 
     def __str__(self):
         return ('%s: %s') % (self.vehicle_type, self.license_plate)
@@ -43,8 +48,8 @@ class CarOrder(models.Model):
     """
     # use timestamp to create charts in admin dash with API
     order_date = models.DateTimeField(auto_now_add=True)
-    car = models.ForeignKey(CarInfo, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    car = models.ForeignKey(CarInfo)
+    user = models.ForeignKey(User)
     start_date = models.DateField()
     end_date = models.DateField()
     is_within_lagos = models.BooleanField()

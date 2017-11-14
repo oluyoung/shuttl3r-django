@@ -4,16 +4,30 @@
 <link rel="stylesheet" href="{% static 'css/users-styles.css' %}">
 {% endblock %}
 {% block title %}Login{% endblock %}
-
 {% block content %}
-<section class="container" id="login-container">
-    <h2>Login</h2>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
+<section class="container" id="">
+  <section class="login-form sheet login-container">
+    <form action="" method="post" class="form material-form flex col-nowrap">
+      <h2 class="title">LOGIN</h2>
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-field">
+          {{ field.label_tag }}
+          {{ field }}
+          {% if field.help_text %}
+            <small>{{field.help_text}}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <em style="color:red">{{error}}</em>
+          {% endfor %}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn submit-btn" id="login-btn">LOGIN</button>
+      <p class="text-center form-or">-- OR --</p>
+      <p class="text-center if-already if-already-mid"><a href="{% url 'social:begin' 'google-oauth2' %}">LOGIN</a> with Google</p>
+      <p class="text-center form-or">-- OR --</p>
+      <p class="text-center if-already"><a href="{% url 'users:register' %}">SIGN UP</a> to get a free account</p>
     </form>
-    <p>--OR--</p>
-    <p><a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a></p>
+  </section>  
 </section>
 {% endblock %}
