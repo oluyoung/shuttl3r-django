@@ -35,7 +35,6 @@ ALLOWED_HOSTS = ['localhost', 'freehandng.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'pages',
-    'hire',
     'drivers',
     'cars',
     'users',

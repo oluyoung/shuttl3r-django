@@ -11,6 +11,5 @@ urlpatterns = [
     url(r'^', include('pages.urls')),
     url(r'^users/', include('users.urls')),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
-    url(r'^hire/', include('hire.urls')),
     url(r'^shuttle/', include('shuttle.urls')),
 ]

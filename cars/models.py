@@ -48,12 +48,18 @@ class CarOrder(models.Model):
     """
     # use timestamp to create charts in admin dash with API
     order_date = models.DateTimeField(auto_now_add=True)
-    car = models.ForeignKey(CarInfo)
     user = models.ForeignKey(User)
     start_date = models.DateField()
     end_date = models.DateField()
     is_within_lagos = models.BooleanField()
     pickup_address = models.CharField(max_length=255)
+    CATEGORY_CHOICES = (
+        ('A', 'A'),
+        ('B', 'B'),
+        ('C', 'C'),
+    )
+    category = models.CharField(max_length=7, choices=CATEGORY_CHOICES)
+    pickup_time = models.DateTimeField() # time not needed
 
     class Meta:
         verbose_name = 'CarOrder'
