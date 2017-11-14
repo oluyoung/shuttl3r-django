@@ -3,16 +3,28 @@
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/users-styles.css' %}">
 {% endblock %}
-
 {% block title %}Account{% endblock %}
-
 {% block content %}
-<section class="container register-container">
-    <h2>Account Details</h2>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
+<section class="container">
+  <section class="register-container sheet">
+    <form action="" method="post" class="form material-form flex col-nowrap">
+      <h2 class="title">ACCOUNT DETAILS</h2>
+      <p style="padding: 1em 1em 10px;border-bottom: 1px solid #ccc;font-size: .85em;color: crimson;">Note: if you change your email you will have to verify it again.</p>
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-field">
+          {{ field.label_tag }}
+          {{ field }}
+          {% if field.help_text %}
+            <small>{{field.help_text}}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <em style="color:red">{{error}}</em>
+          {% endfor %}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn submit-btn" id="register-btn">SAVE CHANGES</button>
     </form>
+  </section>
 </section>
 {% endblock %}

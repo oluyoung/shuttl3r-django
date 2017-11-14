@@ -8,7 +8,13 @@ from users.models import User
 def index(request):
     routes = ShuttleRoute.objects.all()
     # route_stops = RouteStop.objects.all()
-    return render(request, 'shuttle/index.html', {'routes': routes})
+    if request.user.is_authenticated:
+        user = request.user
+        context = {'routes': routes, 'user': user}
+    else:
+        context = {'routes': routes}
+
+    return render(request, 'shuttle/index.html', context)
 
 
 def select(request, id):
@@ -16,7 +22,12 @@ def select(request, id):
     route_stops = RouteStop.objects.filter(route=route).order_by('stop_no')
     if request.user.is_authenticated:
         user = request.user
-    context = {'route': route, 'stops': route_stops, 'user': user}
+    context = {
+        'route': route, 
+        'stops': route_stops,
+        'user': user
+    }
+
     return render(request, 'shuttle/select.html', context)
 
 

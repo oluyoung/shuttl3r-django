@@ -1,22 +1,56 @@
+nav.filters {
+  visibility: hidden;
+  height: 0;
+}
+
 .shuttle-wrap {
-    flex-flow: column nowrap;
-    justify-content: center;
-    border: none;
+  flex-flow: column nowrap;
+  justify-content: center;
+  border: none;
+  width: 100%;
+  padding: 0;
 }
 .article {
-  margin: 0 auto 5%;
+  margin: 0 auto;
+  padding: 2% 0 5%;
 }
 .article.how {
-  
+  width: 100%
 }
-.article.routes {}
-.title {}
+.article.routes {
+  width: 80%;
+  padding: 1em;
+}
+.title {
+  font-size: 1.5em;
+}
 .subtitle {
   margin-bottom: 2em;
 }
+.route-list {
+  width: 100%;
+}
+.route-outline {
+  padding: 1em 0;
+  margin: auto;
+  background-color: transparent;
+  /* margin-bottom: 1rem; */
+  border-bottom: 2px solid #535353;
+}
+.map-canvas {
+  width:100%;
+  height:250px;
+}
+.route-outline:nth-child(odd){
+  background-color: #DCDCDC;
+}
+.route-outline:nth-child(even){
+  background-color: #EA9B9B;
+}
 .route {
-  margin-bottom: 7%;
-  margin-top: 5%
+  width: 55%;
+  margin: auto;
+  margin-top: 5%;
 }
 .route-title {
   top: -40px;
@@ -54,6 +88,11 @@
   border-radius: 50%;
   border: 1px solid #000;
 }
+.route-line .route-start,
+.route-line .route-end,
+.route-line .route-stop {
+  box-shadow: 1px 1px 3px #111;
+}
 .stop-info {
   font-size: .7em;
   bottom: 120%;
@@ -64,4 +103,84 @@
 .apply-btn {
   padding: 10px 1em;
   background-color: #009688;
+}
+.subscription-choice {}
+
+.route-outline-mob {
+  display: none;
+}
+
+@media (max-width:767px){
+
+  .filters {
+    width: 90%;
+    height: auto;
+    border: 1px solid #ccc;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .route-line {
+    display: none;
+  }
+
+  .subtitle {
+    margin-bottom: 1em;
+  }
+  
+  .apply-btn {
+    padding: 5px 1em;
+  }
+
+  .route-outline {
+    margin-bottom: 2rem;
+  }
+
+  .map-canvas {
+    height: 150px;
+  }
+
+  .mfp-wrap {
+    top: 10px !important;
+  }
+
+  .route-outline-mob {
+    display: block;
+    margin-bottom: .5em;
+    width: 100%;
+  }
+
+  .article.routes {}
+
+  .route-list,
+  .route-title {
+    width: 100%;
+  }
+
+  .route-title {
+    top: 0;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  .route-outline-mob .route-stops-mob {
+    padding:.7em;
+  }
+
+  .route-outline-mob .route-stop-mob {
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    padding: .2em;
+    color: #607D8B;
+  }
+
+  .route-line-mob .route-start,
+  .route-line-mob .route-end {
+    color: #BF360C;
+  }
+
+
 }

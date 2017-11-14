@@ -6,10 +6,10 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<section class="container register-container sheet">
-  <section class="material-form register-form">
-    <h2>Register</h2>
-    <form action="" method="post" class="form">
+<section class="container">
+  <section class="register-form register-container sheet">
+    <form action="" method="post" class="form material-form flex col-nowrap">
+      <h2 class="title">REGISTER</h2>
       {% csrf_token %}
       {% for field in form %}
       <div class="form-field">
@@ -24,8 +24,9 @@
       </div>
       {% endfor %}
       <button type="submit" class="btn submit-btn" id="register-btn">REGISTER</button>
+      <p class="text-center form-or">-- OR --</p>
+      <p class="text-center if-already"><a href="{% url 'users:login' %}">LOGIN</a> if you already have an account.</p>
     </form>
   </section>
-  <p><a href="{% url 'users:login' %}">Login</a> if you already have an account.</p>
 </section>
 {% endblock %}

@@ -5,19 +5,19 @@
 {% endblock %}
 {% block content %}
 <section class="container shuttle-container" id="shuttle-index-container">
-  <div class="filters"></div>
-  <main class="wrap shuttle-wrap">
-    <section class="article how flex col-nowrap just-center align-flex-center">
-      <h3 class="title">HOW IT WORKS</h3>
+  <p class="order-alert full-width" style=""></p>
+  <nav class="filters"></nav>
+  <main class="wrap shuttle-wrap col-nowrap just-center">
+    <section class="article how flex col-nowrap align-flex-center">
+      <h2 class="title">HOW IT WORKS</h2>
       <p>Select a route, Pick a stop, Subscribe, Get token, Meet at stop, Submit token to driver, Move</p>
     </section>
     <section class="article routes flex col-nowrap just-center align-flex-center">
-      
-      <h3 class="title">ROUTES</h3>
+      <h2 class="title">ROUTES</h2>
       <h4 class="subtitle">Select a route</h4>
-      <ul>
+      <ul class="route-list">
         {% for route in routes %}
-        <li class="route-outline route-{{route.id}}" style="margin-bottom: 5rem;">
+        <li class="route-outline route-{{route.id}}">
           <div class="route flex col-nowrap just-center align-flex-center">
             <h4 class="route-title capitalize pos-rel">{{route.route_name}}</h4>
             <div class="route-line pos-rel">
@@ -47,42 +47,80 @@
                 </p>
               </div>
             </div>
-            <div class="route-stops-mob"></div>
-            <a href="#route-{{route.id}}" class="btn apply-btn">SELECT</a>
-          </div>
-        </li>
-        <section class="container sheet route-sheet mfp-hide" id="route-{{route.id}}">
-          <div class="route flex row-wrap just-start" id="route-{{route.id}}">
-            <div class="top-info full-width">
-              <h3>{{route.route_name|title}}</h3>
+
+            <!-- Mobile Route List -->
+            <div class="route-outline-mob">
+              <!-- Start point -->
+              <ul class="route-line-mob route-{{route.id}} uppercase">
+                <li class="route-start">
+                  <span class="location">{{route.get_first_stop.stop_location}}</span>
+                </li>
+              
+                <!-- Route stops -->
+                <ul class="route-stops-mob">
+                  {% for stop in route.get_mid_stops %}
+                  <li class="route-stop-mob">
+                    <span class="location">{{stop.stop_location}}</span>
+                  </li>
+                  {% endfor %}
+                </ul>
+
+                <!-- Endpoint -->
+                <li class="route-end">
+                  <span class="location">{{route.get_last_stop.stop_location}}</span>
+                </li>
+              </ul>
+              
             </div>
-            <div class="order-form route material-form">
-              <div class="text-center">
-                <h3>To subscribe to this route just fill the form below</h3>
+
+            <a href="#route-{{route.id}}" class="btn apply-btn" data-id="apply-btn-{{route.id}}" id="apply-btn-{{route.id}}" data-map-id="routemap-{{route.id}}" data-map-start="{{route.startpoint}}" data-map-end="{{route.endpoint}}">SELECT</a>
+          </div>
+
+          <!-- Order Sheet -->
+          <section class="container sheet route-sheet mfp-hide" id="route-{{route.id}}">
+            <div class="flex row-wrap just-start" id="route-{{route.id}}">
+              <div class="top-info full-width">
+                <h3 class="text-center">{{route.route_name|title}}</h3>
+                <div class="map-canvas" id="routemap-{{route.id}}" ></div>
+                <div class="prices" style="margin-top:15px">
+                  <ul class="flex row-wrap just-around">
+                    <li>Daily: N650</li>
+                    <li>Weekly: N2500</li>
+                    <li>Monthly: N17500</li>
+                  </ul>
+                  <p>No. of seats left: {{24}}</p>
+                </div>
               </div>
-              <form action="/shuttle/subscribe/" class="form flex col-wrap" method="post">
-                {% csrf_token %}
-                <input type="hidden" class="item_id" name="item_id" value="{{route.id}}">
-                <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
-                <div class="flex col-nowrap">
-                  <label for="subscription-choice">Subscription Choice</label>
-                  <select class="subscription-choice" id="subscription-choice"  name="subscription_choice">
-                      <option value="Daily">Daily</option>
-                      <option value="Weekly">Weekly</option>
-                      <option value="Monthly">Monthly</option>
-                  </select>
+              <div class="order-form material-form">
+                <div class="text-center" style="margin-top:10px">
+                  <h3>To subscribe to this route just fill the form below</h3>
                 </div>
-                <div class="flex col-nowrap">
-                  <label for="morning-pickup-stop">Morning Pickup Stop</label>
-                  <select name="morning_pickup_stop" class="morning-pickup-stop" id="morning-pickup-stop" >
-                    {% for stop in route.get_all_stops %}
-                    <option value="{{stop.id}}">{{stop.stop_location|upper}}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-                <div class="flex col-nowrap">
-                  <label for="morning-pickup-time">Morning Pickup Time</label>
-                  <select class="morning-pickup-time" id="morning-pickup-time"  name="morning_pickup_time">
+                <form action="/shuttle/subscribe/" class="form flex col-wrap" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" class="item_id" name="item_id" value="{{route.id}}">
+                  <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
+                  <div class="flex col-nowrap">
+                    <label for="subscription-choice">Subscription Choice</label>
+                    <select class="subscription-choice" id="subscription-choice"  name="subscription_choice" required>
+                        <option value="">Choose subscription</option>
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                    </select>
+                  </div>
+                  <div class="flex col-nowrap">
+                    <label for="morning-pickup-stop">Morning Pickup Stop</label>
+                    <select name="morning_pickup_stop" class="stop-list morning-pickup-stop" id="morning-pickup-stop" required>
+                      <option value="">Pick a stop</option>
+                      {% for stop in route.get_all_stops %}
+                      <option value="{{stop.id}}" data-location="{{stop.stop_location}}">{{stop.stop_location|upper}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="flex col-nowrap">
+                    <label for="morning-pickup-time">Morning Pickup Time</label>
+                    <select class="pickup-time morning-pickup-time" id="morning-pickup-time"  name="morning_pickup_time" required>
+                      <option value="">Choose a time</option>
                       <option value="05:00:00">5:00AM</option>
                       <option value="05:30:00">5:30AM</option>
                       <option value="06:00:00">6:00AM</option>
@@ -91,19 +129,21 @@
                       <option value="07:30:00">7:30AM</option>
                       <option value="08:00:00">8:00AM</option>
                       <option value="08:30:00">8:30AM</option>
-                  </select>    
-                </div>
-                <div class="flex col-nowrap">
-                  <label for="evening-pickup-stop">Evening Pickup Stop</label>
-                  <select name="evening_pickup_stop" class="evening-pickup-stop" id="evening-pickup-stop">
-                    {% for stop in route.get_all_stops %}
-                    <option value="{{stop.id}}">{{stop.stop_location|upper}}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-                <div class="flex col-nowrap">
-                  <label for="evening-pickup-time">Evening Pickup Time</label>
-                  <select class="evening-pickup-time" id="evening-pickup-time" name="evening_pickup_time">
+                    </select>    
+                  </div>
+                  <div class="flex col-nowrap">
+                    <label for="evening-pickup-stop">Evening Pickup Stop</label>
+                    <select name="evening_pickup_stop" class="stop-list evening-pickup-stop" id="evening-pickup-stop" required>
+                      <option value="">Pick a stop</option>
+                      {% for stop in route.get_all_stops %}
+                      <option value="{{stop.id}}" data-location="{{stop.stop_location}}">{{stop.stop_location|upper}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="flex col-nowrap">
+                    <label for="evening-pickup-time">Evening Pickup Time</label>
+                    <select class="pickup-time evening-pickup-time" id="evening-pickup-time" name="evening_pickup_time" required>
+                      <option value="">Choose a time</option>
                       <option value="17:00:00">5:00PM</option>
                       <option value="17:30:00">5:30PM</option>
                       <option value="18:00:00">6:00PM</option>
@@ -112,23 +152,28 @@
                       <option value="19:30:00">7:30PM</option>
                       <option value="20:00:00">8:00PM</option>
                       <option value="20:30:00">8:30PM</option>
-                  </select>
-                </div>
+                    </select>
+                  </div>
 
-                {% if user.is_authenticated %}
-                <input type="submit" class="btn submit-btn shuttle-submit-btn" value="REQUEST" />
-                <input type="reset" value="CLEAR" hidden />
-                {% else %}
-                <a href="#login" class="btn login-btn">LOGIN</a>
-                {% endif %}
-              </form>
+                  {% if user.is_authenticated %}
+                  <input type="submit" class="btn submit-btn shuttle-submit-btn" value="REQUEST" />
+                  <input type="reset" value="CLEAR" hidden />
+                  {% else %}
+                  <a href="#login" class="btn login-btn">LOGIN</a>
+                  {% endif %}
+                </form>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </li>
+        
         {% endfor %}
       </ul>
 
     </section>
   </main>
 </section>
+{% block scripts %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQsOgmxK8BQ0P9dAnSLvZqC9h05HpKaJU"></script>
+{% endblock %}
 {% endblock %}

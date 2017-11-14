@@ -28,34 +28,34 @@
   <div class="u-clear">
     <div class="nav-sections-dropdown">
       <div class="nav-sections-dropdown-toggle">
-        <a href="{% url 'drivers:index' %}" class="nav-sections uppercase" id="">Hire Driver</a>
-        <a href="{% url 'cars:index' %}" class="nav-sections uppercase" id="">Hire Car</a>
+        <a href="#driver-request" class="open-request nav-sections uppercase" id="">Hire Driver</a>
+        <a href="#car-request" class="open-request nav-sections uppercase" id="">Hire Car</a>
         <a href="{% url 'shuttle:index' %}" class="nav-sections uppercase" id="">Book Shuttle</a>
         <a href="{% url 'pages:contact' %}" class="nav-sections uppercase" id="">Contact</a>
-        <a href="{% url 'pages:apply' %}" class="nav-sections uppercase" id="">Apply</a>
+        <!-- <a href="{% url 'pages:apply' %}" class="nav-sections uppercase" id="">Apply</a> -->
         <!-- <a href="{% url 'pages:faq' %}" class="nav-sections" id="">FAQ/Manual</a> -->
       </div>
     </div>
     <ul class="nav-icons">
       <li class="user-nav">
       {% if user.is_authenticated %}
-        <a href="" class="user-nav-icon block isloggedin">
+        <a href="" class="user-nav-icon isloggedin">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon" viewBox="0 0 16 16">
             <path d="M9 11.041v-0.825c1.102-0.621 2-2.168 2-3.716 0-2.485 0-4.5-3-4.5s-3 2.015-3 4.5c0 1.548 0.898 3.095 2 3.716v0.825c-3.392 0.277-6 1.944-6 3.959h14c0-2.015-2.608-3.682-6-3.959z"></path>
           </svg>
         </a>
-        <ul class="user-nav-menu">
-          <li><a href="{% url 'users:dashboard' user.id%}">DASHBOARD</a></li>
-          <li><a href="{% url 'users:account' user.id %}">ACCOUNT</a></li>
+        <ul class="user-nav-menu isloggedin">
+          <li><a href="{% url 'users:dashboard' %}">DASHBOARD</a></li>
+          <li><a href="{% url 'users:account'  %}">ACCOUNT</a></li>
           <li><a href="{% url 'users:logout' %}">LOGOUT</a></li>
         </ul>
       {% else %}
-        <a href="" class="user-nav-icon block notloggedin">
+        <a href="" class="user-nav-icon notloggedin">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon" viewBox="0 0 16 16">
             <path d="M9 11.041v-0.825c1.102-0.621 2-2.168 2-3.716 0-2.485 0-4.5-3-4.5s-3 2.015-3 4.5c0 1.548 0.898 3.095 2 3.716v0.825c-3.392 0.277-6 1.944-6 3.959h14c0-2.015-2.608-3.682-6-3.959z"></path>
           </svg>
         </a>
-        <ul class="user-nav-menu">
+        <ul class="user-nav-menu notloggedin">
           <li><a href="{% url 'users:login' %}">LOGIN</a></li>
           <li><a href="{% url 'users:register' %}">SIGN UP</a></li>
         </ul>
@@ -69,38 +69,192 @@
         </a>
       </li>
     </ul>
+    <!-- Order Popup -->
+    <div class="order-status flex col-nowrap just-center full-width pos-rel">
+      
+    </div>
   </div>
   <div class="nav-mob">
     <div class="nav-mob-content flex row-nowrap just-around">
       <div class="u-row nav-mob-urow">
-        <h5 class="uppercase"><a href="{% url 'drivers:index' %}" id="">Drivers</a></h5>
-        <h5 class="uppercase"><a href="{% url 'cars:index' %}" id="">Car Hire</a></h5>
-        <h5 class="uppercase">Shuttle</h5>
+        <h5 class="uppercase"><a href="{% url 'drivers:index' %}" id="">Hire Drivers</a></h5>
+        <h5 class="uppercase"><a href="{% url 'cars:index' %}" id="">Hire Car</a></h5>
+        <h5 class="uppercase"><a href="{% url 'shuttle:index' %}" id="">Book Shuttle</a></h5>
         <h5 class="uppercase"><a href="{% url 'pages:contact' %}">Contact</a></h5>
-        <h5 class="uppercase"><a href="{% url 'pages:apply' %}">Apply</a></h5>
+        <!-- <h5 class="uppercase"><a href="{% url 'pages:apply' %}">Apply</a></h5> -->
         <!-- <h5><a href="{% url 'pages:faq' %}">FAQ/Manual</a></h5> -->
       </div>
       <ul class="nav-mob-follow">
-        <li>F</li>
-        <li>T</li>
-        <li>I</li>
+        <li><a href=""><img src="{%static 'img/twitter_circle_color-256.png'%}" alt=""></a></li>
+        
+        <li><a href=""><img src="{%static 'img/fb-icon.svg'%}" alt=""></a></li>
+        <li><a href=""><img src="{%static 'img/instagram-logo.jpg'%}" alt=""></a></li>
       </ul>
       <ul class="nav-mob-acct">
         {% if user.is_authenticated %}
-        <h5><a href="{% url 'users:dashboard' user.id%}">D</a></h5>
-        <h5><a href="{% url 'users:account' user.id %}">A</a></h5>
-        <h5><a href="{% url 'users:logout' %}">L</a></h5>
+        <li><a href="{% url 'users:dashboard' %}"><img src="{%static 'img/dashboard-41.png'%}" alt=""></a></li>
+        <li><a href="{% url 'users:account' %}"><img src="{%static 'img/1019_-_Edit_Profile-512.png'%}" alt=""></a></li>
+        <li><a href="{% url 'users:logout' %}"><img src="{%static 'img/Graphicloads-100-Flat-2-Inside-logout.ico'%}" alt="LOGOUT"></a></li>
         {% else %}
-        <h5><a href="{% url 'users:login' %}">L</a></a></h5>
-        <h5><a href="{% url 'users:register' %}">S</a></h5>
+        <li><a href="{% url 'users:login' %}"><img src="{%static 'img/Login-512.png'%}" alt=""></a></a></li>
+        <li><a href="{% url 'users:register' %}"><img src="{%static 'img/1019_-_Edit_Profile-512.png'%}" alt=""></a></li>
         {% endif %}
       </ul>
     </div>
   </div>
 </nav>
 
+
+
 {% block content %}{% endblock %}
 {% block footer %}{% endblock %}
+<!-- PopUps -->
+  <!-- DRIVER ORDER SHEET -->
+  <section class="sheet driver-sheet mfp-hide" id="driver-request">
+    <div class="driver flex row-wrap just-start">
+      <div class="top-info flex row-nowrap">
+        <div class="class-ranks">
+          <table>
+            <tr>
+              <th class="key">Class A</th>
+              <td>Description</td>
+            </tr>
+            <tr>
+              <th class="key">Class B</th>
+              <td>Description</td>
+            </tr>
+            <tr>
+              <th class="key">Class C</th>
+              <td>Description</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- if user not logged in -->
+      <div class="order-form driver-order-form material-form">
+        <!-- use action for ajax call -->
+        <form action="/hire/drivers/request/driver/" method="post" class="form flex col-wrap">
+          <div class="text-center">
+            <h3>To make a request just fill the form below</h3>
+          </div>
+          {% csrf_token %}
+          <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
+          <div class="flex row-wrap just-between">
+            <div class="flex row-wrap just-start align-flex-center half-width" style="margin-top:-15px;">
+              <label for="within">Leaving Lagos?</label>
+              <input type="checkbox" class="within" name="within_lagos" hidden>
+              <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no selected">NO</a>
+            </div>
+          </div>
+          <div class="flex row-wrap just-between">
+            <div class="half-width">
+              <label for="start-date">Start Date</label>
+              {% if driver.isAvailable %}
+              <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" required>
+              {%else%}
+              <input type="date" class="order-date start-date" name="start_date" min="{{driver.nextAvailability|date:'Y-m-d'}}" required>
+              {% endif %}
+            </div>
+            <div class="half-width">
+              <label for="end-date">End Date</label>
+              <!-- should be disabled till start date done -->
+              {% if driver.isAvailable %}
+              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" required>
+              {%else%}
+              <input type="date" class="order-date end-date" name="start_date" min="{{driver.nextAvailability|date:'Y-m-d'}}" required>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="flex col-nowrap">
+            <label for="pickup-addr" class="">Pickup Address</label>
+            <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Pickup Address" value="{{user.default_pickup_addr}}" required>
+          </div>
+          {% if user.is_authenticated %}
+          <input type="submit" class="btn submit-btn" id="drivers-submit-btn" value="REQUEST" />
+          <input type="reset" value="clear" hidden />
+          {% else %}
+          <a href="#login" class="btn login-btn">LOGIN</a>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAR ORDER SHEET -->
+  <section class="sheet car-sheet mfp-hide" id="car-request">
+    <div class="content car flex row-wrap just-start" >
+      <div class="top-info flex row-nowrap">
+        <div class="car-license">
+          <img class="image" src="{{car.image_url}}" alt="{{car.make}} {{car.name}}">
+        </div>
+        <div class="car-info">
+          <table>
+            <tr>
+              <th class="key small-caps">Class A </th>
+              <td class="capitalize">Luxury</td>
+            </tr>
+            <tr>
+              <th class="key small-caps">Class B </th>
+              <td class="capitalize">Normal</td>
+            </tr>
+            <tr>
+              <th class="key small-caps">Class C </th>
+              <td class="capitalize"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- Order Form -->
+      <div class="order-form car-order-form material-form">
+        <div class="text-center">
+          <h3>To make a request just fill the form below</h3>
+        </div>
+        <form action="/hire/cars/request/car/" class="form flex col-wrap" method="post">
+          {% csrf_token %}
+          <input type="hidden" class="item_id" name="item_id" value="{{car.id}}">
+          <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
+          <div class="flex row-wrap just-between">
+            <div class="flex row-wrap just-start align-flex-center half-width">
+              <label for="within">Leaving Lagos?</label>
+              <input type="checkbox" class="within" name="within_lagos" hidden>
+              <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no selected">NO</a>
+            </div>
+          </div>
+          <div class="flex row-wrap just-between">
+            <div class="half-width">
+              <label for="start-date">Start Date</label>
+              {% if car.isAvailable %}
+              <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" required>
+              {%else%}
+              <input type="date" class="order-date start-date" name="start_date" min="{{car.nextAvailability|date:'Y-m-d'}}" required>
+              {% endif %}
+            </div>
+            <div class="half-width">
+              <label for="end-date">End Date</label>
+              {% if car.isAvailable %}
+              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" required>
+              {%else%}
+              <input type="date" class="order-date end-date" name="start_date" min="{{car.nextAvailability|date:'Y-m-d'}}" required>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="flex col-nowrap">
+            <label for="pickup-addr" class="">Pickup Address</label>
+            <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Pickup Address" value="{{user.default_pickup_addr}}" required>
+          </div>
+
+          {% if user.is_authenticated %}
+          <input type="submit" class="btn submit-btn" id="cars-submit-btn" value="REQUEST" />
+          <input type="reset" value=clear hidden />
+          {% else %}
+          <a href="#login" class="btn login-btn">LOGIN</a>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </section>
 
 <script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>

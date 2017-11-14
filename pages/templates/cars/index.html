@@ -5,6 +5,7 @@
 {% endblock %}
 {% block content %}
 <section class="container cars-container" style="background:url()">
+  <p class="order-alert full-width" style=""></p>
   <nav class="filters"></nav>
   <section class="wrap cars-wrap" style="background:url({% static 'img/bgnoise_lg_@2X.png' %})" >
   {% for car in cars %}
@@ -18,8 +19,8 @@
           </div>
           <p class="title text-center capitalize">{{car.make}} {{car.name}}</p>
           <div class="flex row-nowrap just-between align-flex-center">
-            <p class="type"><span class="key">Av.</span> {% if car.isAvailable %}Y
-            {%else%}X</p><p class="type"><span class="key">Free</span> {{car.nextAvailability}}{% endif %}
+            <p class="type"><span class="key">AVAIL.</span> {% if car.isAvailable %}Y
+            {%else%}X</p><p class="type"><span class="key">FREE</span> {{car.nextAvailability}}{% endif %}
             </p>  
           </div>
           <a href="#car-{{car.id}}" class="btn view-btn poppins block">VIEW</a>
@@ -30,21 +31,21 @@
           <div class="content car flex row-wrap just-start" >
             <div class="top-info flex row-nowrap">
               <div class="car-license">
-                  <img class="image" src="{{car.image_url}}" alt="{{car.make}} {{car.name}}">
+                <img class="image" src="{{car.image_url}}" alt="{{car.make}} {{car.name}}">
               </div>
               <div class="car-info">
                 <table>
                   <tr>
-                    <th class="key">Name:</th>
+                    <th class="key small-caps">Name </th>
                     <td class="capitalize">{{car.make}} {{car.name}}</td>
                   </tr>
                   <tr>
-                    <th class="key">Av.:</th>
+                    <th class="key small-caps">Avail. </th>
                     <td class="capitalize">{% if car.isAvailable %}Y{%else%}X{% endif %}</td>
                   </tr>
                   <tr>
                     {% if car.isAvailable %}{%else%}
-                    <th class="key">Free:</th>
+                    <th class="key small-caps">Free </th>
                     <td>{{car.nextAvailability}}</td>
                     {% endif %}
                   </tr>
@@ -64,31 +65,31 @@
                   <div class="flex row-wrap just-start align-flex-center half-width">
                     <label for="within">Leaving Lagos?</label>
                     <input type="checkbox" class="within" name="within_lagos" hidden>
-                    <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no">NO</a>
+                    <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no selected">NO</a>
                   </div>
                 </div>
                 <div class="flex row-wrap just-between">
                   <div class="half-width">
                     <label for="start-date">Start Date</label>
                     {% if car.isAvailable %}
-                    <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}">
+                    <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" required>
                     {%else%}
-                    <input type="date" class="order-date start-date" name="start_date" min="{{car.nextAvailability|date:'Y-m-d'}}">
+                    <input type="date" class="order-date start-date" name="start_date" min="{{car.nextAvailability|date:'Y-m-d'}}" required>
                     {% endif %}
                   </div>
                   <div class="half-width">
                     <label for="end-date">End Date</label>
                     {% if car.isAvailable %}
-                    <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}">
+                    <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" required>
                     {%else%}
-                    <input type="date" class="order-date end-date" name="start_date" min="{{car.nextAvailability|date:'Y-m-d'}}">
+                    <input type="date" class="order-date end-date" name="start_date" min="{{car.nextAvailability|date:'Y-m-d'}}" required>
                     {% endif %}
                   </div>
                 </div>
 
                 <div class="flex col-nowrap">
                   <label for="pickup-addr" class="">Pickup Address</label>
-                  <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Pickup Address" value="{{user.default_pickup_addr}}">
+                  <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Pickup Address" value="{{user.default_pickup_addr}}" required>
                 </div>
 
                 {% if user.is_authenticated %}

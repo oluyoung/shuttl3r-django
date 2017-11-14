@@ -5,22 +5,24 @@
 {% endblock %}
 {% block content %}
 <section class="container drivers-container pos-rel" id="driver-index-container">
-  <p class="order-alert full-width" style="position:absolute;margin-top:-1em;z-index:999;background-color:#111;height:20px;"></p>
+  <p class="order-alert full-width" style=""></p>
   <nav class="filters"></nav>
   <section class="wrap drivers-wrap" style="background:url({% static 'img/bgnoise_lg_@2X.png' %})">
     {% for driver in drivers %}
       {% if driver.available_for_use %}
         <div class="license driver-license flex row-wrap just-between pos-rel driver-{{driver.id}}" style="background:url({% static 'img/topography.png' %})">
           <!-- <img src="{% static 'img/tack-red.png' %}" class="thumb-tack" /> -->
-          <div class="title"><h4 class="text-center">FREEHAND DEPT. OF MOTOR VEHICLES</h4></div>
+          <div class="title">
+            <h4 class="text-center">FREEHAND DEPT. OF MOTOR VEHICLES</h4>
+          </div>
           <div class="image" style="background-image: url({{driver.image.url}})"></div>
           <div class="info">
             <p class="name">{{driver.last_name}}, {{driver.first_name}}</p>
             <p class="type"><span class="key">CLASS</span> {{driver.category}}</p>
-            <p class="type"><span class="key">Av.</span> {% if driver.isAvailable %}Yes{%else%}No{% endif %}</p>
+            <p class="type"><span class="key">AVAIL.</span> {% if driver.isAvailable %}Yes{%else%}No{% endif %}</p>
             <p class="type">
             {% if driver.isAvailable %}{%else%}
-            <span class="key">FF</span> {{driver.nextAvailability}}{% endif %}
+            <span class="key">FREE</span> {{driver.nextAvailability}}{% endif %}
             </p>
             <a href="#driver-{{driver.id}}" class="view-btn driver-view-btn text-center block">VIEW</a>
           </div>
@@ -69,32 +71,32 @@
                   <div class="flex row-wrap just-start align-flex-center half-width" style="margin-top:-15px;">
                     <label for="within">Leaving Lagos?</label>
                     <input type="checkbox" class="within" name="within_lagos" hidden>
-                    <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no">NO</a>
+                    <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no selected">NO</a>
                   </div>
                 </div>
                 <div class="flex row-wrap just-between">
                   <div class="half-width">
                     <label for="start-date">Start Date</label>
                     {% if driver.isAvailable %}
-                    <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}">
+                    <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" required>
                     {%else%}
-                    <input type="date" class="order-date start-date" name="start_date" min="{{driver.nextAvailability|date:'Y-m-d'}}">
+                    <input type="date" class="order-date start-date" name="start_date" min="{{driver.nextAvailability|date:'Y-m-d'}}" required>
                     {% endif %}
                   </div>
                   <div class="half-width">
                     <label for="end-date">End Date</label>
                     <!-- should be disabled till start date done -->
                     {% if driver.isAvailable %}
-                    <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" disabled>
+                    <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" required>
                     {%else%}
-                    <input type="date" class="order-date end-date" name="start_date" min="{{driver.nextAvailability|date:'Y-m-d'}}" disabled>
+                    <input type="date" class="order-date end-date" name="start_date" min="{{driver.nextAvailability|date:'Y-m-d'}}" required>
                     {% endif %}
                   </div>
                 </div>
                 
                 <div class="flex col-nowrap">
                   <label for="pickup-addr" class="">Pickup Address</label>
-                  <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Pickup Address" value="{{user.default_pickup_addr}}">
+                  <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Pickup Address" value="{{user.default_pickup_addr}}" required>
                 </div>
                 {% if user.is_authenticated %}
                 <input type="submit" class="btn submit-btn" id="drivers-submit-btn" value="REQUEST" />

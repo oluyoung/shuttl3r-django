@@ -53,5 +53,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         '''
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+    # def get_most_recent_driver_orders:
+
+
     def __str__(self):
         return "%d: %s" % (self.id, self.get_full_name())

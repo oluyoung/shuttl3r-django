@@ -1,0 +1,217 @@
+body {}
+
+.container {
+  background-color: #fafafa;
+}
+
+.register-container,
+.login-container {
+  max-width: 450px;
+}
+.title {
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: .5em 0;
+  background-color: #009688;
+  color: #fff;
+  font-size: 1.4em;
+}
+
+.form {
+  /* border-radius: 0; */
+  background-color: #fff;
+  box-shadow: 0px 0px 3px #ccc;
+}
+
+.form-field {
+  padding: 1em 1em 0;
+}
+
+.form-field label {
+  font-size: .9rem;
+}
+
+.form-field input[type=text],
+.material-form input[type=email],
+.material-form input[type=tel],
+.material-form input[type=date],
+.material-form input[type=password],
+.material-form select  {
+  height: 1.5rem;
+}
+
+.submit-btn {
+  width: 90%;
+  margin: 1em auto;
+  background-color: #d32f2f;
+}
+
+.if-already {
+  background-color: #4DB6AC;
+  color: #fff;
+  padding: .5em;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.if-already-mid {
+  border-radius: 0;
+}
+
+.if-already a {
+  color: #004D40;
+}
+
+.if-already a:hover,
+.if-already a:focus {
+  color: #fff;
+  border-bottom: 1px solid #3E2723;
+}
+
+.form-or {
+  padding: .2em 0;
+}
+
+/**
+Register Form **/
+
+
+/**
+User Login **/
+.login-container {
+  max-width: 400px;
+}
+
+/**
+User Dashboard **/
+.most-recent {
+  background-color: #263238;
+  color: #fafafa;
+  padding: 1em;
+  border-radius: 5px;/
+}
+
+.most-recent h3 {
+  font-variant: small-caps;
+  font-weight: bold;
+  color: #80DEEA;
+}
+
+.most-recent ul {
+  font-size: .9rem;
+}
+
+.most-recent .most-recent-title {
+  color: #E91E63;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+.other-orders {}
+
+.other-orders-mob {
+  display: none;
+}
+
+.other-orders table {
+  margin: 1em 0;
+}
+
+.other-orders table th {
+  font-weight: bold;
+  font-variant: small-caps;
+  font-size: .95em;
+  text-align: left
+}
+.other-orders table td {
+  font-size: .9em
+}
+
+/* jQuery UI Accordion */
+.user-dashboard.ui-accordion {
+  max-width: 650px;
+  width: 100%;
+  margin: auto;
+}
+
+.user-dashboard.ui-accordion .ui-accordion-content {
+  padding: 1em 1em;
+}
+
+.user-dashboard.ui-accordion .ui-state-active,
+.user-dashboard.ui-accordion .ui-widget-content .ui-state-active,
+.user-dashboard.ui-accordion .ui-widget-header .ui-state-active,
+.user-dashboard.ui-accordion a.ui-button:active, .ui-button:active,
+.user-dashboard.ui-accordion .ui-button.ui-state-active:hover {
+  border: 1px solid #607D8B;
+  background: #607D8B;
+}
+.ui-accordion .dashboard-title.ui-accordion-header,
+.ui-accordion .dashboard-content.ui-accordion-content-active {
+  margin-bottom: .5em;
+}
+
+.ui-accordion .dashboard-title.ui-accordion-header-active {
+  margin-bottom: 0
+}
+
+.ui-accordion .dashboard-title.ui-accordion-header,
+.ui-accordion .dashboard-content.ui-accordion-content {
+  box-shadow: 1px 1px 3px #ccc;
+}
+
+.btn.all-orders {
+  color: #fff;
+  padding: .7em;
+  font-size: .75em;
+  display: inline-block;
+}
+
+@media (max-width:767px){
+  .user-dashboard.ui-accordion {
+    width: 95%;
+  }
+  .user-dashboard.ui-accordion .dashboard-content {
+    padding: 0;
+  }
+  .most-recent {
+    border-radius: 0;
+  }
+  .most-recent h3 {
+    font-size: .9em;
+  }
+  .most-recent li {
+    font-size: .85em;
+  }
+  .other-orders {
+    display: none;
+  }
+  .other-orders-mob {
+    display: block;
+    font-size: .8rem;
+    margin-top: 1.5em;
+  }
+  .other-orders-mob .order {
+    padding: .5em .5em 0;
+    border-bottom: 1px solid;
+  }
+  .other-orders-mob .order:first-child {
+    border-top: 1px solid;
+  }
+  .other-orders-mob .order:last-child {
+    border-bottom: 0;
+  }
+  .other-orders-mob .order div {
+    padding: .5em 0;
+    border-bottom: 1px solid #ccc;
+  }
+  .other-orders-mob .order p {
+    padding: .5em 0;
+  }
+  .other-orders-mob .order p:first-of-type {
+    border-bottom: 1px solid #ccc;
+  }
+  
+}
