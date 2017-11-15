@@ -7,6 +7,11 @@
 .index-service {
   width: 100%;
   padding: 2% 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: 5px solid;
+  color: #f0f0f0;
 }
 .index-service:nth-of-type(odd) {
   background-color: #ddd;
@@ -15,6 +20,9 @@
 .index-driver {}
 .index-car {}
 .index-shuttle {}
+.index-info {
+  color: #111;
+}
 
 .index-service .header {}
 
@@ -29,7 +37,7 @@
   background-color: #2d2d2d;
   border-radius: 5px;
   padding: .5em 1em;
-  color: #fff;
+  color: #f0f0f0;
   box-shadow: 1px 1px 3px #5d5c5c;
 }
 .index-service .header a {
@@ -65,6 +73,7 @@
   background-color: #fafafa;
   border-radius: 5px;
   box-shadow: 1px 1px 3px #aaa;
+  color: #111;
 }
 
 .index-service .subtitle {

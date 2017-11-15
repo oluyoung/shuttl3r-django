@@ -53,8 +53,13 @@ class DriverOrder(models.Model):
     end_date = models.DateField()
     is_within_lagos = models.BooleanField()
     pickup_address = models.CharField(max_length=255)
-    pickup_time = models.DateTimeField() # time not needed
-    STATUS_CHOICES = (('Completed','Completed'),('Ongoing','Ongoing'),('Not Started','Not Started'))
+    # time not needed
+    pickup_time = models.DateTimeField()
+    STATUS_CHOICES = (
+        ('Completed', 'Completed'),
+        ('Ongoing', 'Ongoing'),
+        ('Not Started', 'Not Started')
+    )
     status = models.CharField(max_length=30, choices=STATUS_CHOICES)
     user = models.ForeignKey(User, related_name='users')
     CATEGORY_CHOICES = (

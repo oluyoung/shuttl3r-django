@@ -46,7 +46,7 @@
 
   /** OPEN DRIVER ORDER MODAL
   */
-  $('.license .view-btn, .route-outline .apply-btn').each(function(){
+  $('.open-request').each(function(){
     $(this).on('click', function(e){
       e.preventDefault();
       $(this).magnificPopup({

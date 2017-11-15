@@ -7,12 +7,11 @@
 
 {% block content %}
 <section class="container flex col-nowrap just-center align-flex-center" id="index-container">
-  <nav class="filters" style="visibility:hidden;height:0"></nav>
 	<h1 style="font-size: 2rem;">Welcome to <img src="" alt="Freehand"></h1>
   <h3 style="font-size: 1.4rem;">How can we lend a hand</h3>
   
   <!-- Driver -->
-  <div class="index-service flex row-wrap just-center align-flex-center index-driver">
+  <div class="index-service flex row-wrap just-center align-flex-center index-driver" style="background-image:url({%static 'img/'%})">
     <div class="full-width header flex col-nowrap just-center align-flex-center ">
       <h2 class="inline-block text-center">Need a driver?</h2>
       <a id="#driver-request" class="inline-block open-request">Hire</a>
@@ -39,7 +38,7 @@
   </div>
 
   <!-- Car -->
-  <div class="index-service flex row-wrap just-center align-flex-center index-car">
+  <div class="index-service flex row-wrap just-center align-flex-center index-car" style="background-image:url({%static 'img/lagos.png'%})">
     <div class="full-width header flex col-nowrap just-center align-flex-center">
       <h2 class="text-center inline-block">Need a car?</h2>
       <a href="#car-request" class="inline-block open-request">Hire</a>
@@ -72,7 +71,7 @@
   </div>
 
   <!-- Shuttle -->
-  <div class="index-service flex row-wrap just-center align-flex-center index-shuttle">
+  <div class="index-service flex row-wrap just-center align-flex-center index-shuttle" style="background-image:url({%static 'img/PIX-9369.png'%})">
     <div class="full-width header flex col-nowrap just-center align-flex-center">
       <h2 class="text-center inline-block">Need a ride to work?</h2>
     </div>
@@ -100,6 +99,14 @@
     <p class="subtitle text-center full-width"></p>
   </div>
   <!-- Who we are -->
+  <div class="index-service flex row-wrap just-center align-flex-center index-info" style="background-image:url({%static 'img/'%})">
+    <div class="header full-width flex col-nowrap just-center align-flex-center">
+      <h2 class="text-center inline-block">Who We Are</h2>
+    </div>
+    <div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, doloremque necessitatibus dolores repellat sit officia a dignissimos sed minus, numquam tempora dolorum accusantium ratione laudantium iusto possimus, cum ut distinctio.</p>
+    </div>
+  </div>
 </section>
 
 {% endblock %}

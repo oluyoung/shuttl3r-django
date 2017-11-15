@@ -69,8 +69,12 @@ body {
 /** GENERAL
 */
 a, button, input[type=submit] {
-    cursor: pointer;
-    text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none!important;
 }
 
 .btn {

@@ -28,8 +28,6 @@ class CarInfo(models.Model):
     # papers
     isAvailable = models.BooleanField()
     nextAvailability = models.DateField(null=True, blank=True)
-    STATUS_CHOICES = (('Completed','Completed'),('Ongoing','Ongoing'),('Not Started','Not Started'))
-    # status = models.CharField(max_length=30, choices=STATUS_CHOICES)
 
     class Meta:
         verbose_name = 'CarInfo'
@@ -60,6 +58,8 @@ class CarOrder(models.Model):
     )
     category = models.CharField(max_length=7, choices=CATEGORY_CHOICES)
     pickup_time = models.DateTimeField() # time not needed
+    STATUS_CHOICES = (('Completed','Completed'),('Ongoing','Ongoing'),('Not Started','Not Started'))
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES)
 
     class Meta:
         verbose_name = 'CarOrder'

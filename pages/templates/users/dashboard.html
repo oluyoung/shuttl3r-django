@@ -7,145 +7,134 @@
 
 {% block content %}
 <section class="container dashboard-container">
-  <nav class="filters" style="height:0;visibility:hidden"></nav>
   {% if user.is_authenticated %}
-    <h1 class="user-welcome">
-      Welcome {{user.get_full_name}}
+  <div class="full-width header" style="background-image:url({%static 'img/congruent_outline.png'%})">
+    <h1 class="user-welcome text-center">
+      Welcome {{user.get_full_name|title}}
       <p>Here you can view all your orders</p>
     </h1>
+  </div>
     <section class="user-dashboard user-{{user.id}}">
       <!-- if driver dashboard -->
       <!-- if car dashboard -->
       <!-- if shuttle dashboard -->
     
       <!-- DRIVER-ORDERS -->
-      <h3 class="dashboard-title drivers-dash">Drivers</h3>
+      {% if mrd %}
+      <h3 class="dashboard-title drivers-dash">Driver Hires</h3>
       <div class="dashboard-content">
-      {% if mrd_order %}
-        <!-- more button take to new page showing all orders -->
-        <div class="most-recent">
-          <h3>Most Recent Order</h3>
-          <ul>
-            <li class="most-recent-item most-recent-date" data-order-id="{{mrd_order.id}}">
-              <span class="most-recent-title">Date:</span>
-              <time class="most-recent-content date">{{mrd_order.order_date|date:'M. j, Y'}}</time>
-            </li>
-            <li class="most-recent-item most-recent-item-id" data-item-id="{{mrd_order.driver.id}}">
-              <span class="most-recent-title">Driver:</span>
-              <span class="most-recent-content">{{mrd_order.driver.get_full_name|title}}</span>
-            </li>
-            <li class="most-recent-item">
-              <span class="most-recent-title">Pickup Address:</span>
-              <span class="most-recent-content">{{mrd_order.pickup_address}}</span>
-            </li>
-            <li class="most-recent-item">
-              <span class="most-recent-title">Start Date:</span>
-              <span class="most-recent-content">{{mrd_order.start_date}}</span>
-            </li>
-            <li class="most-recent-item">
-              <span class="most-recent-title">End Date:</span>
-              <span class="most-recent-content">{{mrd_order.end_date}}</span>
-            </li>
-            <li class="most-recent-item">
-              <span class="most-recent-title">Status:</span>
-              <span class="most-recent-content">{{mrd_order.status}}</span>
-            </li>
-          </ul>
-        </div>
-        {% if d_orders %}
-        <div class="other-orders">
-          <table class="" style="width:100%">
-            <thead>
-              <tr class="head">
-                <th class="date">Date</th>
-                <th class="item-id">Driver</th>
-                <th class="loc">Pickup Address</th>
-                <th class="start">Start Date</th>
-                <th class="end">End Date</th>
-                <th class="status">Status</th>
-              </tr>
-            </thead>
-            <tbody>
+          <!-- more button take to new page showing all orders -->
+          <div class="most-recent">
+            <h3>Most Recent Order</h3>
+            <ul>
+              <li class="most-recent-item most-recent-date" data-order-id="{{mrd_order.id}}">
+                <span class="most-recent-title">Date: </span>
+                <time class="most-recent-content date">{{mrd_order.order_date|date:'M. j, Y'}}</time>
+              </li>
+              <li class="most-recent-item">
+                <span class="most-recent-title">Pickup: </span>
+                <span class="most-recent-content">{{mrd_order.pickup_address}} @ {{mrd_order.pickup_time}}</span>
+              </li>
+              <li class="most-recent-item">
+                <span class="most-recent-title">Start Date: </span>
+                <span class="most-recent-content">{{mrd_order.start_date}}</span>
+              </li>
+              <li class="most-recent-item">
+                <span class="most-recent-title">End Date: </span>
+                <span class="most-recent-content">{{mrd_order.end_date}}</span>
+              </li>
+              <li class="most-recent-item">
+                <span class="most-recent-title">Status: </span>
+                <span class="most-recent-content">{{mrd_order.status}}</span>
+              </li>
+            </ul>
+          </div>
+          {% if d_orders %}
+          <div class="other-orders">
+            <table class="" style="width:100%">
+              <thead>
+                <tr class="head">
+                  <th class="date">Date</th>
+                  <th class="item-id">Driver</th>
+                  <th class="loc">Pickup Address</th>
+                  <th class="start">Start Date</th>
+                  <th class="end">End Date</th>
+                  <th class="status">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for d_order in d_orders%}
+                <tr class="body">
+                  <td class="item-date" data-order-id="{{d_order.id}}">{{d_order.order_date|date:'d/m/Y'}}</td>
+                  <td class="item-id" data-item-id="{{d_order.driver.id}}">{{d_order.driver.get_full_name|title}}</td>
+                  <td class="loc">{{d_order.pickup_address}}</td>
+                  <td class="start_date">{{d_order.start_date|date:'d/m/Y'}}</td>
+                  <td class="send_date">{{d_order.end_date|date:'d/m/Y'}}</td>
+                  <td class="status_">{{d_order.status}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <a href="" class="btn all-orders">View All Orders</a>
+          </div>
+          <div class="other-orders-mob">
               {% for d_order in d_orders%}
-              <tr class="body">
-                <td class="item-date" data-order-id="{{d_order.id}}">{{d_order.order_date|date:'d/m/Y'}}</td>
-                <td class="item-id" data-item-id="{{d_order.driver.id}}">{{d_order.driver.get_full_name|title}}</td>
-                <td class="loc">{{d_order.pickup_address}}</td>
-                <td class="start_date">{{d_order.start_date|date:'d/m/Y'}}</td>
-                <td class="send_date">{{d_order.end_date|date:'d/m/Y'}}</td>
-                <td class="status_">{{d_order.status}}</td>
-              </tr>
+              <div class="order">
+                <div class="flex row-nowrap just-between">
+                  <dl class="half-width">
+                    <dt class="date">Date</dt>
+                    <dd class="item-date" data-order-id="{{d_order.id}}">{{d_order.order_date|date:'d/m/Y'}}</dd>
+                  </dl>
+                  <dl class="half-width">
+                    <dt class="item-id">Driver</dt>
+                    <dd class="item-id" data-item-id="{{d_order.driver.id}}">{{d_order.driver.get_full_name|title}}</dd>
+                  </dl>
+                </div>
+                <p class="loc">Pickup Address:</dt> <span class="loc_"><em>{{d_order.pickup_address}}</em></span></p>
+                <div class="flex row-nowrap just-between">
+                  <dl class="half-width">
+                    <dt class="start">Start Date</dt>
+                    <dd class="start_date">{{d_order.start_date|date:'d/m/Y'}}</dd>
+                  </dl>
+                  <dl class="half-width">
+                    <dt class="end">End Date</dt>
+                    <dd class="send_date">{{d_order.end_date|date:'d/m/Y'}}</dd>
+                  </dl>
+                </div>
+                <p class="status">Status: <span class="status_">{{d_order.status}}</span></p>
+              </div>
               {% endfor %}
-            </tbody>
-          </table>
-          <a href="" class="btn all-orders">View All Orders</a>
-        </div>
-        <section class="other-orders-mob">
-            {% for d_order in d_orders%}
-            <div class="order">
-              <div class="flex row-nowrap just-between">
-                <dl class="half-width">
-                  <dt class="date">Date</dt>
-                  <dd class="item-date" data-order-id="{{d_order.id}}">{{d_order.order_date|date:'d/m/Y'}}</dd>
-                </dl>
-                <dl class="half-width">
-                  <dt class="item-id">Driver</dt>
-                  <dd class="item-id" data-item-id="{{d_order.driver.id}}">{{d_order.driver.get_full_name|title}}</dd>
-                </dl>
-              </div>
-              <p class="loc">Pickup Address:</dt> <span class="loc_"><em>{{d_order.pickup_address}}</em></span></p>
-              <div class="flex row-nowrap just-between">
-                <dl class="half-width">
-                  <dt class="start">Start Date</dt>
-                  <dd class="start_date">{{d_order.start_date|date:'d/m/Y'}}</dd>
-                </dl>
-                <dl class="half-width">
-                  <dt class="end">End Date</dt>
-                  <dd class="send_date">{{d_order.end_date|date:'d/m/Y'}}</dd>
-                </dl>
-              </div>
-              <p class="status">Status: <span class="status_">{{d_order.status}}</span></p>
-            </div>
-            {% endfor %}
-          <a href="" class="btn all-orders">View All Orders</a>
-        </section>
-        {% endif %}
-      {% else %}
-        <div class="">
-          <h2>No orders have been made.</h2>
-        </div>
-      {% endif %}
+            <a href="" class="btn all-orders">View All Orders</a>
+          </div>
+          {% endif %}
       </div>
+      {% endif %}
 
       <!-- CAR ORDERS -->
-      <h3 class="dashboard-title cars-dash">Cars</h3>
+      {% if mrc %}
+      <h3 class="dashboard-title cars-dash">Car Hires</h3>
       <div class="dashboard-content">
-      {% if mrc_order %}
         <div class="most-recent">
           <h3>Most Recent Order</h3>
           <ul>
             <li class="most-recent-item most-recent-date" data-order-id="{{mrc_order.id}}">
-              <span class="most-recent-title">Date:</span>
+              <span class="most-recent-title">Date: </span>
               <time class="most-recent-content date">{{mrc_order.order_date|date:'M. j, Y'}}</time>
             </li>
-            <li class="most-recent-item most-recent-item-id" data-item-id="{{mrc_order.car.id}}">
-              <span class="most-recent-title">Car:</span>
-              <span class="most-recent-content">{{mrc_order.car.get_full_name}}</span>
+            <li class="most-recent-item">
+              <span class="most-recent-title">Pickup: </span>
+              <span class="most-recent-content">{{mrc_order.pickup_address}} @ {{mrc_order.pickup_time}}</span>
             </li>
             <li class="most-recent-item">
-              <span class="most-recent-title">Pickup Address:</span>
-              <span class="most-recent-content">{{mrc_order.pickup_address}}</span>
-            </li>
-            <li class="most-recent-item">
-              <span class="most-recent-title">Start Date:</span>
+              <span class="most-recent-title">Start Date: </span>
               <span class="most-recent-content">{{mrc_order.start_date}}</span>
             </li>
             <li class="most-recent-item">
-              <span class="most-recent-title">End Date:</span>
+              <span class="most-recent-title">End Date: </span>
               <span class="most-recent-content">{{mrc_order.end_date}}</span>
             </li>
             <li class="most-recent-item">
-              <span class="most-recent-title">Status:</span>
+              <span class="most-recent-title">Status: </span>
               <span class="most-recent-content">{{mrc_order.status}}</span>
             </li>
           </ul>
@@ -179,7 +168,7 @@
           </table>
           <a href="" class="btn all-orders">View All Orders</a>
         </div>
-        <section class="other-orders-mob">
+        <div class="other-orders-mob">
           {% for c_order in c_orders%}
           <div class="order">
             <div class="flex row-nowrap just-between">
@@ -207,75 +196,71 @@
           </div>
           {% endfor %}
           <a href="" class="btn all-orders">View All Orders</a>
-        </section>
-        {% endif %}
-      {% else %}
-        <div class="">
-          <h2>No orders have been made.</h2>
         </div>
-      {% endif %}
-      </div>      
+        {% endif %}
+      </div> 
+      {% endif %}     
 
       <!-- SHUTTLE ORDERS -->
-      <h3 class="dashboard-title shuttle-dash">Shuttle</h3>
+      {% if mrs %}
+      <h3 class="dashboard-title shuttle-dash">Shuttle Bookings</h3>
       <div class="dashboard-content">
-        {% if mrs_order %}
-          <div class="most-recent">
-            <h3>Most Recent Order</h3>
-            <ul>
-              <li class="most-recent-item most-recent-date" data-order-id="{{mrs_order.id}}">
-                <span class="most-recent-title">Date:</span>
-                <time class="most-recent-content date">{{mrs_order.order_date|date:'M. j, Y'}}</time>
-              </li>
-              <li class="most-recent-item most-recent-item-id">
-                <span class="most-recent-title">Route:</span>
-                <span class="most-recent-content">{{mrs_order.route.route_name|title}}</span>
-              </li>
-              <li class="most-recent-item">
-                <span class="most-recent-title">Subscription:</span>
-                <span class="most-recent-content">{{mrs_order.subscription|title}}</span>
-              </li>
-              <li class="most-recent-item">
-                <span class="most-recent-title">Morning Pickup:</span>
-                <span class="most-recent-content">{{mrs_order.morning_pickup_stop.stop_location|title}} @ <time>{{mrs_order.morning_pickup_time}}</time></span>
-              </li>
-              <li class="most-recent-item">
-                <span class="most-recent-title">Evening Pickup:</span>
-                <span class="most-recent-content">{{mrs_order.evening_pickup_stop.stop_location|title}} @ <time>{{mrs_order.evening_pickup_time}}</time></span>
-              </li>
-              <li class="most-recent-item">
-                <span class="most-recent-title">Status:</span>
-                <span class="most-recent-content">{{mrs_order.status}}</span>
-              </li>
-            </ul>
-          </div>
-          {% if s_orders %}
-          <div class="other-orders full-width">
-            <table class="full-width">
-              <thead>
-                <tr class="head">
-                  <th class="date">Date</th>
-                  <th class="shuttle-id">Route</th>
-                  <th class="">Sub.</th>
-                  <th class="">Morning</th>
-                  <th class="">Evening</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for s_order in s_orders %}
-                <tr class="body">
-                  <td class="item-date" data-order-id="{{s_order.id}}">{{s_order.order_date|date:'d/m/Y'}}</td>
-                  <td class="item-id">{{s_order.route.route_name|title}}</td>
-                  <td class="">{{s_order.subscription|title}}</td>
-                  <td class="">{{s_order.morning_pickup_stop.stop_location|title}} @ <time>{{s_order.morning_pickup_time}}</time></td>
-                  <td class="">{{s_order.evening_pickup_stop.stop_location|title}} @ <time>{{s_order.evening_pickup_time}}</time></td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-            <a href="" class="btn all-orders">View All Orders</a>
-          </div>
-          <section class="other-orders-mob">
+        <div class="most-recent">
+          <h3>Most Recent Order</h3>
+          <ul>
+            <li class="most-recent-item most-recent-date" data-order-id="{{mrs_order.id}}">
+              <span class="most-recent-title">Date: </span>
+              <time class="most-recent-content date">{{mrs_order.order_date|date:'M. j, Y'}}</time>
+            </li>
+            <li class="most-recent-item most-recent-item-id">
+              <span class="most-recent-title">Route: </span>
+              <span class="most-recent-content">{{mrs_order.route.route_name|title}}</span>
+            </li>
+            <li class="most-recent-item">
+              <span class="most-recent-title">Subscription: </span>
+              <span class="most-recent-content">{{mrs_order.subscription|title}}</span>
+            </li>
+            <li class="most-recent-item">
+              <span class="most-recent-title">Morning Pickup: </span>
+              <span class="most-recent-content">{{mrs_order.morning_pickup_stop.stop_location|title}} @ <time>{{mrs_order.morning_pickup_time}}</time></span>
+            </li>
+            <li class="most-recent-item">
+              <span class="most-recent-title">Evening Pickup: </span>
+              <span class="most-recent-content">{{mrs_order.evening_pickup_stop.stop_location|title}} @ <time>{{mrs_order.evening_pickup_time}}</time></span>
+            </li>
+            <li class="most-recent-item">
+              <span class="most-recent-title">Status: </span>
+              <span class="most-recent-content">{{mrs_order.status}}</span>
+            </li>
+          </ul>
+        </div>
+        {% if s_orders %}
+        <div class="other-orders full-width">
+          <table class="full-width">
+            <thead>
+              <tr class="head">
+                <th class="date">Date</th>
+                <th class="shuttle-id">Route</th>
+                <th class="">Sub.</th>
+                <th class="">Morning</th>
+                <th class="">Evening</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for s_order in s_orders %}
+              <tr class="body">
+                <td class="item-date" data-order-id="{{s_order.id}}">{{s_order.order_date|date:'d/m/Y'}}</td>
+                <td class="item-id">{{s_order.route.route_name|title}}</td>
+                <td class="">{{s_order.subscription|title}}</td>
+                <td class="">{{s_order.morning_pickup_stop.stop_location|title}} @ <time>{{s_order.morning_pickup_time}}</time></td>
+                <td class="">{{s_order.evening_pickup_stop.stop_location|title}} @ <time>{{s_order.evening_pickup_time}}</time></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <a href="" class="btn all-orders">View All Orders</a>
+        </div>
+        <div class="other-orders-mob">
           {% for s_order in s_orders%}
           <div class="order">
             <div class="flex row-nowrap just-between">
@@ -303,14 +288,10 @@
           </div>
           {% endfor %}
           <a href="" class="btn all-orders">View All Orders</a>
-        </section>
-          {% endif %}
-        {% else %}
-          <div class="">
-            <h2>No orders have been made.</h2>
-          </div>
+        </div>
         {% endif %}
       </div>
+      {% endif %}
     </section>
     
   {% else %}

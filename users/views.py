@@ -76,14 +76,18 @@ def dashboard(request):
         car_orders = None
         most_recent_shuttle_order = None
         shuttle_orders = None
+        mrd, mrc, mrs = False, False, False
 
         if DriverOrder.objects.filter(user=user).count() > 0:
+            mrd = True
             most_recent_driver_order = DriverOrder.objects.filter(user=user).order_by('-id')[0]
             driver_orders = DriverOrder.objects.filter(user=user).order_by('-id')[1:10]
         if CarOrder.objects.filter(user=user).count() > 0:
+            mrc = True
             most_recent_car_order = CarOrder.objects.filter(user=user).order_by('-id')[0]
             car_orders = CarOrder.objects.filter(user=user).order_by('-id')[1:10]
         if ShuttleOrder.objects.filter(user=user).count() > 0:
+            mrs = True
             most_recent_shuttle_order = ShuttleOrder.objects.filter(user=user).order_by('-id')[0]
             shuttle_orders = ShuttleOrder.objects.filter(user=user).order_by('-id')[1:10]
 
@@ -94,7 +98,10 @@ def dashboard(request):
             'mrc_order': most_recent_car_order,
             'c_orders': car_orders,
             'mrs_order': most_recent_shuttle_order,
-            's_orders': shuttle_orders
+            's_orders': shuttle_orders,
+            'mrd': mrd,
+            'mrc': mrc,
+            'mrs': mrs
         }
 
         return render(request, 'users/dashboard.html', context)

@@ -86,6 +86,18 @@ User Login **/
 
 /**
 User Dashboard **/
+.dashboard-container {
+  background-color: #fff;
+}
+.header {
+  margin-top:-1em;
+  background-color:#111;
+  box-shadow: 1px 1px 3px #111;
+  padding:3em 0;
+  margin-bottom:1em;
+  color:#fafafa;
+}
+
 .most-recent {
   background-color: #263238;
   color: #fafafa;

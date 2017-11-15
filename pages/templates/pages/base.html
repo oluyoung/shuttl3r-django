@@ -46,7 +46,7 @@
         </a>
         <ul class="user-nav-menu isloggedin">
           <li><a href="{% url 'users:dashboard' %}">DASHBOARD</a></li>
-          <li><a href="{% url 'users:account'  %}">ACCOUNT</a></li>
+          <li><a href="{% url 'users:account'  %}">EDIT DETAILS</a></li>
           <li><a href="{% url 'users:logout' %}">LOGOUT</a></li>
         </ul>
       {% else %}
@@ -77,8 +77,8 @@
   <div class="nav-mob">
     <div class="nav-mob-content flex row-nowrap just-around">
       <div class="u-row nav-mob-urow">
-        <h5 class="uppercase"><a href="{% url 'drivers:index' %}" id="">Hire Drivers</a></h5>
-        <h5 class="uppercase"><a href="{% url 'cars:index' %}" id="">Hire Car</a></h5>
+        <h5 class="uppercase"><a href="#driver-request" id="">Hire Drivers</a></h5>
+        <h5 class="uppercase"><a href="#car-request" id="">Hire Car</a></h5>
         <h5 class="uppercase"><a href="{% url 'shuttle:index' %}" id="">Book Shuttle</a></h5>
         <h5 class="uppercase"><a href="{% url 'pages:contact' %}">Contact</a></h5>
         <!-- <h5 class="uppercase"><a href="{% url 'pages:apply' %}">Apply</a></h5> -->

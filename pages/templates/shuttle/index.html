@@ -6,11 +6,13 @@
 {% block content %}
 <section class="container shuttle-container" id="shuttle-index-container">
   <p class="order-alert full-width" style=""></p>
-  <nav class="filters"></nav>
   <main class="wrap shuttle-wrap col-nowrap just-center">
-    <section class="article how flex col-nowrap align-flex-center">
-      <h2 class="title">HOW IT WORKS</h2>
-      <p>Select a route, Pick a stop, Subscribe, Get token, Meet at stop, Submit token to driver, Move</p>
+    <section class="article how full-width">
+      <div class="image full-width" style="background-image:url({% static 'img/Nigeria-lagos_trim2.png'%})"></div>
+      <div class="full-width flex col-nowrap just-center align-flex-center ">
+        <h2 class="title">HOW IT WORKS</h2>
+        <p>Select a route, Pick a stop, Subscribe, Get token, Meet at stop, Submit token to driver, Move</p>
+      </div>
     </section>
     <section class="article routes flex col-nowrap just-center align-flex-center">
       <h2 class="title">ROUTES</h2>
@@ -73,7 +75,7 @@
               
             </div>
 
-            <a href="#route-{{route.id}}" class="btn apply-btn" data-id="apply-btn-{{route.id}}" id="apply-btn-{{route.id}}" data-map-id="routemap-{{route.id}}" data-map-start="{{route.startpoint}}" data-map-end="{{route.endpoint}}">SELECT</a>
+            <a href="#route-{{route.id}}" class="btn apply-btn open-request" data-id="apply-btn-{{route.id}}" id="apply-btn-{{route.id}}" data-map-id="routemap-{{route.id}}" data-map-start="{{route.startpoint}}" data-map-end="{{route.endpoint}}">SELECT</a>
           </div>
 
           <!-- Order Sheet -->
