@@ -5,6 +5,6 @@ venv
 *sublime
 .info
 uploads/*
-*/migrations/*
+# */migrations/*
 .mine/
 !*/migrations/__init__.py
