@@ -77,6 +77,7 @@ class RouteStop(models.Model):
     route = models.ForeignKey(ShuttleRoute)
     stop_no = models.IntegerField() # gets stop order no from 1
     stop_location = models.CharField(max_length=255)
+    # stop_long_name = models.CharField(max_length=255)
     # to be included for G Map API
     # short_name = models.CharField(max_length=255)
     # long_name = models.CharField(max_length=255)

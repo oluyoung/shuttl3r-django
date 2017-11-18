@@ -23,8 +23,7 @@
         </div>
       {% endfor %}
       <button type="submit" class="btn submit-btn" id="login-btn">LOGIN</button>
-      <p class="text-center form-or">-- OR --</p>
-      <p class="text-center if-already if-already-mid"><a href="{% url 'social:begin' 'google-oauth2' %}">LOGIN</a> with Google</p>
+      
       <p class="text-center form-or">-- OR --</p>
       <p class="text-center if-already"><a href="{% url 'users:register' %}">SIGN UP</a> to get a free account</p>
     </form>
