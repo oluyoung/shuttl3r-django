@@ -176,8 +176,8 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Email Host Server Configuration
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'blancpointinc@gmail.com'
-EMAIL_HOST_PASSWORD = 'i3nic34//'
-EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'blancpointinc@gmail.com'
+# EMAIL_HOST_PASSWORD = 'i3nic34//'
+# EMAIL_PORT = 587

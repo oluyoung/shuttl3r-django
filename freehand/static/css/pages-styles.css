@@ -127,13 +127,13 @@ small devices: 480px
 
 /**/
 @media (max-width: 767px){
-  .index-service .flyers ul {
+  html.touchevents .index-service .flyers ul {
     flex-flow: row nowrap;
   }
-  .index-service .flyers li {
+  html.touchevents .index-service .flyers li {
     width: 50%;
   }
-  .index-service .flyer .img-wrap {
+  html.touchevents .index-service .flyer .img-wrap {
     width: 200px;
     height: 200px;
     padding: 4%;
