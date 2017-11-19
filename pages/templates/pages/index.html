@@ -11,26 +11,26 @@
   <h3 style="font-size: 1.4rem;">How can we lend a hand</h3>
   
   <!-- Driver -->
-  <div class="index-service flex row-wrap just-center align-flex-center index-driver" style="background-image:url({%static 'img/'%})">
+  <div class="index-service flex row-wrap just-center align-flex-center index-driver" style="background-image:url({%static 'img/freehanddrivers.png'%});background-position:bottom;">
     <div class="full-width header flex col-nowrap just-center align-flex-center ">
       <h2 class="inline-block text-center">Need a driver?</h2>
       <a id="#driver-request" class="inline-block open-request">Hire</a>
     </div>
     <div class="flyer">
       <div class="img-wrap circle">
-        <div class="img odd"></div>
+        <div class="img odd" style="background-image:url({%static 'img/Welcome-to-Lagos.jpg'%})"></div>
       </div>
       <div class="img-title text-center full-width">Interstate</div>
     </div>
     <div class="flyer">
       <div class="img-wrap circle">
-        <div class="img even"></div>
+        <div class="img even" style="background-image:url({%static 'img/Map-750.gif'%})"></div>
       </div>
       <div class="img-title text-center full-width">Cross Country</div>
     </div>
     <div class="flyer">
       <div class="img-wrap circle">
-        <div class="img odd"></div>
+        <div class="img odd" style="background-image:url({%static 'img/stickers.jpg'%})"></div>
       </div>
       <div class="img-title text-center full-width">Family Trips</div>
     </div>
@@ -45,7 +45,7 @@
     </div>
     <div class="flyer">
       <div class="img-wrap circle">
-        <div class="img odd"></div>
+        <div class="img odd" style="background-image:url({%static 'img/Welcome-to-Lagos.jpg'%})"></div>
       </div>
       <div class="img-title text-center full-width">Interstate</div>
     </div>
@@ -63,7 +63,7 @@
     </div>
     <div class="flyer">
       <div class="img-wrap circle">
-        <div class="img even"></div>
+        <div class="img even" style="background-image:url({%static 'img/nycairportlimos.jpg'%})"></div>
       </div>
       <div class="img-title text-center full-width">Airport pickup</div>
     </div>
@@ -75,6 +75,7 @@
     <div class="full-width header flex col-nowrap just-center align-flex-center">
       <h2 class="text-center inline-block">Need a ride to work?</h2>
     </div>
+
     <div class="flyer flex col-nowrap just-between align-flex-center">
       <div class="img-wrap circle">
         <div class="img odd"></div>
@@ -89,13 +90,7 @@
       <div class="img-title text-center full-width">Private pickup</div>
       <a href="" class="inline-block">REQUEST</a>
     </div>
-    <div class="flyer flex col-nowrap just-between align-flex-center">
-      <div class="img-wrap circle">
-        <div class="img odd"></div>
-      </div>
-      <div class="img-title text-center full-width">Join a carpool</div>
-      <a href="" class="inline-block">JOIN</a>
-    </div>
+    
     <p class="subtitle text-center full-width"></p>
   </div>
   <!-- Who we are -->
@@ -103,10 +98,19 @@
     <div class="header full-width flex col-nowrap just-center align-flex-center">
       <h2 class="text-center inline-block">Who We Are</h2>
     </div>
-    <div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, doloremque necessitatibus dolores repellat sit officia a dignissimos sed minus, numquam tempora dolorum accusantium ratione laudantium iusto possimus, cum ut distinctio.</p>
+    <div style="width:70%">
+      <p class="text-center" style="line-height:1.5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, doloremque necessitatibus dolores repellat sit officia a dignissimos sed minus, numquam tempora dolorum accusantium ratione laudantium iusto possimus, cum ut distinctio.</p>
     </div>
   </div>
 </section>
 
+{% endblock %}
+{% block footer %}
+<section class="footer">
+  <!--
+  contact info
+  social icons
+
+  -->
+</section>
 {% endblock %}

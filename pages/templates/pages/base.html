@@ -36,6 +36,11 @@
         <!-- <a href="{% url 'pages:faq' %}" class="nav-sections" id="">FAQ/Manual</a> -->
       </div>
     </div>
+    <div class="nav-mob-requests flex row-nowrap just-between align-flex-center">
+      <a href="#driver-request" class="open-request nav-sections uppercase" id="">Hire Driver</a>
+      <a href="#car-request" class="open-request nav-sections uppercase" id="">Hire Car</a>
+      <a href="{% url 'shuttle:index' %}" class="nav-sections uppercase" id="">Book Shuttle</a>
+    </div>
     <ul class="nav-icons">
       <li class="user-nav">
       {% if user.is_authenticated %}
@@ -69,17 +74,13 @@
         </a>
       </li>
     </ul>
-    <!-- Order Popup -->
-    <div class="order-status flex col-nowrap just-center full-width pos-rel">
-      
-    </div>
   </div>
   <div class="nav-mob">
     <div class="nav-mob-content flex row-nowrap just-around">
       <div class="u-row nav-mob-urow">
-        <h5 class="uppercase"><a href="#driver-request" id="">Hire Drivers</a></h5>
-        <h5 class="uppercase"><a href="#car-request" id="">Hire Car</a></h5>
-        <h5 class="uppercase"><a href="{% url 'shuttle:index' %}" id="">Book Shuttle</a></h5>
+<!--         <h5 class="uppercase"><a href="#driver-request" id="">Hire Drivers</a></h5>
+<h5 class="uppercase"><a href="#car-request" id="">Hire Car</a></h5>
+<h5 class="uppercase"><a href="{% url 'shuttle:index' %}" id="">Book Shuttle</a></h5> -->
         <h5 class="uppercase"><a href="{% url 'pages:contact' %}">Contact</a></h5>
         <!-- <h5 class="uppercase"><a href="{% url 'pages:apply' %}">Apply</a></h5> -->
         <!-- <h5><a href="{% url 'pages:faq' %}">FAQ/Manual</a></h5> -->
@@ -88,7 +89,7 @@
         <li><a href=""><img src="{%static 'img/twitter_circle_color-256.png'%}" alt=""></a></li>
         
         <li><a href=""><img src="{%static 'img/fb-icon.svg'%}" alt=""></a></li>
-        <li><a href=""><img src="{%static 'img/instagram-logo.jpg'%}" alt=""></a></li>
+        <li><a href=""><img src="{%static 'img/instagram-logo.png'%}" alt=""></a></li>
       </ul>
       <ul class="nav-mob-acct">
         {% if user.is_authenticated %}
@@ -114,6 +115,7 @@
     <div class="driver flex row-wrap just-start">
       <div class="top-info flex row-nowrap">
         <div class="class-ranks">
+          <h3>Order Classes</h3>
           <table>
             <tr>
               <th class="key">Class A</th>
@@ -149,32 +151,41 @@
           <div class="flex row-wrap just-between">
             <div class="half-width">
               <label for="start-date">Start Date</label>
-              {% if driver.isAvailable %}
               <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" required>
-              {%else%}
-              <input type="date" class="order-date start-date" name="start_date" min="{{driver.nextAvailability|date:'Y-m-d'}}" required>
-              {% endif %}
             </div>
             <div class="half-width">
               <label for="end-date">End Date</label>
               <!-- should be disabled till start date done -->
-              {% if driver.isAvailable %}
               <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" required>
-              {%else%}
-              <input type="date" class="order-date end-date" name="start_date" min="{{driver.nextAvailability|date:'Y-m-d'}}" required>
-              {% endif %}
             </div>
           </div>
-          
+          <div class="flex row-wrap just-between">
+            <div class="half-width">
+              <label for="within">Order Class</label>
+              <select name="category" class="order_class" id="" required>
+                <option value="">Select a class</option>
+                <option value="A">Class A</option>
+                <option value="B">Class B</option>
+                <option value="C">Class C</option>
+              </select>
+            </div>
+            <!-- <div class="half-width">
+              <label for="end-date">Pickup Time</label>
+              should be disabled till start date done
+              <input type="time" class="pickup-time" name="end_date" min="" required>
+            </div> -->
+          </div>
+
           <div class="flex col-nowrap">
             <label for="pickup-addr" class="">Pickup Address</label>
-            <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Pickup Address" value="{{user.default_pickup_addr}}" required>
+            <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Enter a pickup address" value="{{user.default_pickup_addr}}" required>
           </div>
           {% if user.is_authenticated %}
           <input type="submit" class="btn submit-btn" id="drivers-submit-btn" value="REQUEST" />
           <input type="reset" value="clear" hidden />
           {% else %}
-          <a href="#login" class="btn login-btn">LOGIN</a>
+
+          <a href="{% url 'users:login' %}" class="btn login-btn">LOGIN</a>
           {% endif %}
         </form>
       </div>
@@ -205,7 +216,7 @@
           </table>
         </div>
       </div>
-      <!-- Order Form -->
+      <!-- Car Order Form -->
       <div class="order-form car-order-form material-form">
         <div class="text-center">
           <h3>To make a request just fill the form below</h3>
@@ -239,10 +250,26 @@
               {% endif %}
             </div>
           </div>
+          <div class="flex row-wrap just-between">
+            <div class="half-width">
+              <label for="within">Order Class</label>
+              <select name="category" class="order_class" id="" required>
+                <option value="">Select a class</option>
+                <option value="A">Class A</option>
+                <option value="B">Class B</option>
+                <option value="C">Class C</option>
+              </select>
+            </div>
+            <!-- <div class="half-width">
+              <label for="end-date">Pickup Time</label>
+              should be disabled till start date done
+              <input type="time" class="pickup-time" name="end_date" min="" required>
+            </div> -->
+          </div>
 
           <div class="flex col-nowrap">
             <label for="pickup-addr" class="">Pickup Address</label>
-            <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Pickup Address" value="{{user.default_pickup_addr}}" required>
+            <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Enter pickup address" value="{{user.default_pickup_addr}}" required>
           </div>
 
           {% if user.is_authenticated %}
@@ -257,6 +284,7 @@
   </section>
 
 <script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/modernizr-custom.js' %}"></script>
 <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
 {% block scripts %}{% endblock %}
 <script src="{% static 'js/main.js' %}"></script>

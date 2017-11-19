@@ -46,7 +46,7 @@ class DriverInfo(models.Model):
 
 class DriverOrder(models.Model):
     """
-    Description: Model Description
+    Description: Keeps records of each order
     """
     order_date = models.DateTimeField(auto_now_add=True)
     start_date = models.DateField()
@@ -54,20 +54,20 @@ class DriverOrder(models.Model):
     is_within_lagos = models.BooleanField()
     pickup_address = models.CharField(max_length=255)
     # time not needed
-    pickup_time = models.DateTimeField()
+    # pickup_time = models.DateTimeField()
     STATUS_CHOICES = (
         ('Completed', 'Completed'),
         ('Ongoing', 'Ongoing'),
         ('Not Started', 'Not Started')
     )
-    status = models.CharField(max_length=30, choices=STATUS_CHOICES)
-    user = models.ForeignKey(User, related_name='users')
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='Not Started')
     CATEGORY_CHOICES = (
         ('A', 'A'),
         ('B', 'B'),
         ('C', 'C'),
     )
     category = models.CharField(max_length=7, choices=CATEGORY_CHOICES)
+    user = models.ForeignKey(User, related_name='users')
 
     class Meta:
         verbose_name = 'DriverOrder'

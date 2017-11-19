@@ -111,28 +111,33 @@ def dashboard(request):
 def account(request):
     if request.user.is_authenticated:
         user = request.user
-    # use session id as auth
-    # make sure user can only view his Profile
+        user_email = user.email
+
     form = UserForm(request.POST or None, instance=user)
     if form.is_valid():
         user = form.save(commit=False)
-        user.is_active = False
-        password = form.cleaned_data.get('password')
-        user.set_password(password)
-        user.save()
-        current_site = get_current_site(request)
-        message = render_to_string('registration/acc_active_email.html', {
-            'user': user,
-            'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': account_activation_token.make_token(user)
-        })
-        mail_subject = 'Verify E-mail change for FreehandNG account.'
-        to_email = form.cleaned_data.get('email')
-        email = EmailMessage(mail_subject, message, to=[to_email])
-        email.send()
-        # need to return HTML page
-        return HttpResponse('Kindly verify your new email')
-        #return HttpResponseRedirect(user.get_absolute_url())
+        if form.cleaned_data.get('email') != user_email:
+            user.is_active = False
+            password = form.cleaned_data.get('password')
+            user.set_password(password)
+            user.save()
+
+            current_site = get_current_site(request)
+            message = render_to_string('registration/acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user)
+            })
+            mail_subject = 'Verify E-mail change for FreehandNG account.'
+            to_email = form.cleaned_data.get('email')
+            email = EmailMessage(mail_subject, message, to=[to_email])
+            email.send()
+            # need to return HTML page
+            return HttpResponse('Kindly verify your new email')
+            #return HttpResponseRedirect(user.get_absolute_url())
+
+        else:
+            user.save()
 
     return render(request, 'users/account.html', {'form': form})

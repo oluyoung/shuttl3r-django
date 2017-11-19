@@ -683,6 +683,7 @@ INDEX
 .material-form input[type=email],
 .material-form input[type=tel],
 .material-form input[type=date],
+.material-form input[type=time],
 .material-form input[type=password],
 .material-form select {
   background-color: transparent;
@@ -865,7 +866,6 @@ small devices: 480px
     display: inline-block;
     min-width: 140px;
   }
-
   .nav-sections-dropdown-toggle {
     position: relative;
     background-color: #FFF;
@@ -899,8 +899,17 @@ small devices: 480px
 
   .nav-follow-less,
   .nav-icons .nav-mob-toggle,
-  .nav-mob {
+  .nav-mob,
+  .nav-mob-requests {
     display: none;
+  }
+
+  .nav-mob-requests {
+    position: absolute;
+    top: 36px;
+    left: 100px;
+    width: 50%;
+    font-size: .85rem;
   }
 
   .nav-icons .user-nav {
@@ -976,6 +985,16 @@ small devices: 480px
 
   nav .u-clear {
     top: -14px;
+  }
+
+  .nav-mob-requests {
+    display: flex;
+    position: absolute;
+    top: 36px;
+    left: 100px;
+    width: 50%;
+    font-size: .85rem;
+
   }
 
 }

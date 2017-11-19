@@ -57,9 +57,9 @@ class CarOrder(models.Model):
         ('C', 'C'),
     )
     category = models.CharField(max_length=7, choices=CATEGORY_CHOICES)
-    pickup_time = models.DateTimeField() # time not needed
+    # pickup_time = models.DateTimeField() # time not needed
     STATUS_CHOICES = (('Completed','Completed'),('Ongoing','Ongoing'),('Not Started','Not Started'))
-    status = models.CharField(max_length=30, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='Not Started')
 
     class Meta:
         verbose_name = 'CarOrder'
