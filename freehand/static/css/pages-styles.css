@@ -2,7 +2,9 @@
 	SYLESHEET FOR INDEX PAGE
 *********************************/
 
-#index-container {}
+#index-container {
+  padding-top: 7em;
+}
 
 .index-service {
   width: 100%;
@@ -43,12 +45,13 @@
 .index-service .header a {
   display: none;
 }
+.index-service .flyers li {
+  margin: 0 3%;
+}
 .index-service .flyer a {
   margin: 10px auto;
 }
-.index-service .flyer {
-  padding: 0 3%;
- }
+.index-service .flyer {}
 .index-service .flyer .img-wrap {
   width: 140px;
   height: 140px;
@@ -77,11 +80,22 @@
   border-radius: 5px;
   box-shadow: 1px 1px 3px #aaa;
   color: #111;
+  max-width: 250px;
 }
 
 .index-service .subtitle {
   width: 100%;
   margin-top: 2%;
+}
+
+.footer {
+  background-color: #111;
+  padding: 3% 0;
+  color: #f0f0f0;
+}
+
+.unslider-nav {
+  display: none;
 }
 
 /**   MEDIA QUERIES
@@ -112,4 +126,16 @@ small devices: 480px
 @media (max-width: 1024px){}
 
 /**/
-@media (max-width: 767px){}
+@media (max-width: 767px){
+  .index-service .flyers ul {
+    flex-flow: row nowrap;
+  }
+  .index-service .flyers li {
+    width: 50%;
+  }
+  .index-service .flyer .img-wrap {
+    width: 200px;
+    height: 200px;
+    padding: 4%;
+  }
+}

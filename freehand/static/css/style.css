@@ -234,7 +234,8 @@ a:focus {
 
 body.is-navSticky .nav {
   position: fixed;
-  top: -10px;
+  /* top: -10px; */
+  top: -50px;
 }
 
 .nav {
@@ -514,10 +515,24 @@ body.is-showNavFollow .nav-follow-extra {
   width: 240px;
 }
 
+.nav-mob-requests {
+  position: absolute;
+  top: 50px;
+  /* width: 50%; */
+  /* padding: 2% 0; */
+  font-size: .85rem;
+  background-color: #212121;
+}
+
+.nav-mob-requests a {
+  padding: 2% 0;
+  width: 33%;
+  color: #fff;
+}
+
 .nav-mob,
 .nav-mob h5 a {
   color: #FFF;
-  
 }
 
 .nav-mob {
@@ -904,14 +919,6 @@ small devices: 480px
     display: none;
   }
 
-  .nav-mob-requests {
-    position: absolute;
-    top: 36px;
-    left: 100px;
-    width: 50%;
-    font-size: .85rem;
-  }
-
   .nav-icons .user-nav {
     display: block;
   }
@@ -989,12 +996,6 @@ small devices: 480px
 
   .nav-mob-requests {
     display: flex;
-    position: absolute;
-    top: 36px;
-    left: 100px;
-    width: 50%;
-    font-size: .85rem;
-
   }
 
 }

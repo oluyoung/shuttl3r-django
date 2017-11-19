@@ -231,5 +231,14 @@
     
   }); // route outline
 
+  /* Unsliders */
+  $('html.touchevents .flyers').unslider({
+    autoplay: true,
+    infinte: true,
+    delay: 3000,
+    keys: false,
+    arrows: false
+  });
+
 })(jQuery);
 

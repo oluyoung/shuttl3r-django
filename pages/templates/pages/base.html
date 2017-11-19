@@ -17,6 +17,7 @@
   <meta property="og:description" content="" />
   <link rel="stylesheet" href="{% static 'css/reset.css' %}">
   <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'css/unslider.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   {% block stylesheet %}{% endblock %}
 </head>
@@ -35,11 +36,6 @@
         <!-- <a href="{% url 'pages:apply' %}" class="nav-sections uppercase" id="">Apply</a> -->
         <!-- <a href="{% url 'pages:faq' %}" class="nav-sections" id="">FAQ/Manual</a> -->
       </div>
-    </div>
-    <div class="nav-mob-requests flex row-nowrap just-between align-flex-center">
-      <a href="#driver-request" class="open-request nav-sections uppercase" id="">Hire Driver</a>
-      <a href="#car-request" class="open-request nav-sections uppercase" id="">Hire Car</a>
-      <a href="{% url 'shuttle:index' %}" class="nav-sections uppercase" id="">Book Shuttle</a>
     </div>
     <ul class="nav-icons">
       <li class="user-nav">
@@ -75,12 +71,19 @@
       </li>
     </ul>
   </div>
+  <div class="nav-mob-requests flex row-nowrap just-between align-flex-center full-width">
+    <a href="#driver-request" class="open-request nav-sections uppercase text-center" id="">Hire Driver</a>
+    <a href="#car-request" class="open-request nav-sections uppercase text-center" id="">Hire Car</a>
+    <a href="{% url 'shuttle:index' %}" class="nav-sections uppercase text-center" id="">Book Shuttle</a>
+  </div>
   <div class="nav-mob">
     <div class="nav-mob-content flex row-nowrap just-around">
       <div class="u-row nav-mob-urow">
-<!--         <h5 class="uppercase"><a href="#driver-request" id="">Hire Drivers</a></h5>
-<h5 class="uppercase"><a href="#car-request" id="">Hire Car</a></h5>
-<h5 class="uppercase"><a href="{% url 'shuttle:index' %}" id="">Book Shuttle</a></h5> -->
+        <!-- 
+        <h5 class="uppercase"><a href="#driver-request" id="">Hire Drivers</a></h5>
+        <h5 class="uppercase"><a href="#car-request" id="">Hire Car</a></h5>
+        <h5 class="uppercase"><a href="{% url 'shuttle:index' %}" id="">Book Shuttle</a></h5>
+        -->
         <h5 class="uppercase"><a href="{% url 'pages:contact' %}">Contact</a></h5>
         <!-- <h5 class="uppercase"><a href="{% url 'pages:apply' %}">Apply</a></h5> -->
         <!-- <h5><a href="{% url 'pages:faq' %}">FAQ/Manual</a></h5> -->
@@ -286,6 +289,7 @@
 <script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/modernizr-custom.js' %}"></script>
 <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/unslider-min.js' %}"></script>
 {% block scripts %}{% endblock %}
 <script src="{% static 'js/main.js' %}"></script>
 </body>
