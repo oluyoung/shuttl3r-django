@@ -40,11 +40,14 @@
   width: 100%;
 }
 .route-outline {
-  padding: 1em 0;
   margin: auto;
   background-color: transparent;
   /* margin-bottom: 1rem; */
   border-bottom: 2px solid #535353;
+}
+.route-outline .route-wrap {
+  padding: 1em 0;
+  background-color: rgba(255,255,255,.8);
 }
 .map-canvas {
   width:100%;
@@ -112,11 +115,29 @@
 .apply-btn {
   padding: 10px 1em;
   background-color: #009688;
+  border: 2px solid;
+}
+.apply-btn:hover,
+.apply-btn:focus {
+  background-color: #fff;
+  color: #111;
+  border: 2px solid;
 }
 .subscription-choice {}
 
 .route-outline-mob {
   display: none;
+}
+
+.submit-btn {
+  border: 2px solid;
+}
+
+.submit-btn:hover,
+.submit-btn:focus {
+  background-color: #fff;
+  border: 2px solid;
+  color: #111
 }
 
 @media (max-width:767px){

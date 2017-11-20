@@ -45,7 +45,12 @@ body {}
 .submit-btn {
   width: 90%;
   margin: 1em auto;
-  background-color: #d32f2f;
+  background-color: #388e3c;
+}
+
+.submit-btn:hover,
+.submit-btn:focus {
+  background-color: #1b5e20;
 }
 
 .if-already {
@@ -74,6 +79,17 @@ body {}
   padding: .2em 0;
 }
 
+.del-acct {
+  background-color: #fff;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+}
+
+.del-acct:hover, .del-acct:focus {
+  background-color: #BF360C;
+  color: #fff;
+}
+
 /**
 Register Form **/
 
@@ -96,6 +112,15 @@ User Dashboard **/
   padding:3em 0;
   margin-bottom:1em;
   color:#fafafa;
+}
+
+.header h1 {
+  font-size: 1.4em;
+  font-family: 'Raleway';
+  margin-bottom: 10px;
+}
+.header p {
+  
 }
 
 .most-recent {
@@ -141,7 +166,53 @@ User Dashboard **/
   font-size: .9em
 }
 
+.no-orders {
+  width: 90%;
+}
+
+.no-orders div {
+  padding: 2%;
+}
+
+.no-orders div p {
+  font-size: 1.5em;
+  // text-transform: capitalize;
+  font-family: 'Courgette';
+}
+
+.no-orders div p:last-child {
+  font-size: 1.2em;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color:#616161;
+}
+
+.no-orders ul {
+  padding: 2%;
+}
+
+.no-orders ul li {
+  margin-bottom: 1em;
+  background-color: #fff;
+  box-shadow: 2px 2px 3px #ccc, -1px -1px 3px #ccc;
+}
+
+.no-orders ul li a {
+  display: block;
+  border-radius: 3px;
+  padding: 2%;
+  color: #212121;
+  border-left: 4px solid;
+}
+
+.no-orders ul li a:hover,
+.no-orders ul li a:focus {
+  border-left: 4px solid;
+  color: #b71c1c;
+}
+
 /* jQuery UI Accordion */
+.user-dashboard,
 .user-dashboard.ui-accordion {
   max-width: 650px;
   width: 100%;
@@ -182,6 +253,7 @@ User Dashboard **/
 }
 
 @media (max-width:767px){
+  .user-dashboard,
   .user-dashboard.ui-accordion {
     width: 95%;
   }

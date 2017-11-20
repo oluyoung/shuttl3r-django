@@ -46,8 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic', # whitenoise app
     'django.contrib.staticfiles',
-    #'social_django',
 ]
+# 'social_django',
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,8 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
+# 'social_django.middleware.SocialAuthExceptionMiddleware',
 
 ROOT_URLCONF = 'freehand.urls'
 
@@ -73,19 +73,19 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                #'social_django.context_processors.backends',
-                #'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+#'social_django.context_processors.backends',
+#'social_django.context_processors.login_redirect',
 
 
 # Social Auth Authentication Backends
 AUTHENTICATION_BACKENDS = (
-    # 'social_core.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend'
+    'django.contrib.auth.backends.ModelBackend',
 )
+#'social_core.backends.google.GoogleOAuth2',
 
 # config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 # config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
@@ -93,8 +93,8 @@ AUTHENTICATION_BACKENDS = (
 # SOCIAL_AUTH_GOOGLE_OAUTH2_KEY='1089522462895-1fvebj2faf270pfal1k1ataon0d2i9kc.apps.googleusercontent.com'
 # SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET='sqg922kjMKwJw60cXkDfY4QG'
 
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY='1089522462895-2u68u3cu7u4f7fru1joq4fl9u41pq4i6.apps.googleusercontent.com'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET='cEV5kM9ij5oTtgYl0RdKGq1T'
+#SOCIAL_AUTH_GOOGLE_OAUTH2_KEY='1089522462895-2u68u3cu7u4f7fru1joq4fl9u41pq4i6.apps.googleusercontent.com'
+#SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET='cEV5kM9ij5oTtgYl0RdKGq1T'
 
 WSGI_APPLICATION = 'freehand.wsgi.application'
 
@@ -154,7 +154,6 @@ LOGOUT_URL = '/users/logout'
 # redirect to previous URL
 LOGIN_REDIRECT_URL = '/' # '/accounts/profile/'
 LOGOUT_REDIRECT_URL = '/' # take to home page
-
 
 
 # Static files (CSS, JavaScript, Images)

@@ -256,11 +256,11 @@ body.is-navSticky .nav {
 }
 
 .nav-logo>a {
-  background-color: #F42;
-  background: -webkit-linear-gradient(left top,#C09,#F42 85%);
-  background: -moz-linear-gradient(bottom right,#C09,#F42 85%);
-  background: -o-linear-gradient(bottom right,#C09,#F42 85%);
-  background: linear-gradient(to bottom right,#c09,#f42 85%);
+  background-color: #607D8B;
+  background: -webkit-linear-gradient(left top,#263238,#607D8B 85%);
+  background: -moz-linear-gradient(bottom right,#263238,#607D8B 85%);
+  background: -o-linear-gradient(bottom right,#263238,#607D8B 85%);
+  background: linear-gradient(to bottom right,#263238,#607D8B 85%);
   display: block;
   height: 16px;
   padding: 16px 20px;
@@ -420,7 +420,7 @@ nav .u-clear {
   -o-transition: .4s;
   -webkit-transition: .4s;
   transition: .4s;
-  background-color: #F42;
+  background-color: #263238;
   display: block;
   height: 2px;
   left: 14px;
@@ -522,12 +522,27 @@ body.is-showNavFollow .nav-follow-extra {
   /* padding: 2% 0; */
   font-size: .85rem;
   background-color: #212121;
+  border-top: 2px solid #212121;
+  border-bottom: 2px solid #212121;
 }
 
 .nav-mob-requests a {
-  padding: 2% 0;
+  padding: 2.5% 0;
   width: 33%;
   color: #fff;
+
+}
+
+.nav-mob-requests a:hover,
+.nav-mob-requests a:focus {
+  background-color: #fff;
+}
+
+.nav-mob-requests a:hover span,
+.nav-mob-requests a:focus span {
+  border: 2px solid #111;
+  padding: .2em 1em;
+  color: #111;
 }
 
 .nav-mob,
@@ -676,6 +691,15 @@ INDEX
   border-radius: 5px;
 }
 
+.top-info .class-ranks {}
+.top-info h3 {
+  font-size: 1.5em;
+  font-family: 'Courgette';
+}
+.top-info .class-ranks div p {}
+.top-info .class-ranks div p .key {}
+.top-info .class-ranks div p .desc {}
+
 /** Order Form Modal **/
 .material-form {
   margin-top: 1em;
@@ -684,6 +708,11 @@ INDEX
   border-radius: 5px;
   box-shadow: 2px 2px 4px #ccc;
   background-color: #fdfdfd;
+}
+
+.form h3 {
+  font-family: 'Courgette';
+  font-size: 1.1em;
 }
 
 .material-form .form {
@@ -897,14 +926,14 @@ small devices: 480px
 
   .nav-sections-dropdown-toggle a:hover,
   .nav-sections-dropdown-toggle a:focus {
-    color: #e0e0e0;
+    color: #AAA;
   }
 
   .nav-sections-dropdown-toggle a,
   .nav-sections-section a {
     font-weight: 500;
     font-size: .9em;
-    color: #AAA;
+    color: #424242;
     height: 30px;
     display: block;
     letter-spacing: .04em;
@@ -986,6 +1015,9 @@ small devices: 480px
 
 /**/
 @media (max-width: 767px){
+  .container {
+    padding-top: 5em;
+  }
   .nav-logo>a {
     width: 100%;
   }
@@ -1002,6 +1034,6 @@ small devices: 480px
 
 @media (max-width: 374px){
   nav .u-clear {
-    top: -32px;
+    top: -14px;
   }
 }

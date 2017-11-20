@@ -20,64 +20,65 @@
       <ul class="route-list">
         {% for route in routes %}
         <li class="route-outline route-{{route.id}}">
-          <div class="route flex col-nowrap just-center align-flex-center">
-            <h4 class="route-title capitalize pos-rel">{{route.route_name}}</h4>
-            <div class="route-line pos-rel">
+          <div class="route-wrap">
+            <div class="route flex col-nowrap just-center align-flex-center">
+              <h4 class="route-title capitalize pos-rel">{{route.route_name}}</h4>
+              <div class="route-line pos-rel">
 
-              <!-- Start point -->
-              <div class="route-start pos-rel">
-                <p class="stop-info pos-abs uppercase">
-                  <span class="location">{{route.get_first_stop.stop_location}}</span>
-                </p>
-              </div>
-              
-              <!-- Route stops -->
-              <div class="route-stops flex row-wrap just-around pos-rel">
-                {% for stop in route.get_mid_stops %}
-                <div class="route-stop pos-rel">
-                  <div class="stop-info pos-abs uppercase">
-                    <span class="location">{{stop.stop_location}}</span>
-                  </div>
+                <!-- Start point -->
+                <div class="route-start pos-rel">
+                  <p class="stop-info pos-abs uppercase">
+                    <span class="location">{{route.get_first_stop.stop_location}}</span>
+                  </p>
                 </div>
-                {% endfor %}
-              </div>
-
-              <!-- Endpoint -->
-              <div class="route-end pos-rel">
-                <p class="stop-info pos-abs uppercase">
-                  <span class="location">{{route.get_last_stop.stop_location}}</span>
-                </p>
-              </div>
-            </div>
-
-            <!-- Mobile Route List -->
-            <div class="route-outline-mob">
-              <!-- Start point -->
-              <ul class="route-line-mob route-{{route.id}} uppercase">
-                <li class="route-start">
-                  <span class="location">{{route.get_first_stop.stop_location}}</span>
-                </li>
-              
+                
                 <!-- Route stops -->
-                <ul class="route-stops-mob">
+                <div class="route-stops flex row-wrap just-around pos-rel">
                   {% for stop in route.get_mid_stops %}
-                  <li class="route-stop-mob">
-                    <span class="location">{{stop.stop_location}}</span>
-                  </li>
+                  <div class="route-stop pos-rel">
+                    <div class="stop-info pos-abs uppercase">
+                      <span class="location">{{stop.stop_location}}</span>
+                    </div>
+                  </div>
                   {% endfor %}
-                </ul>
+                </div>
 
                 <!-- Endpoint -->
-                <li class="route-end">
-                  <span class="location">{{route.get_last_stop.stop_location}}</span>
-                </li>
-              </ul>
-              
+                <div class="route-end pos-rel">
+                  <p class="stop-info pos-abs uppercase">
+                    <span class="location">{{route.get_last_stop.stop_location}}</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Mobile Route List -->
+              <div class="route-outline-mob">
+                <!-- Start point -->
+                <ul class="route-line-mob route-{{route.id}} uppercase">
+                  <li class="route-start">
+                    <span class="location">{{route.get_first_stop.stop_location}}</span>
+                  </li>
+                
+                  <!-- Route stops -->
+                  <ul class="route-stops-mob">
+                    {% for stop in route.get_mid_stops %}
+                    <li class="route-stop-mob">
+                      <span class="location">{{stop.stop_location}}</span>
+                    </li>
+                    {% endfor %}
+                  </ul>
+
+                  <!-- Endpoint -->
+                  <li class="route-end">
+                    <span class="location">{{route.get_last_stop.stop_location}}</span>
+                  </li>
+                </ul>
+                
+              </div>
+
+              <a href="#route-{{route.id}}" class="btn apply-btn open-request" data-id="apply-btn-{{route.id}}" id="apply-btn-{{route.id}}" data-map-id="routemap-{{route.id}}" data-map-start="{{route.startpoint}}" data-map-end="{{route.endpoint}}">SELECT</a>
             </div>
-
-            <a href="#route-{{route.id}}" class="btn apply-btn open-request" data-id="apply-btn-{{route.id}}" id="apply-btn-{{route.id}}" data-map-id="routemap-{{route.id}}" data-map-start="{{route.startpoint}}" data-map-end="{{route.endpoint}}">SELECT</a>
           </div>
-
           <!-- Order Sheet -->
           <section class="container sheet route-sheet mfp-hide" id="route-{{route.id}}">
             <div class="flex row-wrap just-start" id="route-{{route.id}}">
@@ -89,15 +90,15 @@
                     <li>Daily: N650</li>
                     <li>Weekly: N2500</li>
                     <li>Monthly: N17500</li>
+                    <li>No. of seats left: {{24}}</li>
                   </ul>
-                  <p>No. of seats left: {{24}}</p>
                 </div>
               </div>
               <div class="order-form material-form">
-                <div class="text-center" style="margin-top:10px">
-                  <h3>To subscribe to this route just fill the form below</h3>
-                </div>
                 <form action="/shuttle/subscribe/" class="form flex col-wrap" method="post">
+                  <div class="text-center" style="margin:10px 0;">
+                    <h3>To subscribe to this route just fill the form below</h3>
+                  </div>
                   {% csrf_token %}
                   <input type="hidden" class="item_id" name="item_id" value="{{route.id}}">
                   <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
@@ -115,7 +116,7 @@
                     <select name="morning_pickup_stop" class="stop-list morning-pickup-stop" id="morning-pickup-stop" required>
                       <option value="">Pick a stop</option>
                       {% for stop in route.get_all_stops %}
-                      <option value="{{stop.id}}" data-location="{{stop.stop_location}}">{{stop.stop_location|upper}}</option>
+                      <option value="{{stop.stop_no}}" data-location="{{stop.stop_location}}">{{stop.stop_location|upper}}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -138,7 +139,7 @@
                     <select name="evening_pickup_stop" class="stop-list evening-pickup-stop" id="evening-pickup-stop" required>
                       <option value="">Pick a stop</option>
                       {% for stop in route.get_all_stops %}
-                      <option value="{{stop.id}}" data-location="{{stop.stop_location}}">{{stop.stop_location|upper}}</option>
+                      <option value="{{stop.stop_no}}" data-location="{{stop.stop_location}}">{{stop.stop_location|upper}}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -168,7 +169,6 @@
             </div>
           </section>
         </li>
-        
         {% endfor %}
       </ul>
 

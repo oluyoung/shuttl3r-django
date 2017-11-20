@@ -11,12 +11,12 @@
   <div class="full-width header" style="background-image:url({%static 'img/congruent_outline.png'%})">
     <h1 class="user-welcome text-center">
       Welcome {{user.get_full_name|title}}
-      <p>Here you can view all your orders</p>
     </h1>
+    <p class="text-center">Here you can view all your orders</p>
   </div>
-    <section class="user-dashboard user-{{user.id}}">
-
+    
     {% if has_order %}
+    <section class="user-dashboard has-orders">
       <!-- DRIVER-ORDERS -->
       {% if mrd %}
       <h3 class="dashboard-title drivers-dash">Driver Hires</h3>
@@ -291,15 +291,17 @@
       </div>
       {% endif %}
     {% else %}
-    <div class="no-orders">
-      <p>You have no orders yet</p>
-      <p>Let's get you started:</p>
+    <section class="user-dashboard no-orders">
+      <div>
+        <p>Unfortunately, you have no orders yet</p>
+        <p>Let's get you started:</p>
+      </div>
       <ul>
-        <li>Hire a driver</li>
-        <li>Hire a car</li>
-        <li>Book a shuttle</li>
+        <li><a href="#driver-request">Hire a driver</a></li>
+        <li><a href="#car-request">Hire a car</a></li>
+        <li><a href="{% url 'shuttle:index' %}">Book a shuttle</a></li>
       </ul>
-    </div>
+    </section>
     {% endif %}
     </section>
     
@@ -315,7 +317,7 @@
 <script src="{% static 'js/jquery-ui.min.js' %}"></script>
 <script>
   $(function() {
-    $( ".user-dashboard" ).accordion({
+    $( ".user-dashboard.has-orders" ).accordion({
       heightStyle: "content"
     });
   });
