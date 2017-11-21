@@ -83,7 +83,7 @@
 
   /* ORDER FORM END DATE RENDER AFTER START DATE
   */
-  $('.order-form form').each(function(){
+/*  $('.order-form form').each(function(){
     form = $(this);
     form.find('.start-date').on('change', function(){
       console.log(console.log('changed'));
@@ -93,7 +93,7 @@
       form.find('.end-date').attr('min', $(this).val());
       console.log("end:", form.find('.end-date').attr('min'));
     });
-  });
+  });*/
 
 
   /* ORDER FORM AJAX REQUEST
@@ -128,6 +128,7 @@
         start_date: form.find('.start-date').val(),
         end_date: form.find('.end-date').val(),
         is_within_lagos: form.find('.within').prop('checked'),
+        order_class: form.find('.order_class').val(),
         pickup_address: form.find('.pickup-addr').val(),
         // shuttle
         subscription: form.find('.subscription-choice').val(),
@@ -136,14 +137,13 @@
         evening_stop: form.find('.evening-pickup-stop').val(),
         evening_time: form.find('.evening-pickup-time').val(),
 
-        item_id: form.find('.item_id').val(),
         user: form.find('.user_id').val(),
         csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
       },
       error: function(xhr){
         console.log('error');
         // console.log(data);
-        $('.container .order-alert').text('Oops! There was an error in ordering, kindly try again or refresh.');
+        $('#order-alert').text('Oops! There was an error in ordering, kindly try again or refresh.');
       },
       success: function(){
         console.log('successful');
@@ -152,11 +152,11 @@
         form.find('input[type=reset]').trigger('click');
         $('.order-form .choose-btn').removeClass('selected');        
         // show order alert
-        $('.container .order-alert').html('The order was successful. Click <a href="/users/user/dashboard">here</a> to view the order.');
+        $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a>');
       },
       complete: function(){
         // show order alert
-        $('.container .order-alert').show();
+        $('#order-alert').show();
         // close mag pop
         $.magnificPopup.close();
       }
@@ -165,6 +165,10 @@
 
   });  // end Order Submit function
 
+  $('#close-order-alert').on('click', function(e){
+    e.preventDefault();
+    $('#order-alert').hide();
+  });
 
   /* Google Maps Render for Directions In Shuttle Routes */
   $('.route-outline').each(function(){

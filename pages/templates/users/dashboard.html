@@ -31,7 +31,7 @@
               </li>
               <li class="most-recent-item">
                 <span class="most-recent-title">Pickup: </span>
-                <span class="most-recent-content">{{mrd_order.pickup_address}} @ {{mrd_order.pickup_time}}</span>
+                <span class="most-recent-content">{{mrd_order.pickup_address}}</span>
               </li>
               <li class="most-recent-item">
                 <span class="most-recent-title">Start Date: </span>
@@ -53,8 +53,7 @@
               <thead>
                 <tr class="head">
                   <th class="date">Date</th>
-                  <th class="item-id">Driver</th>
-                  <th class="loc">Pickup Address</th>
+                  <th class="loc">Pickup</th>
                   <th class="start">Start Date</th>
                   <th class="end">End Date</th>
                   <th class="status">Status</th>
@@ -64,7 +63,6 @@
                 {% for d_order in d_orders%}
                 <tr class="body">
                   <td class="item-date" data-order-id="{{d_order.id}}">{{d_order.order_date|date:'d/m/Y'}}</td>
-                  <td class="item-id" data-item-id="{{d_order.driver.id}}">{{d_order.driver.get_full_name|title}}</td>
                   <td class="loc">{{d_order.pickup_address}}</td>
                   <td class="start_date">{{d_order.start_date|date:'d/m/Y'}}</td>
                   <td class="send_date">{{d_order.end_date|date:'d/m/Y'}}</td>
@@ -73,7 +71,7 @@
                 {% endfor %}
               </tbody>
             </table>
-            <a href="" class="btn all-orders">View All Orders</a>
+            <a href="" class="btn poppins all-orders">View All Orders</a>
           </div>
           <div class="other-orders-mob">
               {% for d_order in d_orders%}
@@ -102,7 +100,7 @@
                 <p class="status">Status: <span class="status_">{{d_order.status}}</span></p>
               </div>
               {% endfor %}
-            <a href="" class="btn all-orders">View All Orders</a>
+            <a href="" class="btn poppins all-orders">View All Orders</a>
           </div>
           {% endif %}
       </div>
@@ -121,7 +119,7 @@
             </li>
             <li class="most-recent-item">
               <span class="most-recent-title">Pickup: </span>
-              <span class="most-recent-content">{{mrc_order.pickup_address}} @ {{mrc_order.pickup_time}}</span>
+              <span class="most-recent-content">{{mrc_order.pickup_address}}</span>
             </li>
             <li class="most-recent-item">
               <span class="most-recent-title">Start Date: </span>
@@ -143,8 +141,7 @@
             <thead>
               <tr class="head">
                 <th class="date">Date</th>
-                <th class="item-id">Car</th>
-                <th class="loc">Pickup Address</th>
+                <th class="loc">Pickup</th>
                 <th class="start">Start Date</th>
                 <th class="end">End Date</th>
                 <th class="status">Status</th>
@@ -154,7 +151,6 @@
               {% for c_order in c_orders %}
               <tr class="body">
                 <td class="item-date" data-order-id="{{c_order.id}}">{{c_order.order_date|date:'d/m/Y'}}</td>
-                <td class="item-id" data-item-id="{{c_order.car.id}}">{{c_order.car.get_full_name|title}}</td>
                 <td class="loc">{{c_order.pickup_address}}</td>
                 <td class="start_date">{{c_order.start_date|date:'d/m/Y'}}</td>
                 <td class="send_date">{{c_order.end_date|date:'d/m/Y'}}</td>
@@ -164,7 +160,7 @@
               {% endfor %}
             </tbody>
           </table>
-          <a href="" class="btn all-orders">View All Orders</a>
+          <a href="" class="btn poppins all-orders">View All Orders</a>
         </div>
         <div class="other-orders-mob">
           {% for c_order in c_orders%}
@@ -193,7 +189,7 @@
             <p class="status">Status: <span class="status_">{{c_order.status}}</span></p>
           </div>
           {% endfor %}
-          <a href="" class="btn all-orders">View All Orders</a>
+          <a href="" class="btn poppins all-orders">View All Orders</a>
         </div>
         {% endif %}
       </div> 
@@ -256,7 +252,7 @@
               {% endfor %}
             </tbody>
           </table>
-          <a href="" class="btn all-orders">View All Orders</a>
+          <a href="" class="btn poppins all-orders">View All Orders</a>
         </div>
         <div class="other-orders-mob">
           {% for s_order in s_orders%}
@@ -285,7 +281,7 @@
             <p class="status">Status: <span class="status_">{{s_order.status}}</span></p>
           </div>
           {% endfor %}
-          <a href="" class="btn all-orders">View All Orders</a>
+          <a href="" class="btn poppins all-orders">View All Orders</a>
         </div>
         {% endif %}
       </div>
@@ -297,8 +293,8 @@
         <p>Let's get you started:</p>
       </div>
       <ul>
-        <li><a href="#driver-request">Hire a driver</a></li>
-        <li><a href="#car-request">Hire a car</a></li>
+        <li><a href="#driver-request" class="open-request ">Hire a driver</a></li>
+        <li><a href="#car-request" class="open-request ">Hire a car</a></li>
         <li><a href="{% url 'shuttle:index' %}">Book a shuttle</a></li>
       </ul>
     </section>

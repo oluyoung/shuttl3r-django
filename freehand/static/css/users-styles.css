@@ -45,12 +45,6 @@ body {}
 .submit-btn {
   width: 90%;
   margin: 1em auto;
-  background-color: #388e3c;
-}
-
-.submit-btn:hover,
-.submit-btn:focus {
-  background-color: #1b5e20;
 }
 
 .if-already {
@@ -160,10 +154,12 @@ User Dashboard **/
   font-weight: bold;
   font-variant: small-caps;
   font-size: .95em;
-  text-align: left
+  text-align: left;
+  font-family: 'Raleway';
 }
 .other-orders table td {
-  font-size: .9em
+  font-size: .9em;
+  font-family: 'Source Sans Pro';
 }
 
 .no-orders {
@@ -207,7 +203,6 @@ User Dashboard **/
 
 .no-orders ul li a:hover,
 .no-orders ul li a:focus {
-  border-left: 4px solid;
   color: #b71c1c;
 }
 
@@ -246,10 +241,18 @@ User Dashboard **/
 }
 
 .btn.all-orders {
+  background-color: #263238;
   color: #fff;
   padding: .7em;
   font-size: .75em;
   display: inline-block;
+}
+
+.btn.all-orders:hover,
+.btn.all-orders:focus {
+  background-color: #fafafa;
+  border: 2px solid;
+  color: #111;
 }
 
 @media (max-width:767px){
@@ -296,6 +299,11 @@ User Dashboard **/
   }
   .other-orders-mob .order p:first-of-type {
     border-bottom: 1px solid #ccc;
+  }
+
+  .no-orders ul li a {
+    border-left: 8px solid;
+    font-size: 1.2em;
   }
   
 }

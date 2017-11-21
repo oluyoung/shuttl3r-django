@@ -78,8 +78,8 @@ a:focus {
 }
 
 .btn {
-  border: none;
-  background-color: #d32f2f;
+  background-color: #388e3c;
+  border: 2px solid;
   padding: 10px 0;
   text-transform: uppercase;
   border-radius: 5px;
@@ -89,7 +89,9 @@ a:focus {
 
 .btn:hover,
 .btn:focus {
-  background-color: #F44336;
+  background-color: #fff;
+  color: #111;
+  outline: none!important;
 }
 
 .icon {
@@ -521,7 +523,7 @@ body.is-showNavFollow .nav-follow-extra {
   /* width: 50%; */
   /* padding: 2% 0; */
   font-size: .85rem;
-  background-color: #212121;
+  background-color: #424242;
   border-top: 2px solid #212121;
   border-bottom: 2px solid #212121;
 }
@@ -530,12 +532,13 @@ body.is-showNavFollow .nav-follow-extra {
   padding: 2.5% 0;
   width: 33%;
   color: #fff;
-
+  /* letter-spacing: 1px; */
 }
 
 .nav-mob-requests a:hover,
 .nav-mob-requests a:focus {
   background-color: #fff;
+  letter-spacing: 1px;
 }
 
 .nav-mob-requests a:hover span,
@@ -776,10 +779,10 @@ INDEX
   background-color: #111;
 }
 
-.order-alert {
+#order-alert {
   display: none;
-  position: absolute;
-  margin-top: -1em;
+  position: fixed;
+  bottom: 0;
   padding-top: .3em;
   z-index: 999;
   background-color: #80CBC4;
@@ -788,11 +791,45 @@ INDEX
   color: #fff;
 }
 
+.order-alert-view-orders {
+  color: #3E2723;
+}
+
+.order-alert-view-orders:hover,
+.order-alert-view-orders:focus {
+  color: #fafafa;
+  border-bottom: 1px solid #3E2723;
+}
+
+#close-order-alert {
+  background-color: #212121;
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  position: absolute;
+  right: 2%;
+  text-transform: lowercase;
+  color: #fafafa;
+}
+
+#close-order-alert:hover,
+#close-order-alert:focus {
+  background-color: #616161;
+}
+
+
 /* MAGNIFIC POPUP */
 .mfp-bg {
   min-height: 900px !important;
   max-height: 1000px !important;
   height: 1000px !important;
+  position: fixed !important;
+  opacity: 0.95;
+}
+
+.mfp-wrap {
+  position: fixed !important;
 }
 
 

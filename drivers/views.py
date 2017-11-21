@@ -24,7 +24,6 @@ def driver_info(request, id):
 
 def driver_request(request):
     if request.method == 'POST':
-        driver_id = request.POST['item_id']
         user_id = request.POST['user']
         if request.POST['is_within_lagos'] == 'true':
             within = True
@@ -36,7 +35,6 @@ def driver_request(request):
             end_date=request.POST['end_date'],
             is_within_lagos=within,
             pickup_address=request.POST['pickup_address'],
-            driver=DriverInfo.objects.get(pk=driver_id),
             user=User.objects.get(pk=user_id),
         )
 

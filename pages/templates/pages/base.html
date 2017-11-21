@@ -23,9 +23,7 @@
 </head>
 <body>
 <nav class="nav poppins" style="position:absolute">
-  <div class="nav-logo">
-    <a href="/" id="nav-logo"></a>
-  </div>
+  <div class="nav-logo"><a href="/" id="nav-logo"></a></div>
   <div class="u-clear">
     <div class="nav-sections-dropdown">
       <div class="nav-sections-dropdown-toggle">
@@ -108,10 +106,11 @@
   </div>
 </nav>
 
-
-
 {% block content %}{% endblock %}
 {% block footer %}{% endblock %}
+<p id="order-alert" class="full-width">
+  <a href="#" id="close-order-alert">x</a>>
+</p>
 <!-- PopUps -->
   <!-- DRIVER ORDER SHEET -->
   <section class="sheet driver-sheet mfp-hide" id="driver-request">
@@ -139,7 +138,8 @@
             <div class="flex row-wrap just-start align-flex-center half-width" style="margin-top:-15px;">
               <label for="within">Leaving Lagos?</label>
               <input type="checkbox" class="within" name="within_lagos" hidden>
-              <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no selected">NO</a>
+              <a href="#" class="choose-btn yes">YES</a>
+              <a href="#" class="choose-btn no selected">NO</a>
             </div>
           </div>
           <div class="flex row-wrap just-between">

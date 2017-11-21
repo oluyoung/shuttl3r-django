@@ -55,3 +55,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return "%d: %s" % (self.id, self.get_full_name())
+
+
+class UserRequest(models.Model):
+    subject = models.CharField(max_length=255)
+    body = models.TextField()
+
+    class Meta:
+        verbose_name = _("UserRequest")
+        verbose_name_plural = _("UserRequests")
