@@ -3,6 +3,6 @@
   <h2 class="welcome" style="text-align: center;color: crimson;font-size: 1.7em">Welcome to FreehandNG</h2>
   <p class="kindly-registration" style="text-align: center;font-size: 1.2em;color: #9E9E9E">Kindly click below to activate your account.</p>
   <p class="verify" style="text-align: center;font-size: 0.9em;color: #9E9E9E;margin: 4% 0 2%">
-    <a target="_blank" href="{{domain}}/{% url 'users:activate' uidb64=uid token=token %}" style="background-color:cornflowerblue;color:#fff;cursor:pointer;text-decoration:none;border-radius:5px;padding: 10px;display:inline-block">ACTIVATE</a>
+    <a target="_blank" href="//{{domain}}/users/activate/{{uid}}/{{token}}/" style="background-color:cornflowerblue;color:#fff;cursor:pointer;text-decoration:none;border-radius:5px;padding: 10px;display:inline-block">ACTIVATE</a>
   </p>
 </div>
