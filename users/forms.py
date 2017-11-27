@@ -11,27 +11,44 @@ class UserForm(forms.ModelForm):
         label='* Phone number',
         required=True
     )
-    password = forms.CharField(widget=forms.PasswordInput(), required=True, label='* Password')
-    password2 = forms.CharField(widget=forms.PasswordInput, required=True, label='* Confirm password')
+    password = forms.CharField(
+        widget=forms.PasswordInput(),
+        required=True,
+        label='* Password'
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(),
+        required=True,
+        label='* Confirm password'
+    )
     default_pickup_addr = forms.CharField(required=False)
 
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name', 'phone_num', 'password', 'password2']
 
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(UserForm, self).__init__(*args, **kwargs)
+
     def clean_password2(self, *args, **kwargs):
-        email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
         password2 = self.cleaned_data.get('password2')
 
         if password != password2:
             raise forms.ValidationError("passwords must match.")
 
+        return password
+
+    def clean_email(self, *args, **kwargs):
+        email = self.cleaned_data.get('email')
+
+        # if not self.request.user.is_authenticated:
         email_qs = User.objects.filter(email=email)
         if email_qs:
-            raise forms.ValidationError("This E-mail has already been registered")
+            raise forms.ValidationError("This e-mail has already been registered")
 
-        return password
+        return email
 
 
 # class UserEditForm(forms.ModelForm):

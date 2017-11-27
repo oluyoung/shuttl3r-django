@@ -86,11 +86,15 @@
                 <h3 class="text-center">{{route.route_name|title}}</h3>
                 <div class="map-canvas" id="routemap-{{route.id}}" ></div>
                 <div class="prices" style="margin-top:15px">
-                  <ul class="flex row-wrap just-around">
-                    <li>Daily: N650</li>
-                    <li>Weekly: N2500</li>
-                    <li>Monthly: N17500</li>
-                    <li>No. of seats left: {{24}}</li>
+                  <ul class="flex row-wrap just-between" style="font-family:Raleway;font-weight:bold;">
+                    <li>Daily: <span style="font-weight:normal">N650</span></li>
+                    <li>Weekly: <span style="font-weight:normal">N2500</span></li>
+                    <li>Monthly: <span style="font-weight:normal">N17500</span></li>
+                    {% if route.is_available %}
+                    <li style="width:100%;">No. of seats left: <span style="font-weight:normal">{{route.seats_available}}</span></li>
+                    {% else %}
+                    <li style="width:100%;"><span style="font-weight:normal">There are no seats left on this route</span></li>
+                    {% endif %}
                   </ul>
                 </div>
               </div>
@@ -111,12 +115,18 @@
                         <option value="Monthly">Monthly</option>
                     </select>
                   </div>
+                  <div class="flex row-wrap just-between date-hidden">
+                    <div class="half-width">
+                      <label for="start-date">Start Date</label>
+                      <input type="date" class="start-date daily-start-date" name="start_date" min="{% now 'Y-m-d' %}">
+                    </div>
+                  </div>
                   <div class="flex col-nowrap">
                     <label for="morning-pickup-stop">Morning Pickup Stop</label>
                     <select name="morning_pickup_stop" class="stop-list morning-pickup-stop" id="morning-pickup-stop" required>
                       <option value="">Pick a stop</option>
                       {% for stop in route.get_all_stops %}
-                      <option value="{{stop.stop_no}}" data-location="{{stop.stop_location}}">{{stop.stop_location|upper}}</option>
+                      <option value="{{stop.id}}" data-location="{{stop.stop_location}}">{{stop.stop_location|upper}}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -139,7 +149,7 @@
                     <select name="evening_pickup_stop" class="stop-list evening-pickup-stop" id="evening-pickup-stop" required>
                       <option value="">Pick a stop</option>
                       {% for stop in route.get_all_stops %}
-                      <option value="{{stop.stop_no}}" data-location="{{stop.stop_location}}">{{stop.stop_location|upper}}</option>
+                      <option value="{{stop.id}}" data-location="{{stop.stop_location}}">{{stop.stop_location|upper}}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -157,12 +167,14 @@
                       <option value="20:30:00">8:30PM</option>
                     </select>
                   </div>
-
+                  
                   {% if user.is_authenticated %}
-                  <input type="submit" class="btn submit-btn shuttle-submit-btn" value="REQUEST" />
-                  <input type="reset" value="CLEAR" hidden />
-                  {% else %}
-                  <a href="#login" class="btn login-btn">LOGIN</a>
+                    {% if route.is_available %}
+                    <input type="submit" class="btn submit-btn shuttle-submit-btn" value="REQUEST" />
+                    <input type="reset" value="CLEAR" hidden />
+                    {% endif %}
+                    {% else %}
+                    <a href="{% url 'users:login' %}" class="btn login-btn">LOGIN</a>
                   {% endif %}
                 </form>
               </div>

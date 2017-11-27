@@ -19,7 +19,7 @@
     <section class="user-dashboard has-orders">
       <!-- DRIVER-ORDERS -->
       {% if mrd %}
-      <h3 class="dashboard-title drivers-dash">Driver Hires</h3>
+      <h3 class="dashboard-title drivers-dash">Driver Requests</h3>
       <div class="dashboard-content">
           <!-- more button take to new page showing all orders -->
           <div class="most-recent">
@@ -82,11 +82,11 @@
                     <dd class="item-date" data-order-id="{{d_order.id}}">{{d_order.order_date|date:'d/m/Y'}}</dd>
                   </dl>
                   <dl class="half-width">
-                    <dt class="item-id">Driver</dt>
-                    <dd class="item-id" data-item-id="{{d_order.driver.id}}">{{d_order.driver.get_full_name|title}}</dd>
+                    <dt class="">Status</dt>
+                    <dd class="">{{d_order.status|title}}</dd>
                   </dl>
                 </div>
-                <p class="loc">Pickup Address:</dt> <span class="loc_"><em>{{d_order.pickup_address}}</em></span></p>
+                <p class="loc"><span class="item-title">Pickup Address: </span><span class="loc_"><em>{{d_order.pickup_address|title}}</em></span></p>
                 <div class="flex row-nowrap just-between">
                   <dl class="half-width">
                     <dt class="start">Start Date</dt>
@@ -97,7 +97,6 @@
                     <dd class="send_date">{{d_order.end_date|date:'d/m/Y'}}</dd>
                   </dl>
                 </div>
-                <p class="status">Status: <span class="status_">{{d_order.status}}</span></p>
               </div>
               {% endfor %}
             <a href="" class="btn poppins all-orders">View All Orders</a>
@@ -108,7 +107,7 @@
 
       <!-- CAR ORDERS -->
       {% if mrc %}
-      <h3 class="dashboard-title cars-dash">Car Hires</h3>
+      <h3 class="dashboard-title cars-dash">Car Requests</h3>
       <div class="dashboard-content">
         <div class="most-recent">
           <h3>Most Recent Order</h3>
@@ -171,11 +170,11 @@
                 <dd class="item-date" data-order-id="{{c_order.id}}">{{c_order.order_date|date:'d/m/Y'}}</dd>
               </dl>
               <dl class="half-width">
-                <dt class="item-id">Driver</dt>
-                <dd class="item-id" data-item-id="{{c_order.car.id}}">{{c_order.car.get_full_name|title}}</dd>
+                <dt class="">Status</dt>
+                <dd class="">{{c_order.status|title}}</dd>
               </dl>
             </div>
-            <p class="loc">Pickup Address:</dt> <span class="loc_"><em>{{c_order.pickup_address}}</em></span></p>
+            <p class="loc"><span class="item-title">Pickup Address: </span></dt> <span class="loc_"><em>{{c_order.pickup_address|title}}</em></span></p>
             <div class="flex row-nowrap just-between">
               <dl class="half-width">
                 <dt class="start">Start Date</dt>
@@ -186,7 +185,6 @@
                 <dd class="send_date">{{c_order.end_date|date:'d/m/Y'}}</dd>
               </dl>
             </div>
-            <p class="status">Status: <span class="status_">{{c_order.status}}</span></p>
           </div>
           {% endfor %}
           <a href="" class="btn poppins all-orders">View All Orders</a>
@@ -267,7 +265,9 @@
                 <dd class="">{{s_order.subscription|title}}</dd>
               </dl>
             </div>
-            <p class="loc">Route:</dt> <span class="loc_"><em>{{s_order.route.route_name|title}}</em></span></p>
+            <p class="loc"><span class="item-title">Route: </span></dt>
+              <span class="loc_"><em>{{s_order.route.route_name|title}}</em></span>
+            </p>
             <div class="flex row-nowrap just-between">
               <dl class="half-width">
                 <dt class="">Morning:</dt>
@@ -290,7 +290,7 @@
     <section class="user-dashboard no-orders">
       <div>
         <p>Unfortunately, you have no orders yet</p>
-        <p>Let's get you started:</p>
+        <p style="font-family:'Satisfy';">Let's get you started:</p>
       </div>
       <ul>
         <li><a href="#driver-request" class="open-request ">Hire a driver</a></li>

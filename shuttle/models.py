@@ -43,6 +43,7 @@ class ShuttleRoute(models.Model):
     # one_way_price_per_day = models.IntegerField()
     # one_way_price_per_week = models.IntegerField()
     # one_way_price_per_month = models.IntegerField()
+    daily_pickup_date = models.DateTimeField(_('Daily Pickup Date'), null=True, blank=True)
     daily_price = models.FloatField(_('Route Daily Price'))
     weekly_price = models.FloatField(_('Route Weekly Price'))
     monthly_price = models.FloatField(_('Route Monthly Price'))
@@ -129,7 +130,12 @@ class ShuttleOrder(models.Model):
     morning_pickup_stop = models.ForeignKey(RouteStop, related_name='morning_pickup_stop')
     evening_pickup_stop = models.ForeignKey(RouteStop, related_name='evening_pickup_stop')
     isRenewing = models.BooleanField(_('Is User\'s Subscription Renewed?'))
-    STATUS_CHOICES = (('Completed','Completed'),('Ongoing','Ongoing'),('Not Started','Not Started'))
+    STATUS_CHOICES = (
+        ('Completed', 'Completed'),
+        ('Ongoing', 'Ongoing'),
+        ('Not Started', 'Not Started'),
+        ('Cancelled', 'Cancelled')
+    )
     # status = models.CharField(max_length=30, choices=STATUS_CHOICES)
 
     class Meta:

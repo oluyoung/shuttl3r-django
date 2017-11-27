@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login
 #
 from django.contrib.sites.shortcuts import get_current_site
@@ -10,9 +10,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
 #
-from django.core.mail import EmailMessage
+from django.core.mail import send_mail
 from .tokens import account_activation_token
 from .forms import UserForm
 from .models import User
@@ -41,10 +40,21 @@ def register(request):
             })
             mail_subject = 'Activate your FreehandNG account.'
             to_email = form.cleaned_data.get('email')
-            email = EmailMessage(mail_subject, message, to=[to_email])
-            email.send()
+            send_mail(
+                mail_subject,
+                '',
+                'freehand@sendgrid.net',
+                [to_email],
+                fail_silently=False,
+                html_message=message,
+            )
+            # email = EmailMessage(mail_subject, message, to=[to_email])
+            # email.send()
             # need to return HTML page
-            return HttpResponse('Kindly confirm your email address to complete the registration')
+            response = HttpResponse()
+            response.write('<h2 style="text-align:center;font-family:arial;padding:2% 1.5%;background-color:darkcyan;color:#f0f0f0;font-size:1.2em;">Kindly confirm your email address to activate your account</h2>')
+            # response.write('')
+            return response
 
         return render(request, 'registration/register.html', {"form": form})
 
@@ -114,7 +124,7 @@ def account(request):
         user = request.user
         user_email = user.email
 
-    form = UserForm(request.POST or None, instance=user)
+    form = UserForm(request.POST or None, instance=user, request=request)
     if form.is_valid():
         user = form.save(commit=False)
         if form.cleaned_data.get('email') != user_email:
@@ -136,9 +146,19 @@ def account(request):
             email.send()
             # need to return HTML page
             return HttpResponse('Kindly verify your new email')
-            #return HttpResponseRedirect(user.get_absolute_url())
+            # return HttpResponseRedirect(user.get_absolute_url())
 
         else:
+            password = form.cleaned_data.get('password')
+            user.set_password(password)
             user.save()
 
     return render(request, 'users/account.html', {'form': form})
+
+
+# @login_required
+# def delete_account(request):
+#     if request.user.is_authenticated:
+#         user = request.user
+#         user.is_active = False
+#         redirect('/users/logout')

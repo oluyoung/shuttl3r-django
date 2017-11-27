@@ -58,7 +58,8 @@ class DriverOrder(models.Model):
     STATUS_CHOICES = (
         ('Completed', 'Completed'),
         ('Ongoing', 'Ongoing'),
-        ('Not Started', 'Not Started')
+        ('Not Started', 'Not Started'),
+        ('Cancelled', 'Cancelled')
     )
     status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='Not Started')
     CATEGORY_CHOICES = (

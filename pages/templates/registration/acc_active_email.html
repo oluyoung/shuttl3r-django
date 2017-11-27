@@ -1,12 +1,8 @@
-<html>
-<head>
-</head>
-<body>
-{% autoescape off %}
-Hi {{ user.username }},
-Please click on the link to confirm your registration,
-
-<div><a target="_blank" href="//127.0.0.1:8000{% url 'users:activate' uidb64=uid token=token %}">Confirm Email</a></div>
-{% endautoescape %}
-</body>
-</html>
+<div class="email-container" style="background-color: #263238;border-radius: 5px;max-width: 500px;margin: 10px auto;padding: 1% 2%;font-family: sans-serif;color: #f0f0f0">
+  <h3 class="hello" style="color: #B0BEC5;font-size: 1.2em">Hello, {{user.get_full_name}}</h3>
+  <h2 class="welcome" style="text-align: center;color: crimson;font-size: 1.7em">Welcome to FreehandNG</h2>
+  <p class="kindly-registration" style="text-align: center;font-size: 1.2em;color: #9E9E9E">Kindly click below to activate your account.</p>
+  <p class="verify" style="text-align: center;font-size: 0.9em;color: #9E9E9E;margin: 4% 0 2%">
+    <a target="_blank" href="{{domain}}/{% url 'users:activate' uidb64=uid token=token %}" style="background-color:cornflowerblue;color:#fff;cursor:pointer;text-decoration:none;border-radius:5px;padding: 10px;display:inline-block">ACTIVATE</a>
+  </p>
+</div>

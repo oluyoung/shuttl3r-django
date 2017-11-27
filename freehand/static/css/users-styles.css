@@ -22,7 +22,7 @@ body {}
 .form {
   /* border-radius: 0; */
   background-color: #fff;
-  box-shadow: 0px 0px 3px #ccc;
+  box-shadow: 1px 1px 3px #ccc, -1px -1px 3px #ccc;
 }
 
 .form-field {
@@ -142,12 +142,12 @@ User Dashboard **/
 
 .other-orders {}
 
-.other-orders-mob {
-  display: none;
-}
-
 .other-orders table {
   margin: 1em 0;
+}
+
+.other-orders .head {
+  border-bottom: 1px solid;
 }
 
 .other-orders table th {
@@ -156,10 +156,82 @@ User Dashboard **/
   font-size: .95em;
   text-align: left;
   font-family: 'Raleway';
+  padding: 1px 0;
 }
 .other-orders table td {
   font-size: .9em;
   font-family: 'Source Sans Pro';
+  padding: 5px 0;
+}
+.other-orders .body:nth-child(odd) {
+  background-color: #9E9E9E;
+  color: #fff;
+}
+.other-orders .body:nth-child(even) {
+  background-color: #eee;
+}
+
+
+.other-orders-mob {
+  display: none;
+}
+
+.other-orders-mob {
+  font-size: .8rem;
+  margin-top: 1.5em;
+  font-family: 'Source Sans Pro';
+}
+.other-orders-mob .order {
+  /* padding: .5em .5em 0; */
+  border-bottom: 1px solid;
+}
+.other-orders-mob .order:nth-child(odd) div {
+  background-color: #00BCD4;
+}
+.other-orders-mob .order:nth-child(odd) dt {
+  color: #263238;
+}
+.other-orders-mob .order:nth-child(odd) dd {}
+.other-orders-mob .order:nth-child(odd) p {
+  background-color: #B0BEC5;
+  color: #424242;
+}
+.other-orders-mob .order:nth-child(even) div {
+  background-color: coral;
+}
+.other-orders-mob .order:nth-child(even) dt {
+  color: #795548;
+}
+.other-orders-mob .order:nth-child(even) dd {}
+.other-orders-mob .order:nth-child(even) p {
+  background-color: #FFAB91
+}
+
+.other-orders-mob .order dt {
+  font-weight: bold;
+}
+.other-orders-mob .order dd {
+}
+.other-orders-mob .order:first-child {
+  border-top: 1px solid;
+}
+.other-orders-mob .order:last-child {
+  border-bottom: 0;
+}
+.other-orders-mob .order div,
+.other-orders-mob .order p {
+  padding: .5em 1em;
+  background-color: cadetblue;
+}
+.other-orders-mob .order div {
+  border-bottom: 1px solid #ccc;
+}
+.other-orders-mob .order p {  }
+.other-orders-mob .order p .item-title {
+  font-weight: bold
+}
+.other-orders-mob .order p:first-of-type {
+  border-bottom: 1px solid #ccc;
 }
 
 .no-orders {
@@ -277,28 +349,6 @@ User Dashboard **/
   }
   .other-orders-mob {
     display: block;
-    font-size: .8rem;
-    margin-top: 1.5em;
-  }
-  .other-orders-mob .order {
-    padding: .5em .5em 0;
-    border-bottom: 1px solid;
-  }
-  .other-orders-mob .order:first-child {
-    border-top: 1px solid;
-  }
-  .other-orders-mob .order:last-child {
-    border-bottom: 0;
-  }
-  .other-orders-mob .order div {
-    padding: .5em 0;
-    border-bottom: 1px solid #ccc;
-  }
-  .other-orders-mob .order p {
-    padding: .5em 0;
-  }
-  .other-orders-mob .order p:first-of-type {
-    border-bottom: 1px solid #ccc;
   }
 
   .no-orders ul li a {

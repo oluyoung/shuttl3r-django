@@ -23,7 +23,7 @@ def select(request, id):
     if request.user.is_authenticated:
         user = request.user
     context = {
-        'route': route, 
+        'route': route,
         'stops': route_stops,
         'user': user
     }
@@ -44,13 +44,20 @@ def shuttle_request(request):
             morning_pickup_time=request.POST['morning_time'],
             evening_pickup_stop=RouteStop.objects.get(pk=evening_stop),
             evening_pickup_time=request.POST['evening_time'],
+            daily_pickup_date=request.POST['start_date'],
             route=ShuttleRoute.objects.get(pk=route_id),
             user=User.objects.get(pk=user_id),
             isRenewing=False,
         )
 
-        # reduce seats available from Route
-          # check return alue of .create
-          # alert user if already subscribed to a route
+        route = ShuttleRoute.objects.get(pk=route_id)
+        if route.seats_available > 0:
+            route.seats_available -= 1
+        else:
+            route.is_available = False
+        route.save()
+
+        # check return value of .create
+        # alert user if already subscribed to a route
 
         return HttpResponse('Successful entry')

@@ -77,18 +77,12 @@
   <div class="nav-mob">
     <div class="nav-mob-content flex row-nowrap just-around">
       <div class="u-row nav-mob-urow">
-        <!-- 
-        <h5 class="uppercase"><a href="#driver-request" id="">Hire Drivers</a></h5>
-        <h5 class="uppercase"><a href="#car-request" id="">Hire Car</a></h5>
-        <h5 class="uppercase"><a href="{% url 'shuttle:index' %}" id="">Book Shuttle</a></h5>
-        -->
         <h5 class="uppercase"><a href="{% url 'pages:contact' %}">Contact</a></h5>
         <!-- <h5 class="uppercase"><a href="{% url 'pages:apply' %}">Apply</a></h5> -->
         <!-- <h5><a href="{% url 'pages:faq' %}">FAQ/Manual</a></h5> -->
       </div>
       <ul class="nav-mob-follow">
         <li><a href=""><img src="{%static 'img/twitter_circle_color-256.png'%}" alt=""></a></li>
-        
         <li><a href=""><img src="{%static 'img/fb-icon.svg'%}" alt=""></a></li>
         <li><a href=""><img src="{%static 'img/instagram-logo.png'%}" alt=""></a></li>
       </ul>
@@ -108,10 +102,9 @@
 
 {% block content %}{% endblock %}
 {% block footer %}{% endblock %}
-<p id="order-alert" class="full-width">
-  <a href="#" id="close-order-alert">x</a>>
-</p>
-<!-- PopUps -->
+<p id="order-alert" class="full-width"></p>
+
+<!-- Order Modals -->
   <!-- DRIVER ORDER SHEET -->
   <section class="sheet driver-sheet mfp-hide" id="driver-request">
     <div class="driver flex row-wrap just-start">
@@ -218,19 +211,12 @@
           <div class="flex row-wrap just-between">
             <div class="half-width">
               <label for="start-date">Start Date</label>
-              {% if car.isAvailable %}
               <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" required>
-              {%else%}
-              <input type="date" class="order-date start-date" name="start_date" min="{{car.nextAvailability|date:'Y-m-d'}}" required>
-              {% endif %}
             </div>
             <div class="half-width">
               <label for="end-date">End Date</label>
-              {% if car.isAvailable %}
+              <!-- should be disabled till start date done -->
               <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" required>
-              {%else%}
-              <input type="date" class="order-date end-date" name="start_date" min="{{car.nextAvailability|date:'Y-m-d'}}" required>
-              {% endif %}
             </div>
           </div>
           <div class="flex row-wrap just-between">

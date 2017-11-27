@@ -83,7 +83,8 @@
 
   /* ORDER FORM END DATE RENDER AFTER START DATE
   */
-/*  $('.order-form form').each(function(){
+  /*
+  $('.order-form form').each(function(){
     form = $(this);
     form.find('.start-date').on('change', function(){
       console.log(console.log('changed'));
@@ -93,7 +94,19 @@
       form.find('.end-date').attr('min', $(this).val());
       console.log("end:", form.find('.end-date').attr('min'));
     });
-  });*/
+  });
+  */
+
+  /* SHOW SUBSCRIPTION DAILY START DATE
+  */
+  $('.order-form #subscription-choice').on('change', function(){
+    if($(this).val() == 'Daily'){
+      $('.date-hidden').show('1000');
+    } else {
+      $('.date-hidden').hide('1000');
+      $('.date-hidden .start-date').val('');
+    }
+  });
 
 
   /* ORDER FORM AJAX REQUEST
@@ -102,23 +115,6 @@
     e.preventDefault();
     let form = $(this),
      action = form.attr('action');
-
-   /* let data = {
-        // hires
-        start_date: form.find('.start-date').val(),
-        end_date: form.find('.end-date').val(),
-        is_within_lagos: form.find('.within').prop('checked'),
-        pickup_address: form.find('.pickup-addr').val(),
-        // shuttle
-        subscription: form.find('.subscription-choice').val(),
-        morning_stop: form.find('.morning-pickup-stop').val(),
-        morning_time: form.find('.morning-pickup-time').val(),
-        evening_stop: form.find('.evening-pickup-stop').val(),
-        evening_time: form.find('.evening-pickup-time').val(),
-
-        item_id: form.find('.item_id').val(),
-        user: form.find('.user_id').val(),
-    };*/
 
     $.ajax({
       url: action,
@@ -136,23 +132,22 @@
         morning_time: form.find('.morning-pickup-time').val(),
         evening_stop: form.find('.evening-pickup-stop').val(),
         evening_time: form.find('.evening-pickup-time').val(),
-
+        item_id: form.find('.item_id').val(),
         user: form.find('.user_id').val(),
         csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
       },
       error: function(xhr){
         console.log('error');
-        // console.log(data);
-        $('#order-alert').text('Oops! There was an error in ordering, kindly try again or refresh.');
+        $('#order-alert').html('Oops! There was an error in ordering, kindly try again or refresh.<a href="#" id="close-order-alert">x</a>');
       },
       success: function(){
         console.log('successful');
-        // console.log(data);
+
         // reset form
         form.find('input[type=reset]').trigger('click');
         $('.order-form .choose-btn').removeClass('selected');        
         // show order alert
-        $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a>');
+        $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a><a href="#" id="close-order-alert">x</a>');
       },
       complete: function(){
         // show order alert

@@ -3,7 +3,6 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans|Poppins|Raleway|Source+Sans+Pro|Titillium+Web:400,600');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
 @import url('https://fonts.googleapis.com/css?family=Courgette|Satisfy');
 
 body {
@@ -688,7 +687,7 @@ INDEX
   justify-content: flex-start;
   align-items: center;
   border: 1px solid #e9e9e9;
-  box-shadow: 2px 2px 4px #ccc;
+  box-shadow: 2px 2px 4px #ccc, -2px -2px 4px #ccc; 
   padding: 3.5%;
   background-color: #fdfdfd;
   border-radius: 5px;
@@ -709,7 +708,7 @@ INDEX
   width: 100%;
   border: 1px solid #e9e9e9;
   border-radius: 5px;
-  box-shadow: 2px 2px 4px #ccc;
+  box-shadow: 2px 2px 4px #ccc, -2px -2px 4px #ccc;
   background-color: #fdfdfd;
 }
 
