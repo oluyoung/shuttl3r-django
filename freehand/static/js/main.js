@@ -40,8 +40,12 @@
   */
   $('.nav-icons .user-nav-icon').on('click', function(e){
     e.preventDefault();
-    $('.nav-icons .user-nav-menu').toggle();
+    $('.nav-icons .user-nav-menu').toggle('300');
   });
+  $('.nav-icons .user-nav-menu').on('mouseleave', function(event) {
+    $(this).hide(300);
+  });
+
 
 
   /** OPEN DRIVER ORDER MODAL
@@ -99,13 +103,31 @@
 
   /* SHOW SUBSCRIPTION DAILY START DATE
   */
-  $('.order-form #subscription-choice').on('change', function(){
-    if($(this).val() == 'Daily'){
-      $('.date-hidden').show('1000');
-    } else {
-      $('.date-hidden').hide('1000');
-      $('.date-hidden .start-date').val('');
-    }
+  $('.route-sheet').each(function(){
+    var sheet = $(this);
+    sheet.find('.order-form #subscription-choice').on('change', function(){
+      if($(this).val().toLowerCase() == 'daily'){
+        $('.date-hidden').find('input').attr('required','required');
+        $('.date-hidden').show('1000');
+      } else {
+        $('.date-hidden').hide('1000');
+        $('.date-hidden .start-date').val('');
+        $('.date-hidden').find('input').removeAttr('required');
+      }
+      sheet.find('.price').css('color', '#111');
+      if($(this).val().toLowerCase() == 'daily') {
+        sheet.find('.price_daily').css('color', '#009688');
+        sheet.find('.selected_price').val(sheet.find('.price_daily').attr('data-price'));
+      }
+      if($(this).val().toLowerCase() == 'weekly'){
+        sheet.find('.price_weekly').css('color', '#009688');
+        sheet.find('.selected_price').val(sheet.find('.price_weekly').attr('data-price'));
+      }
+      if($(this).val().toLowerCase() == 'monthly'){
+        sheet.find('.price_monthly').css('color', '#009688');
+        sheet.find('.selected_price').val(sheet.find('.price_monthly').attr('data-price'));
+      }
+    });
   });
 
 
@@ -115,54 +137,110 @@
     e.preventDefault();
     let form = $(this),
      action = form.attr('action');
+    order_obj = {
+      // 
+      amount: (form.find('.selected_price').val()*100),
+      email: form.find('.user_id').attr('data-identifier'),
+      // hires
+      start_date: form.find('.start-date').val(),
+      end_date: form.find('.end-date').val(),
+      is_within_lagos: form.find('.within').prop('checked'),
+      order_class: form.find('.order_class').val(),
+      pickup_address: form.find('.pickup-addr').val(),
+      // shuttle
+      daily_pickup_date: form.find('.daily-pickup-date').val(),
+      subscription: form.find('.subscription-choice').val(),
+      morning_stop: form.find('.morning-pickup-stop').val(),
+      morning_time: form.find('.morning-pickup-time').val(),
+      evening_stop: form.find('.evening-pickup-stop').val(),
+      evening_time: form.find('.evening-pickup-time').val(),
+      item_id: form.find('.item_id').val(),
+      user: form.find('.user_id').val(),
+      csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
+    };
 
-    $.ajax({
+    pay_with_paystack(order_obj, action);
+
+/*    $.ajax({
       url: action,
       type: 'POST',
-      data: {
-        // hires
-        start_date: form.find('.start-date').val(),
-        end_date: form.find('.end-date').val(),
-        is_within_lagos: form.find('.within').prop('checked'),
-        order_class: form.find('.order_class').val(),
-        pickup_address: form.find('.pickup-addr').val(),
-        // shuttle
-        subscription: form.find('.subscription-choice').val(),
-        morning_stop: form.find('.morning-pickup-stop').val(),
-        morning_time: form.find('.morning-pickup-time').val(),
-        evening_stop: form.find('.evening-pickup-stop').val(),
-        evening_time: form.find('.evening-pickup-time').val(),
-        item_id: form.find('.item_id').val(),
-        user: form.find('.user_id').val(),
-        csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
-      },
+      data: data,
       error: function(xhr){
         console.log('error');
-        $('#order-alert').html('Oops! There was an error in ordering, kindly try again or refresh.<a href="#" id="close-order-alert">x</a>');
+        $('#order-alert').html('Oops! There was an error in ordering, kindly try again or refresh.');
       },
       success: function(){
         console.log('successful');
-
         // reset form
         form.find('input[type=reset]').trigger('click');
         $('.order-form .choose-btn').removeClass('selected');        
         // show order alert
-        $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a><a href="#" id="close-order-alert">x</a>');
+        $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a>');
       },
       complete: function(){
+        $('#order-alert').append('<a href="#" id="close-order-alert">x</a>');
         // show order alert
-        $('#order-alert').show();
+        $('#order-alert').show('1000');
         // close mag pop
         $.magnificPopup.close();
       }
-
-    });
+    });*/
 
   });  // end Order Submit function
 
-  $('#close-order-alert').on('click', function(e){
+  /* Paytsack Paynment Function */
+  function pay_with_paystack(orderObj, action){
+    var handler = PaystackPop.setup({
+      key: 'pk_test_663e2f645c09ff2b3008ea4133c4ab5060e7f934',
+      email: orderObj.email,
+      amount: orderObj.amount,
+      callback: function(response){
+        $('.order-form form').find('input[type=reset]').trigger('click');
+        // $('.order-form .choose-btn').removeClass('selected');        
+        // close mag pop
+        $.magnificPopup.close();
+        var posting = $.post(action, order_obj);
+        posting.done(function(data){
+          console.log('success');
+          // success order alert
+          $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a>');
+          // show order alert
+          $('#order-alert').append('<a href="#" id="close-order-alert">x</a>');
+          $('#order-alert').css({'display':'block','transform':'translateY(0%)'});
+        });
+        posting.fail(function(data){
+          console.log('error');
+          console.log(data);
+        });
+      },
+      onClose: function(){
+        $('#order-alert').html('Oops! There was an error in your payment, kindly try again or refresh.');
+        // show order alert
+        $('#order-alert').append('<a href="#" id="close-order-alert">x</a>');
+        $('#order-alert').css({'display':'block','transform':'translateY(0%)'});
+      }
+    });
+    handler.openIframe();
+  }
+
+  /* Show Ordder Alert */
+  $('#del-acct').on('click', function(e){
     e.preventDefault();
-    $('#order-alert').hide();
+    $('#order-alert').html('Are you sure you want to delete your account? <a href="/users/user/delete" id="del-yes">YES</a> <a href="#" id="del-no">NO</a><a href="#" id="close-order-alert">x</a>');
+    $('#order-alert').show('1000');
+  });
+
+  /* Delete user */
+  $('#del-yes').on('click', function(e){
+    e.preventDefault();
+    $('#del-form').submit();
+  });
+
+  /* Close Order Alert */
+  $('#order-alert').on('click', '#del-no, #close-order-alert', function(e){
+    e.preventDefault();
+    console.log('clicked');
+    $('#order-alert').hide('1000');
   });
 
   /* Google Maps Render for Directions In Shuttle Routes */

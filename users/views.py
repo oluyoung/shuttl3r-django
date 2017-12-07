@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib.auth import login
 #
 from django.contrib.sites.shortcuts import get_current_site
@@ -13,7 +13,7 @@ from django.shortcuts import render, redirect
 #
 from django.core.mail import send_mail
 from .tokens import account_activation_token
-from .forms import UserForm
+from .forms import UserForm, UserUpdateForm
 from .models import User
 from drivers.models import DriverOrder
 from cars.models import CarOrder
@@ -48,12 +48,10 @@ def register(request):
                 fail_silently=False,
                 html_message=message,
             )
-            # email = EmailMessage(mail_subject, message, to=[to_email])
-            # email.send()
-            # need to return HTML page
+
             response = HttpResponse()
             response.write('<h2 style="text-align:center;font-family:arial;padding:2% 1.5%;background-color:darkcyan;color:#f0f0f0;font-size:1.2em;">Kindly confirm your email address to activate your account</h2>')
-            # response.write('')
+
             return response
 
         return render(request, 'registration/register.html', {"form": form})
@@ -69,10 +67,30 @@ def activate(request, uidb64, token, backend='django.contrib.auth.backends.Model
         user.is_active = True
         user.save()
         login(request, user, backend)
-        # return redirect('home') or previous URL
-        return HttpResponse('Thank you for your email confirmation. Now you can login to your account.')
+        return redirect('/users/user/dashboard')
     else:
-        return HttpResponse('Activation link is invalid!')
+        response = HttpResponse()
+        response.write('<h2 style="text-align:center;font-family:arial;padding:2% 1.5%;background-color:darkcyan;color:#f0f0f0;font-size:1.2em;">Activation link is invalid!</h2>')
+        if user is not None:
+            current_site = get_current_site(request)
+            message = render_to_string('registration/acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user)
+            })
+            mail_subject = 'Activate your FreehandNG account.'
+            to_email = user.email
+            send_mail(
+                mail_subject,
+                '',
+                'freehand@sendgrid.net',
+                [to_email],
+                fail_silently=False,
+                html_message=message,
+            )
+
+        return response()
 
 
 @login_required
@@ -91,15 +109,15 @@ def dashboard(request):
         if DriverOrder.objects.filter(user=user).count() > 0:
             has_order, mrd = True, True
             most_recent_driver_order = DriverOrder.objects.filter(user=user).order_by('-id')[0]
-            driver_orders = DriverOrder.objects.filter(user=user).order_by('-id')[1:10]
+            driver_orders = DriverOrder.objects.filter(user=user).order_by('-id')[1:]
         if CarOrder.objects.filter(user=user).count() > 0:
             has_order, mrc = True, True
             most_recent_car_order = CarOrder.objects.filter(user=user).order_by('-id')[0]
-            car_orders = CarOrder.objects.filter(user=user).order_by('-id')[1:10]
+            car_orders = CarOrder.objects.filter(user=user).order_by('-id')[1:]
         if ShuttleOrder.objects.filter(user=user).count() > 0:
             has_order, mrs = True, True
             most_recent_shuttle_order = ShuttleOrder.objects.filter(user=user).order_by('-id')[0]
-            shuttle_orders = ShuttleOrder.objects.filter(user=user).order_by('-id')[1:10]
+            shuttle_orders = ShuttleOrder.objects.filter(user=user).order_by('-id')[1:]
 
         context = {
             'user': user,
@@ -120,17 +138,17 @@ def dashboard(request):
 
 @login_required
 def account(request):
-    if request.user.is_authenticated:
-        user = request.user
-        user_email = user.email
+    req_user = None
 
-    form = UserForm(request.POST or None, instance=user, request=request)
+    if request.user.is_authenticated:
+        req_user = request.user
+        user_email = req_user.email
+
+    form = UserUpdateForm(request.POST or None, instance=req_user)
     if form.is_valid():
         user = form.save(commit=False)
         if form.cleaned_data.get('email') != user_email:
             user.is_active = False
-            password = form.cleaned_data.get('password')
-            user.set_password(password)
             user.save()
 
             current_site = get_current_site(request)
@@ -142,23 +160,34 @@ def account(request):
             })
             mail_subject = 'Verify E-mail change for FreehandNG account.'
             to_email = form.cleaned_data.get('email')
-            email = EmailMessage(mail_subject, message, to=[to_email])
-            email.send()
-            # need to return HTML page
-            return HttpResponse('Kindly verify your new email')
-            # return HttpResponseRedirect(user.get_absolute_url())
+
+            mail_subject = 'Activate your FreehandNG account.'
+            to_email = form.cleaned_data.get('email')
+            send_mail(
+                mail_subject,
+                '',
+                'freehand@sendgrid.net',
+                [to_email],
+                fail_silently=False,
+                html_message=message,
+            )
+
+            response = HttpResponse()
+            response.write('<h2 style="text-align:center;font-family:arial;padding:2% 1.5%;background-color:darkcyan;color:#f0f0f0;font-size:1.2em;">Kindly verify your new email.</h2>')
+
+            return response
 
         else:
-            password = form.cleaned_data.get('password')
-            user.set_password(password)
             user.save()
 
-    return render(request, 'users/account.html', {'form': form})
+    return render(request, 'users/account.html', {'form': form, 'user': req_user})
 
 
-# @login_required
-# def delete_account(request):
-#     if request.user.is_authenticated:
-#         user = request.user
-#         user.is_active = False
-#         redirect('/users/logout')
+@login_required
+def delete_account(request):
+    if request.user.is_authenticated:
+        user = request.user
+        user = User.objects.get(pk=user.id)
+        user.is_active = False
+        user.save()
+        return redirect('/users/logout')

@@ -1,3 +1,4 @@
+from datetime import time
 from django.db import models
 from users.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -44,9 +45,9 @@ class ShuttleRoute(models.Model):
     # one_way_price_per_week = models.IntegerField()
     # one_way_price_per_month = models.IntegerField()
     daily_pickup_date = models.DateTimeField(_('Daily Pickup Date'), null=True, blank=True)
-    daily_price = models.FloatField(_('Route Daily Price'))
-    weekly_price = models.FloatField(_('Route Weekly Price'))
-    monthly_price = models.FloatField(_('Route Monthly Price'))
+    daily_price = models.IntegerField(_('Route Daily Price'))
+    weekly_price = models.IntegerField(_('Route Weekly Price'))
+    monthly_price = models.IntegerField(_('Route Monthly Price'))
     is_available = models.BooleanField(_('Is Route Still Available for Subscribers?'), default=True)
 
     class Meta:
@@ -120,13 +121,18 @@ class ShuttleOrder(models.Model):
         ('Monthly', 'Monthly')
     )
     subscription = models.CharField(max_length=10, choices=SUBSCRIPTION_CHOICES)
+    daily_pickup_date = models.DateField(null=True, blank=True, default=None)
     TIME_CHOICES = (
-        ('5:00','5:00'),('5:30','5:30'),('6:00','6:00'),('6:30','6:30'),('7:00','7:00'),
-        ('7:30','7:30'),('8:00','8:00'),('8:30','8:30'),
+        (time(5,00,00),'5:00'),(time(5,30,00),'5:30'),(time(6,00,00),'6:00'),(time(6,30,00),'6:30'),(time(7,00,00),'7:00'),
+        (time(7,30,00),'7:30'),(time(8,00,00),'8:00'),(time(8,30,00),'8:30'),
     )
      #,('9:00','9:00'),('9:30','9:30') late night shuttle
-    morning_pickup_time = models.TimeField(_('User\'s Morning Pickup Time'), choices=TIME_CHOICES)
-    evening_pickup_time = models.TimeField(_('User\'s Evening Pickup Time'), choices=TIME_CHOICES)
+    morning_pickup_time = models.TimeField(_('User\'s Morning Pickup Time'), choices=TIME_CHOICES, null=True, blank=True)
+    # EVENING_TIME_CHOICES = (
+    #     ('17:00:00','5:00PM'),('17:30:00','5:30PM'),('18:00:00','6:00PM'),('18:30:00','6:30PM'),('19:00:00','7:00PM'),
+    #     ('07:30:00','7:30'),('20:00:00','8:00PM'),('20:30:00','8:30PM'),
+    # )
+    evening_pickup_time = models.TimeField(_('User\'s Evening Pickup Time'), choices=TIME_CHOICES, null=True, blank=True)
     morning_pickup_stop = models.ForeignKey(RouteStop, related_name='morning_pickup_stop')
     evening_pickup_stop = models.ForeignKey(RouteStop, related_name='evening_pickup_stop')
     isRenewing = models.BooleanField(_('Is User\'s Subscription Renewed?'))
@@ -136,13 +142,15 @@ class ShuttleOrder(models.Model):
         ('Not Started', 'Not Started'),
         ('Cancelled', 'Cancelled')
     )
-    # status = models.CharField(max_length=30, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='Not Started')
 
     class Meta:
         verbose_name = "ShuttleOrder"
         verbose_name_plural = "ShuttleOrders"
 
     def __str__(self):
-        morning = "%s: Morning: %s route @ %s from %s." % (self.user.get_full_name(), self.route.route_name, self.morning_pickup_time, self.morning_pickup_stop.stop_location)
-        evening = "Evening: %s route @ %s from %s." % (self.route.route_name, self.evening_pickup_time, self.evening_pickup_stop.stop_location)
-        return morning, evening
+        template = '{0.user.get_full_name}: Morning: {0.route.route_name} route @ {0.morning_pickup_time} from {0.morning_pickup_stop.stop_location}'
+        template += ' Evening: {0.route.route_name} route @ {0.evening_pickup_time} from {0.evening_pickup_stop.stop_location}'
+        # morning = "%s: Morning: %s route @ %s from %s." % (self.user.get_full_name(), self.route.route_name, self.morning_pickup_time, self.morning_pickup_stop.stop_location)
+        # evening = "Evening: %s route @ %s from %s." % (self.route.route_name, self.evening_pickup_time, self.evening_pickup_stop.stop_location)
+        return template.format(self)

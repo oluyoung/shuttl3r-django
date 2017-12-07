@@ -42,13 +42,15 @@ class UserForm(forms.ModelForm):
 
     def clean_email(self, *args, **kwargs):
         email = self.cleaned_data.get('email')
-
-        # if not self.request.user.is_authenticated:
         email_qs = User.objects.filter(email=email)
+
         if email_qs:
             raise forms.ValidationError("This e-mail has already been registered")
 
         return email
 
 
-# class UserEditForm(forms.ModelForm):
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email', 'first_name', 'last_name', 'phone_num', 'default_pickup_addr']

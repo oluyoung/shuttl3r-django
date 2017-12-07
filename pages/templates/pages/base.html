@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="{% block htmlclass %}{% endblock %}">
 <head>
   <meta charset="utf-8" >
   <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0" /><!-- maximum-scale=1.0, minimum-scale=1.0, user-scalable=no -->
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   {% block stylesheet %}{% endblock %}
 </head>
-<body>
+<body class="{% block bodyclass %}{% endblock %}">
 <nav class="nav poppins" style="position:absolute">
   <div class="nav-logo"><a href="/" id="nav-logo"></a></div>
   <div class="u-clear">
@@ -70,13 +70,14 @@
     </ul>
   </div>
   <div class="nav-mob-requests flex row-nowrap just-between align-flex-center full-width">
-    <a href="#driver-request" class="open-request nav-sections uppercase text-center" id=""><span>Hire Driver</span></a>
-    <a href="#car-request" class="open-request nav-sections uppercase text-center" id=""><span>Hire Car</span></a>
-    <a href="{% url 'shuttle:index' %}" class="nav-sections uppercase text-center" id=""><span>Book Shuttle</span></a>
+    <a href="#driver-request" class="open-request nav-sections uppercase text-center" id="">Hire Driver</a>
+    <a href="#car-request" class="open-request nav-sections uppercase text-center" id="">Hire Car</a>
+    <a href="{% url 'shuttle:index' %}" class="nav-sections uppercase text-center" id="">Book Shuttle</a>
   </div>
   <div class="nav-mob">
     <div class="nav-mob-content flex row-nowrap just-around">
       <div class="u-row nav-mob-urow">
+        <h5 class="uppercase"><a href="{% url 'pages:index' %}">Home</a></h5>
         <h5 class="uppercase"><a href="{% url 'pages:contact' %}">Contact</a></h5>
         <!-- <h5 class="uppercase"><a href="{% url 'pages:apply' %}">Apply</a></h5> -->
         <!-- <h5><a href="{% url 'pages:faq' %}">FAQ/Manual</a></h5> -->
@@ -88,12 +89,12 @@
       </ul>
       <ul class="nav-mob-acct">
         {% if user.is_authenticated %}
-        <li><a href="{% url 'users:dashboard' %}"><img src="{%static 'img/dashboard-41.png'%}" alt=""></a></li>
-        <li><a href="{% url 'users:account' %}"><img src="{%static 'img/1019_-_Edit_Profile-512.png'%}" alt=""></a></li>
-        <li><a href="{% url 'users:logout' %}"><img src="{%static 'img/Graphicloads-100-Flat-2-Inside-logout.ico'%}" alt="LOGOUT"></a></li>
+        <li><a href="{% url 'users:dashboard' %}"><img src="{%static 'img/icon_dashboard.png'%}" alt="Dashboard"></a></li>
+        <li><a href="{% url 'users:account' %}"><img src="{%static 'img/icon_edit_profile.png'%}" alt="Edit Detail"></a></li>
+        <li><a href="{% url 'users:logout' %}"><img src="{%static 'img/icon_logout.png'%}" alt="Logout"></a></li>
         {% else %}
-        <li><a href="{% url 'users:login' %}"><img src="{%static 'img/Login-512.png'%}" alt=""></a></a></li>
-        <li><a href="{% url 'users:register' %}"><img src="{%static 'img/1019_-_Edit_Profile-512.png'%}" alt=""></a></li>
+        <li><a href="{% url 'users:login' %}"><img src="{%static 'img/icon_login.png'%}" alt="Login"></a></a></li>
+        <li><a href="{% url 'users:register' %}"><img src="{%static 'img/icon_edit_profile.png'%}" alt="Sign Up"></a></li>
         {% endif %}
       </ul>
     </div>
@@ -107,9 +108,9 @@
 <!-- Order Modals -->
   <!-- DRIVER ORDER SHEET -->
   <section class="sheet driver-sheet mfp-hide" id="driver-request">
-    <div class="driver flex row-wrap just-start">
+    <div class="driver flex col-nowrap just-center">
       <div class="top-info flex row-nowrap">
-        <div class="class-ranks">
+        <div class="class-ranks sub-div">
           <h3>Order Classes</h3>
           <div>
             <p><span class="key">Class A</span><span class="desc"></span></p>
@@ -138,7 +139,7 @@
           <div class="flex row-wrap just-between">
             <div class="half-width">
               <label for="start-date">Start Date</label>
-              <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" required>
+              <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" val="{% now 'Y-m-d' %}" required>
             </div>
             <div class="half-width">
               <label for="end-date">End Date</label>
@@ -171,7 +172,6 @@
           <input type="submit" class="btn submit-btn" id="drivers-submit-btn" value="REQUEST" />
           <input type="reset" value="clear" hidden />
           {% else %}
-
           <a href="{% url 'users:login' %}" class="btn login-btn">LOGIN</a>
           {% endif %}
         </form>
@@ -181,9 +181,9 @@
 
   <!-- CAR ORDER SHEET -->
   <section class="sheet car-sheet mfp-hide" id="car-request">
-    <div class="content car flex row-wrap just-start" >
+    <div class="content car flex col-nowrap just-center" >
       <div class="top-info flex row-nowrap">
-        <div class="class-ranks">
+        <div class="class-ranks sub-div">
           <h3>Order Classes</h3>
           <div>
             <p><span class="key">Class A</span><span class="desc"></span></p>
@@ -211,7 +211,7 @@
           <div class="flex row-wrap just-between">
             <div class="half-width">
               <label for="start-date">Start Date</label>
-              <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" required>
+              <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" val="{% now 'Y-m-d' %}" required>
             </div>
             <div class="half-width">
               <label for="end-date">End Date</label>
@@ -245,7 +245,7 @@
           <input type="submit" class="btn submit-btn" id="cars-submit-btn" value="REQUEST" />
           <input type="reset" value=clear hidden />
           {% else %}
-          <a href="#login" class="btn login-btn">LOGIN</a>
+          <a href="{% url 'users:login'%}" class="btn login-btn">LOGIN</a>
           {% endif %}
         </form>
       </div>

@@ -4,11 +4,21 @@
 <link rel="stylesheet" href="{% static 'css/users-styles.css' %}">
 {% endblock %}
 {% block title %}Login{% endblock %}
+{% block htmlclass %}login-page{% endblock %}
+{% block bodyclass %}login-page{% endblock %}
 {% block content %}
-<section class="container" id="">
+{% if request.user.is_authenticated %}
+<script>
+location.assign('http://localhost:8000');
+</script>
+{% else %}
+<section class="container" id="login-container">
   <section class="login-form sheet login-container">
-    <form action="" method="post" class="form material-form flex col-nowrap">
+    <form method="post" class="form material-form flex col-nowrap">
       <h2 class="title">LOGIN</h2>
+      {% if form.errors %}
+      <p class="form-error-p text-center">Invalid username or password</p>
+      {% endif %}
       {% csrf_token %}
       {% for field in form %}
         <div class="form-field">
@@ -17,16 +27,13 @@
           {% if field.help_text %}
             <small>{{field.help_text}}</small>
           {% endif %}
-          {% for error in field.errors %}
-            <em style="color:red">{{error}}</em>
-          {% endfor %}
         </div>
       {% endfor %}
       <button type="submit" class="btn submit-btn" id="login-btn">LOGIN</button>
-      
-      <p class="text-center form-or">-- OR --</p>
+      <p class="text-center pos-rel form-or"><span class="pos-abs">OR</span></p>
       <p class="text-center if-already"><a href="{% url 'users:register' %}">SIGN UP</a> to get a free account</p>
     </form>
   </section>  
 </section>
+{% endif %}
 {% endblock %}

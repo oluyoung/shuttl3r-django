@@ -54,7 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
     def __str__(self):
-        template = '{0.id} {0.first_name} {0.last_name}'
+        template = '{0.id}: {0.first_name}, {0.last_name}'
         return template.format(self)
 
 

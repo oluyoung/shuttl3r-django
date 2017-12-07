@@ -7,13 +7,13 @@
 
 {% block content %}
 <section class="container flex col-nowrap just-center align-flex-center" id="index-container">
-	<h1 class="header-title" style="font-size:2rem;padding-bottom:1.5%;">Welcome to <img src="" alt="Freehand"></h1>
-  <h3 class="header-subtitle" style="font-size:1.4rem;padding-bottom:1.5%;font-family:'Satisfy';">How may we lend a hand?</h3>
+	<h1 class="header-title">Welcome to <img src="" alt="Freehand"></h1>
+  <h3 class="header-subtitle">How may we lend a hand?</h3>
   
   <!-- Driver -->
   <div class="index-service flex row-wrap just-center align-flex-center index-driver" style="background-image:url({%static 'img/freehanddrivers.png'%});background-position:bottom;">
     <div class="full-width header flex col-nowrap just-center align-flex-center ">
-      <h2 class="inline-block text-center">Need a driver?</h2>
+      <h2 class="inline-block text-center raleway">Need a driver?</h2>
       <a id="#driver-request" class="inline-block open-request">Hire</a>
     </div>
     <section class="flyers full-width">
@@ -29,7 +29,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img even" style="background-image:url({%static 'img/Map-750.gif'%})"></div>
+              <div class="img even" style="background-image:url({%static 'img/new-fix-website.png'%})"></div>
             </div>
             <div class="img-title text-center full-width">Cross Country</div>
           </div>
@@ -46,11 +46,15 @@
     </section>
     <p class="subtitle text-center full-width"><a href="#driver-request" class="inline-block open-request">REQUEST A DRIVER</a></p>
   </div>
+  <div class="index-service index-mid-p">
+    <p class="mid-p text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, doloremque necessitatibus dolores repellat sit officia a dignissimos sed minus, numquam tempora dolorum accusantium ratione laudantium iusto possimus, cum ut distinctio.
+    </p>
+  </div>
 
   <!-- Car -->
   <div class="index-service flex row-wrap just-center align-flex-center index-car" style="background-image:url({%static 'img/lagos.png'%})">
     <div class="full-width header flex col-nowrap just-center align-flex-center">
-      <h2 class="text-center inline-block">Need a car?</h2>
+      <h2 class="text-center inline-block raleway">Need a car?</h2>
       <a href="#car-request" class="inline-block open-request">Hire</a>
     </div>
     <section class="flyers full-width">
@@ -66,7 +70,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img even"></div>
+              <div class="img even" style="background-image:url({%static 'img/trip-office-staff.jpg'%})"></div>
             </div>
             <div class="img-title text-center full-width">Office Trip</div>
           </div>
@@ -91,11 +95,15 @@
     </section>
     <p class="subtitle text-center full-width"><a href="#car-request" class="inline-block open-request">REQUEST A CAR</a></p>
   </div>
+    <div class="index-service index-mid-p" >
+    <p class="mid-p text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, doloremque necessitatibus dolores repellat sit officia a dignissimos sed minus, numquam tempora dolorum accusantium ratione laudantium iusto possimus, cum ut distinctio.
+    </p>
+  </div>
 
   <!-- Shuttle -->
   <div class="index-service flex row-wrap just-center align-flex-center index-shuttle" style="background-image:url({%static 'img/PIX-9369.png'%})">
     <div class="full-width header flex col-nowrap just-center align-flex-center">
-      <h2 class="text-center inline-block">Need a ride to work?</h2>
+      <h2 class="text-center inline-block raleway">Need a ride to work?</h2>
     </div>
     <section class="flyers full-width">
       <ul class="flex row-wrap just-center align-flex-center">
@@ -121,10 +129,14 @@
     </section>
     <p class="subtitle text-center full-width"></p>
   </div>
+  <div class="index-service index-mid-p" >
+    <p class="mid-p text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, doloremque necessitatibus dolores repellat sit officia a dignissimos sed minus, numquam tempora dolorum accusantium ratione laudantium iusto possimus, cum ut distinctio.
+    </p>
+  </div>
   <!-- Who we are -->
   <div class="index-service flex row-wrap just-center align-flex-center index-info" style="border-bottom:0">
     <div class="header full-width flex col-nowrap just-center align-flex-center">
-      <h2 class="text-center inline-block">Who We Are</h2>
+      <h2 class="text-center inline-block raleway">Who We Are</h2>
     </div>
     <div style="width:70%">
       <p class="text-center" style="line-height:1.5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, doloremque necessitatibus dolores repellat sit officia a dignissimos sed minus, numquam tempora dolorum accusantium ratione laudantium iusto possimus, cum ut distinctio.</p>
@@ -135,22 +147,19 @@
 {% endblock %}
 {% block footer %}
 <section class="footer flex row-wrap just-around full-width">
-  <!--
-  contact info
-  social icons
-  -->
-  <div>
+
+  <div class="contact-info">
     <ul>
       <li>0802-355-1229</li>
       <li>0990-212-2122</li>
-      <li>contact.us@freehand.ng</li>
+      <li><a href="mailto:contact.us@freehand.ng">contact.us@freehand.ng</a></li>
     </ul>
   </div>
-  <div class="">
+  <div class="contact-social">
     <ul>
-      <li>FB</li>
-      <li>IG</li>
-      <li>TW</li>
+      <li><a href="#" target="_blank"><i class="icon icon--facebook--light"></i></a></li>
+      <li><a href="#" target="_blank"><i class="icon icon--instagram--light"></i></a></li>
+      <li><a href="#" target="_blank"><i class="icon icon--twitter--light"></i></a></li>
     </ul>
   </div>
 </section>

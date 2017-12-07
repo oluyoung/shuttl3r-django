@@ -10,7 +10,12 @@ def index(request):
     # route_stops = RouteStop.objects.all()
     if request.user.is_authenticated:
         user = request.user
-        context = {'routes': routes, 'user': user}
+        has_ongoing = False
+
+        if ShuttleOrder.objects.filter(user=user).exclude(status='Completed'):
+            has_ongoing = True
+
+        context = {'routes': routes, 'user': user, 'has_ongoing': has_ongoing}
     else:
         context = {'routes': routes}
 
@@ -33,24 +38,27 @@ def select(request, id):
 
 def shuttle_request(request):
     if request.method == 'POST':
-        route_id = request.POST['item_id']
-        user_id = request.POST['user']
+        route = ShuttleRoute.objects.get(pk=request.POST['item_id'])
+        user = User.objects.get(pk=request.POST['user'])
+        subscription = request.POST['subscription']
         morning_stop = request.POST['morning_stop']
         evening_stop = request.POST['evening_stop']
+        daily_pickup_date = request.POST['daily_pickup_date']
+        if daily_pickup_date == '':
+            daily_pickup_date = None
 
         ShuttleOrder.objects.create(
-            subscription=request.POST['subscription'],
+            subscription=subscription,
             morning_pickup_stop=RouteStop.objects.get(pk=morning_stop),
             morning_pickup_time=request.POST['morning_time'],
             evening_pickup_stop=RouteStop.objects.get(pk=evening_stop),
             evening_pickup_time=request.POST['evening_time'],
-            daily_pickup_date=request.POST['start_date'],
-            route=ShuttleRoute.objects.get(pk=route_id),
-            user=User.objects.get(pk=user_id),
+            daily_pickup_date=daily_pickup_date,
+            route=route,
+            user=user,
             isRenewing=False,
         )
 
-        route = ShuttleRoute.objects.get(pk=route_id)
         if route.seats_available > 0:
             route.seats_available -= 1
         else:
