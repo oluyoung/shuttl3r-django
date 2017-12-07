@@ -13,6 +13,7 @@ html.login-page {
 .login-container {
   max-width: 450px;
 }
+
 .title {
   text-align: center;
   border-bottom: 1px solid #ccc;
@@ -241,12 +242,10 @@ User Dashboard **/
 .other-orders-mob .order:nth-child(even) p {
   background-color: #FFAB91
 }
-
 .other-orders-mob .order dt {
   font-weight: bold;
 }
-.other-orders-mob .order dd {
-}
+.other-orders-mob .order dd {}
 .other-orders-mob .order:first-child {
   border-top: 1px solid;
 }
@@ -258,16 +257,12 @@ User Dashboard **/
   padding: .5em 1em;
   background-color: cadetblue;
 }
-.other-orders-mob .order div {
-  
-}
-.other-orders-mob .order p {  }
+.other-orders-mob .order div {}
+.other-orders-mob .order p {}
 .other-orders-mob .order p .item-title {
   font-weight: bold
 }
-.other-orders-mob .order p:first-of-type {
-  
-}
+.other-orders-mob .order p:first-of-type {}
 
 .no-orders {
   width: 90%;
@@ -316,7 +311,7 @@ User Dashboard **/
 /* jQuery UI Accordion */
 .user-dashboard,
 .user-dashboard.ui-accordion {
-  max-width: 650px;
+  max-width: 960px;
   width: 100%;
   margin: auto;
 }

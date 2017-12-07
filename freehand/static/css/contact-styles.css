@@ -1,0 +1,21 @@
+html.contact-pg {
+  background-color: #fafafa;
+}
+.contact {
+  padding: 1em;
+  box-shadow: 1px 1px 3px #ccc, -1px -1px 3px #ccc;
+}
+.contact.info {}
+.contact.info .number {}
+.contact.info .email {}
+.contact.apply {}
+.contact.apply .request-form {}
+.contact.apply .request-form input[type=text],
+.contact.apply .request-form input[type=email] {}
+.contact.apply .request-form input[type=submit] {
+  background-color: #000;
+  border: none;
+  /* border: 1px solid; */
+  padding: .5em;
+  color: #f0f0f0
+}

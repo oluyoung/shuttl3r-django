@@ -68,7 +68,7 @@ class DriverOrder(models.Model):
         ('C', 'C'),
     )
     category = models.CharField(max_length=7, choices=CATEGORY_CHOICES)
-    user = models.ForeignKey(User, related_name='users')
+    user = models.ForeignKey(User)
 
     class Meta:
         verbose_name = 'DriverOrder'

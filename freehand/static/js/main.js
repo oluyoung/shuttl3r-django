@@ -133,20 +133,55 @@
 
   /* ORDER FORM AJAX REQUEST
   */
-  $('.order-form form').submit(function(e){
-    e.preventDefault();
-    let form = $(this),
-     action = form.attr('action');
-    order_obj = {
-      // 
-      amount: (form.find('.selected_price').val()*100),
-      email: form.find('.user_id').attr('data-identifier'),
+  $('.driver-form form, .car-form form').submit(function(e){
+    var form = $(this);
+    var action = form.attr('action');
+    var data = {
       // hires
       start_date: form.find('.start-date').val(),
       end_date: form.find('.end-date').val(),
       is_within_lagos: form.find('.within').prop('checked'),
       order_class: form.find('.order_class').val(),
       pickup_address: form.find('.pickup-addr').val(),
+      user: form.find('.user_id').val(),
+      csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
+    };
+
+    $.ajax({
+      url: action,
+      type: 'POST',
+      data: data,
+      error: function(xhr){
+        console.log('error');
+        $('#order-alert').html('Oops! There was an error in ordering, kindly try again or refresh.');
+      },
+      success: function(){
+        console.log('successful');
+        // reset form
+        form.find('input[type=reset]').trigger('click');
+        $('.order-form .choose-btn').removeClass('selected');        
+        // show order alert
+        $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a>');
+      },
+      complete: function(){
+        $('#order-alert').append('<a href="#" id="close-order-alert">x</a>');
+        // show order alert
+        $('#order-alert').show('1000');
+        // close mag pop
+        $.magnificPopup.close();
+      }
+    });
+
+  });
+
+  $('.shuttle-form form').submit(function(e){
+    e.preventDefault();
+    var form = $(this),
+     action = form.attr('action');
+    order_obj = {
+      // 
+      amount: (form.find('.selected_price').val()*100),
+      email: form.find('.user_id').attr('data-identifier'),
       // shuttle
       daily_pickup_date: form.find('.daily-pickup-date').val(),
       subscription: form.find('.subscription-choice').val(),
@@ -211,7 +246,7 @@
         posting.fail(function(data){
           console.log('error');
           console.log(data);
-        });
+        })
       },
       onClose: function(){
         $('#order-alert').html('Oops! There was an error in your payment, kindly try again or refresh.');
