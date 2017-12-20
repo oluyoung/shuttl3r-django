@@ -9,9 +9,31 @@
   <main class="wrap shuttle-wrap col-nowrap just-center">
     <section class="article how full-width">
       <div class="image full-width" style="background-image:url({% static 'img/Nigeria-lagos_trim2.png'%})"></div>
-      <div class="full-width flex col-nowrap just-center align-flex-center ">
+      <div class="shuttle-how-wrap full-width flex col-nowrap just-center align-flex-center ">
         <h2 class="title">HOW IT WORKS</h2>
-        <p>Select a route, Pick a stop, Subscribe, Get token, Meet at stop, Submit token to driver, Move</p>
+        <ul class="shuttle-how flex row-wrap just-around align-flex-center pos-rel">
+          <div class="moving-obj pos-abs"></div>
+          <li class="icon-wrap">
+            <img src="{% static 'img/laptop.png' %}" alt="" class="how-icon block">
+            <p class="subtitle text-center">Pick a route</p>
+          </li>
+          <li class="icon-wrap">
+            <img src="{% static 'img/mobile.png' %}" alt="" class="how-icon block">
+            <p class="subtitle text-center">Pick a stop</p>
+          </li>
+          <li class="icon-wrap">
+            <img src="{% static 'img/tablet.png' %}" alt="" class="how-icon block">
+            <p class="subtitle text-center">Pick a plan</p>
+          </li>
+          <li class="icon-wrap">
+            <img src="{% static 'img/qr.png' %}" alt="" class="how-icon block">
+            <p class="subtitle text-center">Get token</p>
+          </li>
+          <li class="icon-wrap">
+            <img src="{% static 'img/shuttle.png' %}" alt="" class="how-icon block">
+            <p class="subtitle text-center">Move</p>
+          </li>
+        </ul>
       </div>
     </section>
     <section class="article routes flex col-nowrap just-center align-flex-center">
@@ -78,6 +100,7 @@
               <a href="#route-{{route.id}}" class="btn apply-btn open-request" data-id="apply-btn-{{route.id}}" id="apply-btn-{{route.id}}" data-map-id="routemap-{{route.id}}" data-map-start="{{route.startpoint}}" data-map-end="{{route.endpoint}}">SELECT</a>
             </div>
           </div>
+
           <!-- Order Sheet -->
           <section class="container sheet route-sheet mfp-hide" id="route-{{route.id}}">
             <div class="flex col-nowrap just-center" id="route-{{route.id}}">

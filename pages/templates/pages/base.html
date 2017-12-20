@@ -144,7 +144,7 @@
             <div class="half-width">
               <label for="end-date">End Date</label>
               <!-- should be disabled till start date done -->
-              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" required>
+              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" required>
             </div>
           </div>
           <div class="flex row-wrap just-between">
@@ -216,7 +216,7 @@
             <div class="half-width">
               <label for="end-date">End Date</label>
               <!-- should be disabled till start date done -->
-              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" required>
+              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" required>
             </div>
           </div>
           <div class="flex row-wrap just-between">

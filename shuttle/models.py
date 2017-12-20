@@ -149,7 +149,7 @@ class ShuttleOrder(models.Model):
         verbose_name_plural = "ShuttleOrders"
 
     def __str__(self):
-        template = '{0.user.get_full_name}: Morning: {0.route.route_name} route @ {0.morning_pickup_time} from {0.morning_pickup_stop.stop_location}'
+        template = '{0.user.email}: Morning: {0.route.route_name} route @ {0.morning_pickup_time} from {0.morning_pickup_stop.stop_location}'
         template += ' Evening: {0.route.route_name} route @ {0.evening_pickup_time} from {0.evening_pickup_stop.stop_location}'
         # morning = "%s: Morning: %s route @ %s from %s." % (self.user.get_full_name(), self.route.route_name, self.morning_pickup_time, self.morning_pickup_stop.stop_location)
         # evening = "Evening: %s route @ %s from %s." % (self.route.route_name, self.evening_pickup_time, self.evening_pickup_stop.stop_location)

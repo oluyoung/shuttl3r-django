@@ -716,15 +716,24 @@ box-shadow: 2px 2px 4px #ccc, -2px -2px 4px #ccc;  */
   padding: 3.5%;
 }
 
+.car-sheet .top-info .sub-div,
+.driver-sheet .top-info .sub-div {
+  width: 100%;
+}
+
 .sheet .price {
   transition: all .3s ease-in-out;
 }
 
 .top-info .class-ranks {}
 .top-info h3 {
-  font-size: 1.5em;
-  font-family: 'Courgette';
+  font-size: 1.3em;
+  font-family: Raleway;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0px;
+  margin-bottom: 5px;
 }
+
 .top-info .class-ranks div p {}
 .top-info .class-ranks div p .key {}
 .top-info .class-ranks div p .desc {}
@@ -752,8 +761,10 @@ box-shadow: 2px 2px 4px #ccc, -2px -2px 4px #ccc;  */
 }
 
 .form h3 {
-  font-family: 'Courgette';
+  font-family: Raleway;
   font-size: 1.1em;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
 }
 
 .material-form .form {

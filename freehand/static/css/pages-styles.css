@@ -1,6 +1,9 @@
 /**********************************
 	SYLESHEET FOR INDEX PAGE
 *********************************/
+html.no-touchevents body {
+  overflow-x: hidden;
+}
 
 #index-container {
   padding-top: 7em;
@@ -11,6 +14,7 @@
   font-family: 'Courgette';
 }
 #index-container .header-title {
+  font-family: 'Raleway';
   font-size: 2rem;
   padding-bottom: 1.5%;
 }
@@ -18,7 +22,6 @@
   font-size: 1.4rem;
   color: #616161;
   padding-bottom: 1.5em;
-  font-family: 'Satisfy';
 }
 .index-service {
   width: 100%;
@@ -38,9 +41,10 @@
   color: #f0f0f0;
   background-color: #424242;
 }
-.index-service .header {}
+.index-service .header {
+  padding: 1em 0;
+}
 .index-service h2 {
-  padding: 1% 0;
   font-size: 1.5em;
   color: #fff;
 }
@@ -69,6 +73,11 @@
 }
 .index-service .flyers li {
   margin: 0 3%;
+  transform: translateX(700%);
+  transition: all 1s ease-in-out
+}
+.index-service .flyers li.is-showing {
+  transform: translateX(0%);
 }
 .index-service .flyer a {
   margin: 10px auto;
@@ -87,6 +96,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  opacity: .85;
 }
 .index-service .flyer .img.odd {
   background-color: #607D8B;
@@ -96,7 +106,7 @@
 }
 
 .index-service .flyer .img-title {
-  margin-top: 10%;
+  margin-top: 1.5em;
   padding: 7px 0;
   background-color: #fafafa;
   border-radius: 5px;
@@ -107,7 +117,7 @@
 
 .index-service .subtitle {
   width: 100%;
-  margin-top: 2%;
+  margin-top: 2em;
 }
 
 .index-mid-p {
@@ -121,6 +131,7 @@
 .index-info p,
 .mid-p {
   font-size: 1.1em;
+  padding: 2.5em 0;
 }
 
 .footer {

@@ -134,6 +134,7 @@
   /* ORDER FORM AJAX REQUEST
   */
   $('.driver-form form, .car-form form').submit(function(e){
+    e.preventDefault();
     var form = $(this);
     var action = form.attr('action');
     var data = {
@@ -164,9 +165,10 @@
         $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a>');
       },
       complete: function(){
+        console.log(data);
         $('#order-alert').append('<a href="#" id="close-order-alert">x</a>');
         // show order alert
-        $('#order-alert').show('1000');
+        $('#order-alert').css({'display':'block','transform':'translateY(0%)'});
         // close mag pop
         $.magnificPopup.close();
       }
@@ -177,7 +179,7 @@
   $('.shuttle-form form').submit(function(e){
     e.preventDefault();
     var form = $(this),
-     action = form.attr('action');
+      action = form.attr('action');
     order_obj = {
       // 
       amount: (form.find('.selected_price').val()*100),
@@ -343,11 +345,49 @@
     
   }); // route outline
 
+
+  /* Parallax */
+  
+    var wScroll = $(window).scrollTop();
+    $('html.no-touchevents .flyers').each(function(){
+      var $flyer = $(this);
+      if(wScroll > $flyer.offset().top-$(window).height()/1.2){
+        $flyer.find('li').each(function(i){
+          setTimeout(function(){
+            $flyer.find('li').eq(i).addClass('is-showing');
+          }, 150*(i+1));
+        });
+      }
+    });
+
+  $(window).scroll(function(){
+    var wScroll = $(this).scrollTop();
+    $('html.no-touchevents .flyers').each(function(){
+      var $flyer = $(this);
+      if(wScroll > $flyer.offset().top-$(window).height()/1.2){
+        $flyer.find('li').each(function(i){
+          setTimeout(function(){
+            $flyer.find('li').eq(i).addClass('is-showing');
+          }, 150 * (i+1));
+        })
+      }  
+    });
+  });
+
+
   /* Unsliders */
   $('html.touchevents .flyers').unslider({
     autoplay: true,
     infinte: true,
     delay: 3000,
+    keys: false,
+    arrows: false
+  });
+
+  $('html.touchevents .shuttle-how-wrap').unslider({
+    autoplay: true,
+    infinte: true,
+    delay: 2000,
     keys: false,
     arrows: false
   });
