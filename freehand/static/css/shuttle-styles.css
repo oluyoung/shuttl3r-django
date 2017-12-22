@@ -34,6 +34,15 @@
 .how-icon {
   height: 100px;
 }
+html.touchevents .icon-wrap {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+html.touchevents .how-icon {
+  height: 150px;
+}
 .subtitle {
   margin-top: 15px;
 }
@@ -64,6 +73,7 @@
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinte;
   animation-fill-mode: both;
+  
 }
 html.touchevents .moving-obj {
   display: none;
@@ -195,6 +205,10 @@ html.touchevents .moving-obj {
   background-color: #fff;
   border: 2px solid;
   color: #111
+}
+
+.unslider-nav {
+  display: none;
 }
 
 @media (max-width:767px){

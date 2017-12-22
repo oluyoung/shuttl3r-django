@@ -739,6 +739,18 @@ box-shadow: 2px 2px 4px #ccc, -2px -2px 4px #ccc;  */
 .top-info .class-ranks div p .desc {}
 
 
+/* Footer */
+.footer {
+  background-color: #111;
+  padding: 5% 0;
+  color: #f0f0f0;
+}
+
+.footer li {
+  margin-bottom: 10px;
+}
+
+
 /** Order Form Modal **/
 .material-form .ongoing {
   color: #B71C1C;
