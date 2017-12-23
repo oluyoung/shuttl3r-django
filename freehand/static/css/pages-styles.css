@@ -48,6 +48,9 @@ html.no-touchevents body {
   font-size: 1.5em;
   color: #fff;
 }
+.index-service .flyers {
+  overflow: hidden;
+}
 .index-service .header a,
 .index-service .flyer a,
 .index-service .subtitle a {
@@ -60,14 +63,12 @@ html.no-touchevents body {
   font-size: .9rem;
   font-family: 'Poppins';
 }
-
 .index-service .header a:hover,
 .index-service .flyer a:hover,
 .index-service .subtitle a:hover {
   background-color: #fafafa;
   color: #111;
 }
-
 .index-service .header a {
   display: none;
 }
@@ -192,13 +193,15 @@ small devices: 480px
   .index-mid-p p {
     font-size: 1em;
   }
-
   .index-service h2 {
     margin-bottom: 3%;
   }
-
   .index-service .subtitle {
     margin-top: 5%;
+  }
+  .index-service .flyer .img-wrap {
+    width: 130px;
+    height: 130px;
   }
 
 }

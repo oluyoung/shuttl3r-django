@@ -3,6 +3,7 @@
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/users-styles.css' %}">
 <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -49,7 +50,7 @@
           </div>
           {% if d_orders %}
           <div class="other-orders">
-            <table class="" style="width:100%">
+            <table id="driver-order" style="width:100%">
               <thead>
                 <tr class="head">
                   <th class="date">Date</th>
@@ -78,22 +79,22 @@
               <div class="order">
                 <div class="flex row-nowrap just-between">
                   <dl class="half-width">
-                    <dt class="date">Date</dt>
+                    <dt class="date">Date:</dt>
                     <dd class="item-date" data-order-id="{{d_order.id}}">{{d_order.order_date|date:'d/m/Y'}}</dd>
                   </dl>
                   <dl class="half-width">
-                    <dt class="">Status</dt>
+                    <dt class="">Status:</dt>
                     <dd class="status {{d_order.status}}">{{d_order.status|title}}</dd>
                   </dl>
                 </div>
                 <p class="loc"><span class="item-title">Pickup Address: </span><span class="loc_"><em>{{d_order.pickup_address|title}}</em></span></p>
                 <div class="flex row-nowrap just-between">
                   <dl class="half-width">
-                    <dt class="start">Start Date</dt>
+                    <dt class="start">Start Date:</dt>
                     <dd class="start_date">{{d_order.start_date|date:'d/m/Y'}}</dd>
                   </dl>
                   <dl class="half-width">
-                    <dt class="end">End Date</dt>
+                    <dt class="end">End Date:</dt>
                     <dd class="send_date">{{d_order.end_date|date:'d/m/Y'}}</dd>
                   </dl>
                 </div>
@@ -165,22 +166,22 @@
           <div class="order">
             <div class="flex row-nowrap just-between">
               <dl class="half-width">
-                <dt class="date">Date</dt>
+                <dt class="date">Date:</dt>
                 <dd class="item-date" data-order-id="{{c_order.id}}">{{c_order.order_date|date:'d/m/Y'}}</dd>
               </dl>
               <dl class="half-width">
-                <dt class="">Status</dt>
+                <dt class="">Status:</dt>
                 <dd class="status {{c_order.status}}">{{c_order.status|title}}</dd>
               </dl>
             </div>
             <p class="loc"><span class="item-title">Pickup Address: </span></dt> <span class="loc_"><em>{{c_order.pickup_address|title}}</em></span></p>
             <div class="flex row-nowrap just-between">
               <dl class="half-width">
-                <dt class="start">Start Date</dt>
+                <dt class="start">Start Date:</dt>
                 <dd class="start_date">{{c_order.start_date|date:'d/m/Y'}}</dd>
               </dl>
               <dl class="half-width">
-                <dt class="end">End Date</dt>
+                <dt class="end">End Date:</dt>
                 <dd class="send_date">{{c_order.end_date|date:'d/m/Y'}}</dd>
               </dl>
             </div>
@@ -256,11 +257,11 @@
           <div class="order">
             <div class="flex row-nowrap just-between">
               <dl class="half-width">
-                <dt class="date">Date</dt>
+                <dt class="date">Date:</dt>
                 <dd class="item-date" data-order-id="{{s_order.id}}">{{s_order.order_date|date:'d/m/Y'}}</dd>
               </dl>
               <dl class="half-width">
-                <dt class="">Subscription</dt>
+                <dt class="">Subscription:</dt>
                 <dd class="">{{s_order.subscription|title}}</dd>
               </dl>
             </div>
@@ -301,7 +302,7 @@
     
   {% else %}
   <div style="margin:2em auto;box-shadow:1px 1px 4px #ccc">
-    <h1><a href="{% url 'users:login' %}" class="login-btn if-already">Login</a> to access don't have an account <a href="{% url 'users:register' %}" class="register-btn">register</a></h1>
+    <h1><a href="{% url 'users:login' %}" class="login-btn if-already">Login</a> to access OR <a href="{% url 'users:register' %}" class="register-btn">register</a></h1>
   </div>
   {% endif %}
 </section>
@@ -309,12 +310,18 @@
 
 {% block scripts %}
 <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
 <script>
   $(function() {
     $( ".user-dashboard.has-orders" ).accordion({
-      //active: 0,
       collapsible: true,
       heightStyle: "content",
+    });
+
+    $('.other-orders table').DataTable({
+      "scrollY": "200px",
+      "scrollCollapse": true,
+      "paging": false
     });
   });
 </script>

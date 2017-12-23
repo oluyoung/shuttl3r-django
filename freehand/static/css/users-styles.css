@@ -163,7 +163,10 @@ User Dashboard **/
   font-variant: small-caps;
 }
 
-.other-orders {}
+.other-orders {
+  margin-top: 1em;
+  padding-top: 10px;
+}
 
 .other-orders table {
   margin: 1em 0;
@@ -216,6 +219,8 @@ User Dashboard **/
   font-size: .8rem;
   margin-top: 1.5em;
   font-family: 'Source Sans Pro';
+  max-height: 300px;
+  overflow-y: scroll;
 }
 .other-orders-mob .order {
   /* padding: .5em .5em 0; */
@@ -241,6 +246,10 @@ User Dashboard **/
 .other-orders-mob .order:nth-child(even) dd {}
 .other-orders-mob .order:nth-child(even) p {
   background-color: #FFAB91
+}
+.other-orders-mob .order dt,
+.other-orders-mob .order dd {
+  display: inline;
 }
 .other-orders-mob .order dt {
   font-weight: bold;
@@ -355,6 +364,61 @@ User Dashboard **/
   background-color: #fafafa;
   border: 2px solid;
   color: #111;
+}
+
+/* Data Tables */
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info {
+  color: #9e9e9e;
+  font-size: .85em;
+  text-transform: uppercase;
+}
+
+.dataTables_scrollHeadInner,
+.dataTables_scrollHeadInner table {
+  width: 100% !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 1.2rem;
+  margin: 0 0 15px 0;
+  padding: 0;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  transition: all .3s;
+}
+
+/* Scrollbar */
+.other-orders ::-webkit-scrollbar,
+.other-orders-mob ::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.other-orders ::-webkit-scrollbar-track,
+.other-orders-mob ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 6px rgb(255, 255, 255);
+}
+
+/* Handle */
+.other-orders ::-webkit-scrollbar-thumb,
+.other-orders-mob ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+/* When Inactive */
+.other-orders ::-webkit-scrollbar-thumb:window-inactive,
+.other-orders-mob ::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width:767px){

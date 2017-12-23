@@ -36,8 +36,32 @@
   });
 
 
+  /* SHOW TOP MOST NAV ON MOBILE RESPONSIVE UPWARD SCROLL
+  */
+
+  var lastScrollTop=0, delta=5;
+  $(window).scroll(function(){
+    var wScroll = $(this).scrollTop();
+
+    if(Math.abs(lastScrollTop - wScroll) <= delta)
+      return;
+
+    if (wScroll > lastScrollTop){
+      // downscroll code
+      if(!($(window).width()>768)) $('body.is-navSticky nav').css('top', '-50px');
+    } else {
+      // upscroll code
+      $('body.is-navSticky nav').css('top', '-10px');
+    }
+
+    // reset lastscrolltop distance
+    lastScrollTop = wScroll;
+  });
+
+
   /* DISPLAY USER MENU
   */
+
   $('.nav-icons .user-nav-icon').on('click', function(e){
     e.preventDefault();
     $('.nav-icons .user-nav-menu').toggle('300');
@@ -50,6 +74,7 @@
 
   /** OPEN DRIVER ORDER MODAL
   */
+
   $('.open-request').each(function(){
     $(this).on('click', function(e){
       e.preventDefault();
@@ -87,22 +112,24 @@
 
   /* ORDER FORM END DATE RENDER AFTER START DATE
   */
-  /*
+  
   $('.order-form form').each(function(){
     form = $(this);
+    var enddate = form.find('.end-date');
     form.find('.start-date').on('change', function(){
-      console.log(console.log('changed'));
-      console.log("start:", $(this).val());
-      console.log("end:", form.find('.end-date'));
-      form.find('.end-date').attr('disabled', false);
-      form.find('.end-date').attr('min', $(this).val());
-      console.log("end:", form.find('.end-date').attr('min'));
+      var startdate = $(this);
+
+      enddate.attr('disabled', false);
+      enddate.attr('min', startdate.val());
+      enddate.val(startdate.val());
+
     });
   });
-  */
+  
 
   /* SHOW SUBSCRIPTION DAILY START DATE
   */
+
   $('.route-sheet').each(function(){
     var sheet = $(this);
     sheet.find('.order-form #subscription-choice').on('change', function(){
@@ -198,32 +225,7 @@
 
     pay_with_paystack(order_obj, action);
 
-/*    $.ajax({
-      url: action,
-      type: 'POST',
-      data: data,
-      error: function(xhr){
-        console.log('error');
-        $('#order-alert').html('Oops! There was an error in ordering, kindly try again or refresh.');
-      },
-      success: function(){
-        console.log('successful');
-        // reset form
-        form.find('input[type=reset]').trigger('click');
-        $('.order-form .choose-btn').removeClass('selected');        
-        // show order alert
-        $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a>');
-      },
-      complete: function(){
-        $('#order-alert').append('<a href="#" id="close-order-alert">x</a>');
-        // show order alert
-        $('#order-alert').show('1000');
-        // close mag pop
-        $.magnificPopup.close();
-      }
-    });*/
-
-  });  // end Order Submit function
+  });  // end Shuttle Order Submit function
 
   /* Paytsack Paynment Function */
   function pay_with_paystack(orderObj, action){

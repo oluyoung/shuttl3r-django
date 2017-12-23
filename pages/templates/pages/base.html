@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{% static 'css/reset.css' %}">
   <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
   <link rel="stylesheet" href="{% static 'css/unslider.css' %}">
+  <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   {% block stylesheet %}{% endblock %}
 </head>
@@ -77,14 +78,17 @@
   <div class="nav-mob">
     <div class="nav-mob-content flex row-nowrap just-around">
       <div class="u-row nav-mob-urow">
-        <h5 class="uppercase"><a href="{% url 'pages:index' %}">Home</a></h5>
+        <h5 class="uppercase"><a href="{% url 'pages:index' %}">Home</a></h5> 
         <h5 class="uppercase"><a href="{% url 'pages:contact' %}">Contact</a></h5>
+        <h5 class="uppercase"><a href="#driver-request" class="open-request">Hire Driver</a></h5>
+        <h5 class="uppercase"><a href="#car-request" class="open-request">Hire Car</a></h5>
+        <h5><a href="{% url 'shuttle:index' %}" class="uppercase">Book Shuttle</a></h5>
         <!-- <h5 class="uppercase"><a href="{% url 'pages:apply' %}">Apply</a></h5> -->
         <!-- <h5><a href="{% url 'pages:faq' %}">FAQ/Manual</a></h5> -->
       </div>
       <ul class="nav-mob-follow">
         <li><a href=""><img src="{%static 'img/twitter_circle_color-256.png'%}" alt=""></a></li>
-        <li><a href=""><img src="{%static 'img/fb-icon.svg'%}" alt=""></a></li>
+        <li><a href=""><img src="{%static 'img/fb-icon.png'%}" alt=""></a></li>
         <li><a href=""><img src="{%static 'img/instagram-logo.png'%}" alt=""></a></li>
       </ul>
       <ul class="nav-mob-acct">
@@ -128,7 +132,7 @@
     <div class="driver flex col-nowrap just-center">
       <div class="top-info flex row-nowrap">
         <div class="class-ranks sub-div">
-          <h3>Order Classes</h3>
+          <h3>Driver Classes</h3>
           <div>
             <p><span class="key">Class A</span><span class="desc"></span></p>
             <p><span class="key">Class B</span><span class="desc"></span></p>
@@ -161,12 +165,12 @@
             <div class="half-width">
               <label for="end-date">End Date</label>
               <!-- should be disabled till start date done -->
-              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" required>
+              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" disabled="disabled" required>
             </div>
           </div>
           <div class="flex row-wrap just-between">
             <div class="half-width">
-              <label for="within">Order Class</label>
+              <label for="within">Driver Class</label>
               <select name="category" class="order_class" id="" required>
                 <option value="">Select a class</option>
                 <option value="A">Class A</option>
@@ -201,7 +205,7 @@
     <div class="content car flex col-nowrap just-center" >
       <div class="top-info flex row-nowrap">
         <div class="class-ranks sub-div">
-          <h3>Order Classes</h3>
+          <h3>Car Classes</h3>
           <div>
             <p><span class="key">Class A</span><span class="desc"></span></p>
             <p><span class="key">Class B</span><span class="desc"></span></p>
@@ -233,12 +237,12 @@
             <div class="half-width">
               <label for="end-date">End Date</label>
               <!-- should be disabled till start date done -->
-              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" required>
+              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" disabled="disabled" required>
             </div>
           </div>
           <div class="flex row-wrap just-between">
             <div class="half-width">
-              <label for="within">Order Class</label>
+              <label for="within">Car Class</label>
               <select name="category" class="order_class" id="" required>
                 <option value="">Select a class</option>
                 <option value="A">Class A</option>
@@ -273,6 +277,7 @@
 <script src="{% static 'js/modernizr-custom.js' %}"></script>
 <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
 <script src="{% static 'js/unslider-min.js' %}"></script>
+<script src="{% static 'js/swiper.min.js' %}"></script>
 {% block scripts %}{% endblock %}
 <script src="{% static 'js/main.js' %}"></script>
 </body>
