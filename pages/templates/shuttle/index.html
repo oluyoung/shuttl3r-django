@@ -1,6 +1,7 @@
 {% extends 'pages/base.html' %}
 {% load staticfiles  %}
 {% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/flickity.css' %}">
 <link rel="stylesheet" href="{% static 'css/shuttle-styles.css' %}">
 {% endblock %}
 {% block content %}
@@ -8,32 +9,32 @@
   <p class="order-alert full-width" style=""></p>
   <main class="wrap shuttle-wrap col-nowrap just-center">
     <section class="article how full-width">
-      <div class="image full-width" style="background-image:url({% static 'img/Nigeria-lagos_trim2.png'%})"></div>
+      <div class="image full-width lazy" data-src="{% static 'img/Nigeria-lagos_trim2.png'%}"></div>
       <div class="shuttle-how-wrap full-width flex col-nowrap just-center align-flex-center ">
         <h2 class="title">HOW IT WORKS</h2>
-        <ul class="shuttle-how flex row-nowrap just-around align-flex-center pos-rel">
-          <div class="moving-obj pos-abs"></div>
-          <li class="icon-wrap">
-            <img src="{% static 'img/laptop.png' %}" alt="" class="how-icon block">
+        <div class="shuttle-how flex row-nowrap just-around align-flex-center pos-rel">
+        <div class="moving-obj pos-abs"></div>
+          <div class="icon-wrap">
+            <img data-src="{% static 'img/laptop.png' %}" alt="" class="how-icon block lazy">
             <p class="subtitle text-center">Pick a route</p>
-          </li>
-          <li class="icon-wrap">
-            <img src="{% static 'img/mobile.png' %}" alt="" class="how-icon block">
+          </div>
+          <div class="icon-wrap">
+            <img data-src="{% static 'img/mobile.png' %}" alt="" class="how-icon block lazy">
             <p class="subtitle text-center">Pick a stop</p>
-          </li>
-          <li class="icon-wrap">
-            <img src="{% static 'img/tablet.png' %}" alt="" class="how-icon block">
+          </div>
+          <div class="icon-wrap">
+            <img data-src="{% static 'img/tablet.png' %}" alt="" class="how-icon block lazy">
             <p class="subtitle text-center">Pick a plan</p>
-          </li>
-          <li class="icon-wrap">
-            <img src="{% static 'img/qr.png' %}" alt="" class="how-icon block">
+          </div>
+          <div class="icon-wrap">
+            <img data-src="{% static 'img/qr.png' %}" alt="" class="how-icon block lazy">
             <p class="subtitle text-center">Get token</p>
-          </li>
-          <li class="icon-wrap">
-            <img src="{% static 'img/shuttle.png' %}" alt="" class="how-icon block">
+          </div>
+          <div class="icon-wrap">
+            <img data-src="{% static 'img/shuttle.png' %}" alt="" class="how-icon block lazy">
             <p class="subtitle text-center">Move</p>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </section>
     <section class="article routes flex col-nowrap just-center align-flex-center">
@@ -216,7 +217,40 @@
     </section>
   </main>
 </section>
-{% block scripts %}
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQsOgmxK8BQ0P9dAnSLvZqC9h05HpKaJU"></script>
 {% endblock %}
+{% block scripts %}
+<script src="{% static 'js/flickity.pkgd.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQsOgmxK8BQ0P9dAnSLvZqC9h05HpKaJU"></script>
+<script>
+(function($){
+
+  $(window).resize(function (e) {
+
+
+    if($(window).width() > 960){
+      $('.shuttle-how').addClass('flex').css('width','85%');
+
+    } else {
+      $('.shuttle-how').removeClass('flex').css('width','90%');
+      $('.moving-obj').css('display', 'none');
+      document.querySelector('.moving-obj').animationPlayState = 'paused';
+      
+      var $carousel = $('.shuttle-how').flickity({
+        autoPlay: true,
+        pauseAutoPlayOnHover: true,
+        cellSelector: '.icon-wrap',
+        resize: true,
+        cellAlign: 'left',
+        contain: true,
+        imagesLoaded: true,
+        //freeScroll: true,
+        //prevNextButtons: false,
+        pageDots: false
+      });      
+    
+    }
+    
+  });
+})(jQuery);
+</script>
 {% endblock %}

@@ -90,7 +90,8 @@ html.no-touchevents .index-service .flyers li.is-showing {
   width: 160px;
   height: 160px;
   padding: 3%;
-  background-color: #fafafa;
+  background-color: #212121;
+  filter: grayscale(65%);
 }
 .index-service .flyer .img {
   width: 100%;

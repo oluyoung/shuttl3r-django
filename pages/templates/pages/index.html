@@ -1,6 +1,7 @@
 {% extends 'pages/base.html' %}
 {% load staticfiles  %}
 {% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/flickity.css' %}">
 <link rel="stylesheet" href="{% static 'css/pages-styles.css' %}">
 {% endblock %}
 {% block title %}{% endblock %}
@@ -11,7 +12,7 @@
   <h3 class="header-subtitle">How may we lend a hand?</h3>
   
   <!-- Driver -->
-  <div class="index-service flex row-wrap just-center align-flex-center index-driver" style="background-image:url({%static 'img/freehanddrivers.png'%});background-position:bottom;">
+  <div class="index-service flex row-wrap just-center align-flex-center index-driver lazy" data-src="{%static 'img/freehanddrivers.png'%}" style="background-position:bottom;">
     <div class="full-width header flex col-nowrap just-center align-flex-center ">
       <h2 class="inline-block text-center raleway">Need a driver?</h2>
       <a id="#driver-request" class="inline-block open-request">Hire</a>
@@ -21,7 +22,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img odd" style="background-image:url({%static 'img/Welcome-to-Lagos.jpg'%})"></div>
+              <div class="img odd lazy" data-src="{%static 'img/Welcome-to-Lagos.jpg'%}"></div>
             </div>
             <div class="img-title text-center full-width">Interstate</div>
           </div>
@@ -29,7 +30,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img even" style="background-image:url({%static 'img/Map-750.png'%})"></div>
+              <div class="img even lazy" data-src="{%static 'img/Map-750.png'%}"></div>
             </div>
             <div class="img-title text-center full-width">Cross Country</div>
           </div>
@@ -37,7 +38,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img odd" style="background-image:url({%static 'img/stickers.jpg'%})"></div>
+              <div class="img odd lazy" data-src="{%static 'img/stickers.jpg'%}"></div>
             </div>
             <div class="img-title text-center full-width">Family Trips</div>
           </div>
@@ -52,7 +53,7 @@
   </div>
 
   <!-- Car -->
-  <div class="index-service flex row-wrap just-center align-flex-center index-car" style="background-image:url({%static 'img/lagos.png'%})">
+  <div class="index-service flex row-wrap just-center align-flex-center index-car lazy" data-src="{%static 'img/lagos.png'%}">
     <div class="full-width header flex col-nowrap just-center align-flex-center">
       <h2 class="text-center inline-block raleway">Need a car?</h2>
       <a href="#car-request" class="inline-block open-request">Hire</a>
@@ -62,7 +63,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img odd" style="background-image:url({%static 'img/Welcome-to-Lagos.jpg'%})"></div>
+              <div class="img odd lazy" data-src="{%static 'img/Welcome-to-Lagos.jpg'%}"></div>
             </div>
             <div class="img-title text-center full-width">Interstate</div>
           </div>
@@ -70,7 +71,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img even" style="background-image:url({%static 'img/trip-office-staff.jpg'%})"></div>
+              <div class="img even lazy" data-src="{%static 'img/trip-office-staff.jpg'%}"></div>
             </div>
             <div class="img-title text-center full-width">Office Trip</div>
           </div>
@@ -78,7 +79,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img odd" style="background-image:url({%static 'img/toyota-coaster.png'%})"></div>
+              <div class="img odd lazy" data-src="{%static 'img/toyota-coaster.png'%}"></div>
             </div>
             <div class="img-title text-center full-width">Staff Bus</div>
           </div>
@@ -86,7 +87,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img even" style="background-image:url({%static 'img/nycairportlimos.jpg'%})"></div>
+              <div class="img even lazy" data-src="{%static 'img/nycairportlimos.jpg'%}"></div>
             </div>
             <div class="img-title text-center full-width">Airport pickup</div>
           </div>
@@ -101,7 +102,7 @@
   </div>
 
   <!-- Shuttle -->
-  <div class="index-service flex row-wrap just-center align-flex-center index-shuttle" style="background-image:url({%static 'img/PIX-9369.png'%})">
+  <div class="index-service flex row-wrap just-center align-flex-center index-shuttle lazy" data-src="{%static 'img/PIX-9369.png'%}">
     <div class="full-width header flex col-nowrap just-center align-flex-center">
       <h2 class="text-center inline-block raleway">Need a ride to work?</h2>
     </div>
@@ -110,7 +111,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img odd" style="background-image:url({%static 'img/toyota-coaster.png'%})"></div>
+              <div class="img odd lazy" data-src="{%static 'img/toyota-coaster.png'%}"></div>
             </div>
             <div class="img-title text-center full-width">Get on a shuttle</div>
             <a href="{% url 'shuttle:index' %}" class="inline-block">BOOK</a>
@@ -119,7 +120,7 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img even" style="background-image:url({%static 'img/nycairportlimos.jpg'%})"></div>
+              <div class="img even lazy" data-src="{%static 'img/nycairportlimos.jpg'%}"></div>
             </div>
             <div class="img-title text-center full-width">Private pickup</div>
             <a href="" class="inline-block">REQUEST</a>
@@ -145,4 +146,37 @@
   </div>
 </section>
 
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/flickity.pkgd.js' %}"></script>
+<script>
+(function($){
+
+  $(window).resize(function (e) {
+
+    if($(window).width() > 960){
+      $('.flyers ul').addClass('flex');
+
+    } else {
+      $('.flyers ul').removeClass('flex');
+
+      var _carousel = $('.flyers lul').flickity({
+        autoPlay: true,
+        pauseAutoPlayOnHover: true,
+        cellSelector: 'li',
+        resize: true,
+        cellAlign: 'center',
+        contain: true,
+        imagesLoaded: true,
+        //freeScroll: true,
+        //prevNextButtons: false,
+        pageDots: false
+      });      
+    
+    }
+
+  });
+})(jQuery);
+</script>
 {% endblock %}

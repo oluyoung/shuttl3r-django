@@ -6,20 +6,24 @@
 <link rel="stylesheet" href="{% static 'css/contact-styles.css' %}">
 {% endblock %}
 {% block content %}
-<section class="container contact-container flex row-wrap just-around">
-
+<section class="container contact-container flex row-wrap just-center">
   <div class="contact info">
     <div class="">
       <ul>
         <li class="number">
-          <p>(234) 803 482 3999</p>
+          <p><a href="tel:+2348034823999">(234) 803 482 3999</a></p>
         </li>
         <li class="number">
-          <p>(234) 803 482 3999</p>
+          <p><a href="tel:+2348034823999">(234) 803 482 3999</a></p>
         </li>
         <li class="email">
-          <p>contact@freehand.ng</p>
+          <p><a href="mailto:contact@freehand.ng">contact@freehand.ng</a></p>
         </li>
+      </ul>
+      <ul>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
       </ul>
     </div>
   </div>
@@ -38,7 +42,7 @@
         <textarea id="remarks"></textarea>
       </div>
       <div class="flex col-nowrap">
-        <input type="submit" value="Request">
+        <input type="submit" class="btn submit-btn" value="Request">
       </div>
     </form>
   </div>

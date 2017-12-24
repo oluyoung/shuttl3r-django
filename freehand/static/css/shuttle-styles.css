@@ -15,7 +15,6 @@
 }
 .article.how {
   padding: 0 0 2%;
-  overflow: hidden;
 }
 .article.how .image {
   color: #ffffff;
@@ -30,9 +29,17 @@
 }
 .shuttle-how {
   width: 85%;
-  min-width: 1080px;
 }
-.icon-wrap {}
+.icon-wrap {
+  width: 24.5%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.icon-wrap .subtitle {
+  margin-top: 1em;
+}
 .how-icon {
   height: 100px;
 }
@@ -45,20 +52,17 @@ html.touchevents .icon-wrap {
 html.touchevents .how-icon {
   height: 150px;
 }
-.subtitle {
-  margin-top: 15px;
-}
 .article.routes {
   width: 85%;
   padding: 1em;
 }
 .title {
   font-size: 1.5em;
-  font-family: 'Courgette';
+  font-family: 'Raleway';
   padding: 1em 0;
 }
 .subtitle {
-  margin-bottom: 2em;
+  /* margin-bottom: 2em; */
 }
 .moving-obj {
   width: 7px;
@@ -67,7 +71,7 @@ html.touchevents .how-icon {
   background-color: #5FCD5C;
   box-shadow: 1px 1px 7px crimson, -1px -1px 8px crimson;
   left: 10.5%;
-  top: 25%;
+  top: 30%;
   
   animation-name: movingobj;
   animation-delay: 1s;
@@ -100,6 +104,11 @@ html.touchevents .moving-obj {
   50% {left: 47.5%;top: 45%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
   75% {left: 66.5%;top: 39%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
   100% {left: 83%;top: 43.5%;background-color:crimson;box-shadow: 1px 1px 7px crimson, -1px -1px 8px crimson;}
+}
+
+/* Flickity JS */
+.flickity-enabled.is-draggable .flickity-viewport {
+  width: 100%
 }
 
 .route-list {

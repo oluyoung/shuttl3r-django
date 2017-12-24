@@ -1,21 +1,38 @@
 html.contact-pg {
   background-color: #fafafa;
 }
+.contact-container {
+  padding-top: 7em;
+}
 .contact {
   padding: 1em;
   box-shadow: 1px 1px 3px #ccc, -1px -1px 3px #ccc;
+  background-color: #fff;
 }
 .contact.info {}
 .contact.info .number {}
 .contact.info .email {}
-.contact.apply {}
+.contact.apply {
+  width: 50%;
+}
 .contact.apply .request-form {}
 .contact.apply .request-form input[type=text],
 .contact.apply .request-form input[type=email] {}
 .contact.apply .request-form input[type=submit] {
   background-color: #000;
-  border: none;
-  /* border: 1px solid; */
-  padding: .5em;
+  border: 1px solid;
+  padding: .8em;
+  margin-top: 1em;
   color: #f0f0f0
+}
+
+.contact.apply .request-form input[type=submit]:hover,
+.contact.apply .request-form input[type=submit]:focus {
+  background-color: #fff;
+  color: #111;
+}
+
+.contact-pg .footer {
+  position: absolute;
+  bottom: 0;
 }

@@ -92,6 +92,7 @@
 
   /* CHANGE CHOOSE BUTTON TO CHECK CHECKBOX
   */
+
   $('.order-form').each(function(){
     var btn = $(this).find('.choose-btn'),
       $checkbox = $(this).find('.within');
@@ -124,6 +125,13 @@
       enddate.val(startdate.val());
 
     });
+  });
+
+
+  /**/
+
+  new LazyLoad({
+    elements_selector: ".lazy"
   });
   
 
