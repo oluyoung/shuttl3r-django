@@ -122,9 +122,11 @@ User Dashboard **/
 .dashboard-container {
   background-color: #fff;
 }
+
 .header {
   margin-top:-1em;
   background-color:#111;
+  background-attachment: fixed;
   box-shadow: 1px 1px 3px #111;
   padding:3em 0;
   margin-bottom:1em;
@@ -136,9 +138,7 @@ User Dashboard **/
   font-family: 'Raleway';
   margin-bottom: 10px;
 }
-.header p {
-  
-}
+.header p {}
 
 .most-recent {
   background-color: #263238;
@@ -321,7 +321,7 @@ User Dashboard **/
 .user-dashboard,
 .user-dashboard.ui-accordion {
   max-width: 960px;
-  width: 100%;
+  width: 98%;
   margin: auto;
 }
 

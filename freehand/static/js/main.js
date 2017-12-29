@@ -254,6 +254,7 @@
           // show order alert
           $('#order-alert').append('<a href="#" id="close-order-alert">x</a>');
           $('#order-alert').css({'display':'block','transform':'translateY(0%)'});
+          $.magnificPopup.close();
         });
         posting.fail(function(data){
           console.log('error');
@@ -265,12 +266,13 @@
         // show order alert
         $('#order-alert').append('<a href="#" id="close-order-alert">x</a>');
         $('#order-alert').css({'display':'block','transform':'translateY(0%)'});
+        $.magnificPopup.close();
       }
     });
     handler.openIframe();
   }
 
-  /* Show Ordder Alert */
+  /* Show Order Alert */
   $('#del-acct').on('click', function(e){
     e.preventDefault();
     $('#order-alert').html('Are you sure you want to delete your account? <a href="/users/user/delete" id="del-yes">YES</a> <a href="#" id="del-no">NO</a><a href="#" id="close-order-alert">x</a>');
@@ -358,17 +360,17 @@
 
   /* Parallax */
   
-    var wScroll = $(window).scrollTop();
-    $('html.no-touchevents .flyers').each(function(){
-      var $flyer = $(this);
-      if(wScroll > $flyer.offset().top-$(window).height()/1.2){
-        $flyer.find('li').each(function(i){
-          setTimeout(function(){
-            $flyer.find('li').eq(i).addClass('is-showing');
-          }, 150*(i+1));
-        });
-      }
-    });
+  var wScroll = $(window).scrollTop();
+  $('html.no-touchevents .flyers').each(function(){
+    var $flyer = $(this);
+    if(wScroll > $flyer.offset().top-$(window).height()/1.2){
+      $flyer.find('li').each(function(i){
+        setTimeout(function(){
+          $flyer.find('li').eq(i).addClass('is-showing');
+        }, 150*(i+1));
+      });
+    }
+  });
 
   $(window).scroll(function(){
     var wScroll = $(this).scrollTop();

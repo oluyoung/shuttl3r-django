@@ -228,10 +228,9 @@
 
 
     if($(window).width() > 960){
-      $('.shuttle-how').addClass('flex').css('width','85%');
-
+      $('html.no-touchevents .shuttle-how').css('width','85%');
     } else {
-      $('.shuttle-how').removeClass('flex').css('width','90%');
+      $('html.no-touchevents .shuttle-how').removeClass('flex').css('width','90%');
       $('.moving-obj').css('display', 'none');
       document.querySelector('.moving-obj').animationPlayState = 'paused';
       

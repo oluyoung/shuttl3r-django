@@ -156,12 +156,12 @@
   $(window).resize(function (e) {
 
     if($(window).width() > 960){
-      $('.flyers ul').addClass('flex');
+      
 
     } else {
-      $('.flyers ul').removeClass('flex');
+      $('html.no-touchevents .flyers ul').removeClass('flex');
 
-      var _carousel = $('.flyers lul').flickity({
+      var _carousel = $('.flyers ul').flickity({
         autoPlay: true,
         pauseAutoPlayOnHover: true,
         cellSelector: 'li',
