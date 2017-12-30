@@ -1181,6 +1181,6 @@ small devices: 480px
 
 @media (max-width: 374px){
   html.touchevents nav .u-clear {
-    top: -32px;
+    /* top: -32px; */
   }
 }
