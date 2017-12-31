@@ -12,28 +12,40 @@
       <div class="image full-width lazy" data-src="{% static 'img/Nigeria-lagos_trim2.png'%}"></div>
       <div class="shuttle-how-wrap full-width flex col-nowrap just-center align-flex-center ">
         <h2 class="title">HOW IT WORKS</h2>
-        <div class="shuttle-how flex row-nowrap just-around align-flex-center pos-rel">
-        <div class="moving-obj pos-abs"></div>
-          <div class="icon-wrap">
-            <img data-src="{% static 'img/laptop.png' %}" alt="" class="how-icon block lazy">
-            <p class="subtitle text-center">Pick a route</p>
-          </div>
-          <div class="icon-wrap">
-            <img data-src="{% static 'img/mobile.png' %}" alt="" class="how-icon block lazy">
-            <p class="subtitle text-center">Pick a stop</p>
-          </div>
-          <div class="icon-wrap">
-            <img data-src="{% static 'img/tablet.png' %}" alt="" class="how-icon block lazy">
-            <p class="subtitle text-center">Pick a plan</p>
-          </div>
-          <div class="icon-wrap">
-            <img data-src="{% static 'img/qr.png' %}" alt="" class="how-icon block lazy">
-            <p class="subtitle text-center">Get token</p>
-          </div>
-          <div class="icon-wrap">
-            <img data-src="{% static 'img/shuttle.png' %}" alt="" class="how-icon block lazy">
-            <p class="subtitle text-center">Move</p>
-          </div>
+        <div class="shuttle-how pos-rel">
+          <div class="moving-obj pos-abs"></div>
+          <ul class="flex row-nowrap just-around align-flex-center">
+            <li class="icon-wrap">
+              <div >
+                <img data-src="{% static 'img/laptop.png' %}" alt="" class="how-icon block lazy">
+                <p class="subtitle text-center">Pick a route</p>
+              </div>
+            </li>
+            <li class="icon-wrap">
+              <div>
+                <img data-src="{% static 'img/mobile.png' %}" alt="" class="how-icon block lazy">
+                <p class="subtitle text-center">Pick a stop</p>
+              </div>
+            </li>
+            <li class="icon-wrap">
+              <div>
+                <img data-src="{% static 'img/tablet.png' %}" alt="" class="how-icon block lazy">
+                <p class="subtitle text-center">Pick a plan</p>
+              </div>
+            </li>
+            <li class="icon-wrap">
+              <div>
+                <img data-src="{% static 'img/qr.png' %}" alt="" class="how-icon block lazy">
+                <p class="subtitle text-center">Get token</p>
+              </div>
+            </li>
+            <li class="icon-wrap">
+              <div >
+                <img data-src="{% static 'img/shuttle.png' %}" alt="" class="how-icon block lazy">
+                <p class="subtitle text-center">Move</p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -219,20 +231,20 @@
 </section>
 {% endblock %}
 {% block scripts %}
-<script src="{% static 'js/flickity.pkgd.js' %}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQsOgmxK8BQ0P9dAnSLvZqC9h05HpKaJU"></script>
+{% endblock %}
+{% block customscripts %}
 <script>
 (function($){
 
   $(window).resize(function (e) {
-
-
     if($(window).width() > 960){
+      $('html.no-touchevents .shuttle-how ul').addClass('flex')
       $('html.no-touchevents .shuttle-how').css('width','85%');
     } else {
-      $('html.no-touchevents .shuttle-how').removeClass('flex').css('width','90%');
+      $('html.no-touchevents .shuttle-how ul').removeClass('flex')
+      $('html.no-touchevents .shuttle-how').css('width','90%');
       $('.moving-obj').css('display', 'none');
-      document.querySelector('.moving-obj').animationPlayState = 'paused';
       
       var $carousel = $('.shuttle-how').flickity({
         autoPlay: true,
@@ -245,11 +257,10 @@
         //freeScroll: true,
         //prevNextButtons: false,
         pageDots: false
-      });      
-    
+      });
     }
-    
   });
+
 })(jQuery);
 </script>
 {% endblock %}

@@ -179,6 +179,7 @@
       is_within_lagos: form.find('.within').prop('checked'),
       order_class: form.find('.order_class').val(),
       pickup_address: form.find('.pickup-addr').val(),
+      pickup_time: form.find('.pickup-time').val(),
       user: form.find('.user_id').val(),
       csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
     };
@@ -388,20 +389,70 @@
 
 
   /* Unsliders */
-  $('html.touchevents .flyers').unslider({
-    autoplay: true,
-    infinte: true,
-    delay: 3000,
-    keys: false,
-    arrows: false
-  });
+  // Checks screen sizes >= tablets
+  if($(window).width() >= 768){
+    
+    // Index Page Icons
+    $('html.touchevents .flyers ul').removeClass('flex');
+    var _carousel = $('html.touchevents .flyers ul').flickity({
+      autoPlay: true,
+      pauseAutoPlayOnHover: true,
+      cellSelector: 'li',
+      resize: true,
+      cellAlign: 'center',
+      contain: true,
+      imagesLoaded: true,
+      //freeScroll: true,
+      //prevNextButtons: false,
+      pageDots: false
+    });
 
-  $('html.touchevents .shuttle-how-wrap').unslider({
-    autoplay: true,
-    infinte: true,
-    delay: 2000,
+    // Shuttle Page Icons
+    $('html.touchevents .shuttle-how ul').removeClass('flex');
+    $('.moving-obj').css('display', 'none');
+    
+    var $carousel = $('html.touchevents .shuttle-how ul').flickity({
+      autoPlay: true,
+      pauseAutoPlayOnHover: true,
+      cellSelector: '.icon-wrap',
+      resize: true,
+      cellAlign: 'left',
+      contain: true,
+      imagesLoaded: true,
+      //freeScroll: true,
+      //prevNextButtons: false,
+      pageDots: false
+    });
+
+  }
+  // Checks screen sizes < tablets
+  else {
+  
+    $('html.touchevents .flyers').unslider({
+      autoplay: true,
+      infinte: true,
+      delay: 2000,
+      keys: false,
+      arrows: false
+    });
+  
+    $('html.touchevents .shuttle-how').unslider({
+      autoplay: true,
+      infinte: true,
+      delay: 2000,
+      keys: false,
+      arrows: false
+    });
+
+  }
+
+  // Order Modal should be unaffected by screen size
+
+  $('.order-modal').unslider({
+    autoplay: false,
+    arrows: false,
     keys: false,
-    arrows: false
+    infinite: false,
   });
 
 })(jQuery);

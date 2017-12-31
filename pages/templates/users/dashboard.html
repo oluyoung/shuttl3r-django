@@ -307,10 +307,11 @@
   {% endif %}
 </section>
 {% endblock %}
-
 {% block scripts %}
 <script src="{% static 'js/jquery-ui.min.js' %}"></script>
 <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+{% endblock %}
+{% block customscripts %}
 <script>
   $(function() {
     $( ".user-dashboard.has-orders" ).accordion({

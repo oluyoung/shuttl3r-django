@@ -54,7 +54,7 @@ class DriverOrder(models.Model):
     is_within_lagos = models.BooleanField()
     pickup_address = models.CharField(max_length=255)
     # time not needed
-    # pickup_time = models.DateTimeField()
+    pickup_time = models.DateTimeField()
     STATUS_CHOICES = (
         ('Completed', 'Completed'),
         ('Ongoing', 'Ongoing'),

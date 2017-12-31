@@ -27,8 +27,8 @@
   <div class="u-clear">
     <div class="nav-sections-dropdown">
       <div class="nav-sections-dropdown-toggle">
-        <a href="#driver-request" class="open-request nav-sections uppercase" id="hire-driver">Hire Driver</a>
-        <a href="#car-request" class="open-request nav-sections uppercase" id="hire-car">Hire Car</a>
+        <a href="#driver-order" class="open-request nav-sections uppercase" id="hire-driver">Hire Driver</a>
+        <a href="#car-order" class="open-request nav-sections uppercase" id="hire-car">Hire Car</a>
         <a href="{% url 'shuttle:index' %}" class="nav-sections uppercase" id="book-shuttle">Book Shuttle</a>
         <a href="{% url 'pages:contact' %}" class="nav-sections uppercase" id="">Contact</a>
         <!-- <a href="{% url 'pages:apply' %}" class="nav-sections uppercase" id="">Apply</a> -->
@@ -114,6 +114,12 @@
       <li><a href="mailto:contact.us@freehand.ng">contact.us@freehand.ng</a></li>
     </ul>
   </div>
+  <div class="footer-links">
+    <ul>
+      <li><a href="#">Our Team</a></li>
+      <li><a href="#">Our Vision</a></li>
+    </ul>
+  </div>
   <div class="contact-social">
     <ul>
       <li><a href="#" target="_blank"><i class="icon icon--facebook--light"></i></a></li>
@@ -127,157 +133,194 @@
 
 <!-- Order Modals -->
   <!-- DRIVER ORDER SHEET -->
-  <section class="sheet driver-sheet mfp-hide" id="driver-request">
-    <div class="driver flex col-nowrap just-center">
-      <div class="top-info flex row-nowrap">
-        <div class="class-ranks sub-div">
-          <h3>Driver Classes</h3>
-          <div>
-            <p><span class="key">Class A</span><span class="desc"></span></p>
-            <p><span class="key">Class B</span><span class="desc"></span></p>
-            <p><span class="key">Class C</span><span class="desc"></span></p>
-          </div>
-        </div>
-      </div>
-      <!-- if user not logged in -->
-      <div class="form order-form driver-form material-form">
-        <!-- use action for ajax call -->
-        <form action="/hire/drivers/request/driver/" method="post" class="form flex col-wrap">
-          <div class="text-center">
-            <h3>To make a request just fill the form below</h3>
-          </div>
-          {% csrf_token %}
-          <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
-          <div class="flex row-wrap just-between">
-            <div class="flex row-wrap just-start align-flex-center half-width" style="margin-top:-15px;">
-              <label for="within">Leaving Lagos?</label>
-              <input type="checkbox" class="within" name="within_lagos" hidden>
-              <a href="#" class="choose-btn yes">YES</a>
-              <a href="#" class="choose-btn no selected">NO</a>
-            </div>
-          </div>
-          <div class="flex row-wrap just-between">
-            <div class="half-width">
-              <label for="start-date">Start Date</label>
-              <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" required>
-            </div>
-            <div class="half-width">
-              <label for="end-date">End Date</label>
-              <!-- should be disabled till start date done -->
-              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" disabled="disabled" required>
-            </div>
-          </div>
-          <div class="flex row-wrap just-between">
-            <div class="half-width">
-              <label for="within">Driver Class</label>
-              <select name="category" class="order_class" id="" required>
-                <option value="">Select a class</option>
-                <option value="A">Class A</option>
-                <option value="B">Class B</option>
-                <option value="C">Class C</option>
-              </select>
-            </div>
-            <!-- <div class="half-width">
-              <label for="end-date">Pickup Time</label>
-              should be disabled till start date done
-              <input type="time" class="pickup-time" name="end_date" min="" required>
-            </div> -->
-          </div>
+  <div class="mfp-hide" id="driver-order">
+    <div class="order-modal driver-order">
+      <ul>
+        <li>
+          <div class="sheet driver-sheet" id="driver-request">
+            <div class="driver flex col-nowrap just-center">
+              <div class="top-info flex row-nowrap">
+                <div class="class-ranks sub-div">
+                  <h3>Driver Classes</h3>
+                  <div>
+                    <p><span class="key">Class A</span><span class="desc"></span></p>
+                    <p><span class="key">Class B</span><span class="desc"></span></p>
+                    <p><span class="key">Class C</span><span class="desc"></span></p>
+                  </div>
+                </div>
+              </div>
+              <!-- if user not logged in -->
+              <div class="form order-form driver-form material-form">
+                <!-- use action for ajax call -->
+                <form action="/hire/drivers/request/driver/" method="post" class="form flex col-wrap">
+                  <div class="text-center">
+                    <h3>To make a request just fill the form below</h3>
+                  </div>
+                  {% csrf_token %}
+                  <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
+                  <div class="flex row-nowrap just-start align-flex-end leaving-field">
+                    <label for="within">Leaving Lagos?</label>
+                    <input type="checkbox" class="within" name="within_lagos" hidden>
+                    <a href="#" class="choose-btn yes">YES</a>
+                    <a href="#" class="choose-btn no selected">NO</a>
+                  </div>
+                  <div class="flex row-wrap just-between">
+                    <div class="half-width">
+                      <label for="start-date">Start Date</label>
+                      <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" required>
+                    </div>
+                    <div class="half-width">
+                      <label for="end-date">End Date</label>
+                      <!-- should be disabled till start date done -->
+                      <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" disabled="disabled" required>
+                    </div>
+                  </div>
+                  <div class="flex row-wrap just-between">
+                    <div class="half-width">
+                      <label for="end-date">Pickup Time</label>
+                      <input type="time" class="pickup-time" name="end_date" value="07:00" required>
+                    </div>
+                    <div class="half-width">
+                      <label for="within">Driver Class</label>
+                      <select name="category" class="order_class" id="" max="" required>
+                        <option value="">Select a class</option>
+                        <option value="A">Class A</option>
+                        <option value="B">Class B</option>
+                        <option value="C">Class C</option>
+                      </select>
+                    </div>
+                  </div>
 
-          <div class="flex col-nowrap">
-            <label for="pickup-addr" class="">Pickup Address</label>
-            <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Enter a pickup address" value="{{user.default_pickup_addr}}" required>
+                  <div class="flex col-nowrap">
+                    <label for="pickup-addr" class="">Pickup Address</label>
+                    <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Enter a pickup address" value="{{user.default_pickup_addr}}" required>
+                  </div>
+                  {% if user.is_authenticated %}
+                  <input type="submit" class="btn submit-btn" id="drivers-submit-btn" value="REQUEST" />
+                  <input type="reset" value="clear" hidden />
+                  {% else %}
+                  <a href="{% url 'users:login' %}" class="btn login-btn">LOGIN</a>
+                  {% endif %}
+                </form>
+              </div>
+            </div>
           </div>
-          {% if user.is_authenticated %}
-          <input type="submit" class="btn submit-btn" id="drivers-submit-btn" value="REQUEST" />
-          <input type="reset" value="clear" hidden />
-          {% else %}
-          <a href="{% url 'users:login' %}" class="btn login-btn">LOGIN</a>
-          {% endif %}
-        </form>
-      </div>
+        </li>
+        <li>
+          <div class="sheet driver-confirm">
+            <div class="confirm-sheet">
+              get details from form
+              greeting{Hello auth.user.first_name, this is what you just picked}
+              driver_class
+              start_date
+              end_date
+              pickup_address
+              pickup_time
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
-  </section>
+  </div>
 
   <!-- CAR ORDER SHEET -->
-  <section class="sheet car-sheet mfp-hide" id="car-request">
-    <div class="content car flex col-nowrap just-center" >
-      <div class="top-info flex row-nowrap">
-        <div class="class-ranks sub-div">
-          <h3>Car Classes</h3>
-          <div>
-            <p><span class="key">Class A</span><span class="desc"></span></p>
-            <p><span class="key">Class B</span><span class="desc"></span></p>
-            <p><span class="key"></span><span class="desc"></span></p>
-          </div>
-        </div>
-      </div>
-      <!-- Car Order Form -->
-      <div class="order-form car-form material-form">
-        <form action="/hire/cars/request/car/" class="form flex col-wrap" method="post">
-          <div class="text-center">
-            <h3>To make a request just fill the form below</h3>
-          </div>
-          {% csrf_token %}
-          <input type="hidden" class="item_id" name="item_id" value="{{car.id}}">
-          <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
-          <div class="flex row-wrap just-between">
-            <div class="flex row-wrap just-start align-flex-center half-width">
-              <label for="within">Leaving Lagos?</label>
-              <input type="checkbox" class="within" name="within_lagos" hidden>
-              <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no selected">NO</a>
-            </div>
-          </div>
-          <div class="flex row-wrap just-between">
-            <div class="half-width">
-              <label for="start-date">Start Date</label>
-              <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" required>
-            </div>
-            <div class="half-width">
-              <label for="end-date">End Date</label>
-              <!-- should be disabled till start date done -->
-              <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" disabled="disabled" required>
-            </div>
-          </div>
-          <div class="flex row-wrap just-between">
-            <div class="half-width">
-              <label for="within">Car Class</label>
-              <select name="category" class="order_class" id="" required>
-                <option value="">Select a class</option>
-                <option value="A">Class A</option>
-                <option value="B">Class B</option>
-                <option value="C">Class C</option>
-              </select>
-            </div>
-            <!-- <div class="half-width">
-              <label for="end-date">Pickup Time</label>
-              should be disabled till start date done
-              <input type="time" class="pickup-time" name="end_date" min="" required>
-            </div> -->
-          </div>
+  <div class="mfp-hide" id="car-order">
+    <div class="order-modal car-order">
+      <ul>
+        <li>
+          <div class="sheet car-sheet" id="car-request">
+            <div class="content car flex col-nowrap just-center" >
+              <div class="top-info flex row-nowrap">
+                <div class="class-ranks sub-div">
+                  <h3>Car Classes</h3>
+                  <div>
+                    <p><span class="key">Class A</span> - <span class="desc">Saloon cars</span></p>
+                    <p><span class="key">Class B</span> - <span class="desc">Luxury cars</span></p>
+                    <p><span class="key">Class C</span> - <span class="desc"><a href="#">Special requests</a></span></p>
+                  </div>
+                </div>
+              </div>
+              <!-- Car Order Form -->
+              <div class="order-form car-form material-form">
+                <form action="/hire/cars/request/car/" class="form flex col-wrap" method="post">
+                  <div class="text-center">
+                    <h3>To make a request just fill the form below</h3>
+                  </div>
+                  {% csrf_token %}
+                  <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
+                  <div class="flex row-nowrap just-start align-flex-end leaving-field">
+                    <label for="within">Leaving Lagos?</label>
+                    <input type="checkbox" class="within" name="within_lagos" hidden>
+                    <a href="#" class="choose-btn yes">YES</a><a href="#" class="choose-btn no selected">NO</a>
+                  </div>
+                  <div class="flex row-wrap just-between">
+                    <div class="half-width">
+                      <label for="start-date">Start Date</label>
+                      <input type="date" class="order-date start-date" name="start_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" required>
+                    </div>
+                    <div class="half-width">
+                      <label for="end-date">End Date</label>
+                      <!-- is disabled till start date done -->
+                      <input type="date" class="order-date end-date" name="end_date" min="{% now 'Y-m-d' %}" value="{% now 'Y-m-d' %}" disabled="disabled" required>
+                    </div>
+                  </div>
+                  <div class="flex row-wrap just-between">
+                    <div class="half-width">
+                      <label for="end-date">Pickup Time</label>
+                      <input type="time" class="pickup-time" name="end_date" min="" value="07:00" required>
+                    </div>
+                    <div class="half-width">
+                      <label for="within">Car Class</label>
+                      <select name="category" class="order_class" id="" required>
+                        <option value="">Select a class</option>
+                        <option value="A">Class A</option>
+                        <option value="B">Class B</option>
+                        <option value="C">Class C</option>
+                      </select>
+                    </div>
+                  </div>
 
-          <div class="flex col-nowrap">
-            <label for="pickup-addr" class="">Pickup Address</label>
-            <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Enter pickup address" value="{{user.default_pickup_addr}}" required>
-          </div>
+                  <div class="flex col-nowrap">
+                    <label for="pickup-addr" class="">Pickup Address</label>
+                    <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Enter pickup address" value="{{user.default_pickup_addr}}" required>
+                  </div>
 
-          {% if user.is_authenticated %}
-          <input type="submit" class="btn submit-btn" id="cars-submit-btn" value="REQUEST" />
-          <input type="reset" value=clear hidden />
-          {% else %}
-          <a href="{% url 'users:login'%}" class="btn login-btn">LOGIN</a>
-          {% endif %}
-        </form>
-      </div>
+                  {% if user.is_authenticated %}
+                  <input type="submit" class="btn submit-btn" id="cars-submit-btn" value="REQUEST" />
+                  <input type="reset" value=clear hidden />
+                  {% else %}
+                  <a href="{% url 'users:login'%}" class="btn login-btn">LOGIN</a>
+                  {% endif %}
+                </form>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="sheet car-confirm">
+            <div class="confirm-sheet">
+              greeting{Hello user.first_name, this is what you just picked}
+              car_class
+              start_date
+              end_date
+              pickup_address
+              pickup_time
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
-  </section>
+  </div>
+
 
 <script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/lazyload.min.js' %}"></script>
 <script src="{% static 'js/modernizr-custom.js' %}"></script>
 <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/flickity.pkgd.js' %}"></script>
 <script src="{% static 'js/unslider-min.js' %}"></script>
-<script src="{% static 'js/lazyload.min.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
 {% block scripts %}{% endblock %}
+<script src="{% static 'js/main.js' %}"></script>
+{% block customscripts %}{% endblock %}
 </body>
 </html>

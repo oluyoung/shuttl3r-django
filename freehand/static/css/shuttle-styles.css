@@ -43,16 +43,8 @@
 .how-icon {
   height: 100px;
 }
-html.touchevents .icon-wrap {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-}
-html.touchevents .how-icon {
-  height: 150px;
-}
 .article.routes {
+  border-top: 1px solid #E0E0E0;
   width: 85%;
   padding: 1em;
 }
@@ -69,15 +61,15 @@ html.touchevents .how-icon {
   height: 7px;
   border-radius: 50%;
   background-color: #5FCD5C;
-  box-shadow: 1px 1px 7px crimson, -1px -1px 8px crimson;
-  left: 10.5%;
-  top: 30%;
+  box-shadow: 1px 1px 7px #5FCD5C, -1px -1px 8px #5FCD5C;
+  left: 9.7%;
+  top: 28%;
   
   animation-name: movingobj;
   animation-delay: 1s;
   animation-duration: 13s;
   animation-timing-function: ease-in-out;
-  animation-iteration-count: 25;
+  animation-iteration-count: 10;
   animation-fill-mode: both;
   
 }
@@ -85,25 +77,25 @@ html.touchevents .moving-obj {
   display: none;
 }
 @-moz-keyframes movingobj {
-  0% {left: 10.5%;top: 25%;background-color:#5FCD5C;box-shadow: 1px 1px 7px #5FCD5C, -1px -1px 8px #5FCD5C;}
-  25% {left:29%;top:39%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
-  50% {left: 47.5%;top: 45%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
-  75% {left: 66.5%;top: 39%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
-  100% {left: 83%;top: 43.5%;background-color:crimson;box-shadow: 1px 1px 7px crimson, -1px -1px 8px crimson;}
+  0% {left:9.7%;top:28%;background-color:#5FCD5C;box-shadow: 1px 1px 7px #5FCD5C, -1px -1px 8px #5FCD5C;}
+  25% {left:29.7%;top:45%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
+  50% {left:49.3%;top:50%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
+  75% {left: 69.7%;top: 48%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
+  100% {left: 86%;top: 53%;background-color:crimson;box-shadow: 1px 1px 7px crimson, -1px -1px 8px crimson;}
 }
 @-webkit-keyframes movingobj {
-  0% {left: 10.5%;top: 25%;background-color:#5FCD5C;box-shadow: 1px 1px 7px #5FCD5C, -1px -1px 8px #5FCD5C;}
-  25% {left:29%;top:39%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
-  50% {left: 47.5%;top: 45%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
-  75% {left: 66.5%;top: 39%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
-  100% {left: 83%;top: 43.5%;background-color:crimson;box-shadow: 1px 1px 7px crimson, -1px -1px 8px crimson;}
+  0% {left:9.7%;top:28%;background-color:#5FCD5C;box-shadow: 1px 1px 7px #5FCD5C, -1px -1px 8px #5FCD5C;}
+  25% {left:29.7%;top:45%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
+  50% {left:49.3%;top:50%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
+  75% {left: 69.7%;top: 48%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
+  100% {left: 86%;top: 53%;background-color:crimson;box-shadow: 1px 1px 7px crimson, -1px -1px 8px crimson;}
 }
 @keyframes movingobj {
-  0% {left: 10.5%;top: 25%;background-color:#5FCD5C;box-shadow: 1px 1px 7px #5FCD5C, -1px -1px 8px #5FCD5C;}
-  25% {left:29%;top:39%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
-  50% {left: 47.5%;top: 45%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
-  75% {left: 66.5%;top: 39%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
-  100% {left: 83%;top: 43.5%;background-color:crimson;box-shadow: 1px 1px 7px crimson, -1px -1px 8px crimson;}
+  0% {left:9.7%;top:28%;background-color:#5FCD5C;box-shadow: 1px 1px 7px #5FCD5C, -1px -1px 8px #5FCD5C;}
+  25% {left:29.7%;top:45%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
+  50% {left:49.3%;top:50%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
+  75% {left: 69.7%;top: 48%;background-color:#5CD0FB;box-shadow: 1px 1px 7px #5CD0FB, -1px -1px 8px #5CD0FB;}
+  100% {left: 86%;top: 53%;background-color:crimson;box-shadow: 1px 1px 7px crimson, -1px -1px 8px crimson;}
 }
 
 /* Flickity JS */
@@ -203,27 +195,30 @@ html.touchevents .moving-obj {
   border: 2px solid;
 }
 .subscription-choice {}
-
 .route-outline-mob {
   display: none;
 }
-
 .submit-btn {
   border: 2px solid;
 }
-
 .submit-btn:hover,
 .submit-btn:focus {
   background-color: #fff;
   border: 2px solid;
   color: #111
 }
-
+.unslider {
+  width: 100%
+}
 .unslider-nav {
   display: none;
 }
 
 @media (max-width:767px){
+
+  html.touchevents .how-icon {
+    height: 150px;
+  }
 
   .filters {
     width: 90%;

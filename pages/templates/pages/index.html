@@ -15,7 +15,7 @@
   <div class="index-service flex row-wrap just-center align-flex-center index-driver lazy" data-src="{%static 'img/freehanddrivers.png'%}" style="background-position:bottom;">
     <div class="full-width header flex col-nowrap just-center align-flex-center ">
       <h2 class="inline-block text-center raleway">Need a driver?</h2>
-      <a id="#driver-request" class="inline-block open-request">Hire</a>
+      <a id="#driver-order" class="inline-block open-request">Hire</a>
     </div>
     <section class="flyers full-width">
       <ul class="flex row-nowrap just-center align-flex-center">
@@ -56,7 +56,7 @@
   <div class="index-service flex row-wrap just-center align-flex-center index-car lazy" data-src="{%static 'img/lagos.png'%}">
     <div class="full-width header flex col-nowrap just-center align-flex-center">
       <h2 class="text-center inline-block raleway">Need a car?</h2>
-      <a href="#car-request" class="inline-block open-request">Hire</a>
+      <a href="#car-order" class="inline-block open-request">Hire</a>
     </div>
     <section class="flyers full-width">
       <ul class="flex row-nowrap just-center align-flex-center">
@@ -94,7 +94,7 @@
         </li>
       </ul>
     </section>
-    <p class="subtitle text-center full-width"><a href="#car-request" class="inline-block open-request">REQUEST A CAR</a></p>
+    <p class="subtitle text-center full-width"><a href="#car-order" class="inline-block open-request">REQUEST A CAR</a></p>
   </div>
   <div class="index-service index-mid-p" >
     <p class="mid-p text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, doloremque necessitatibus dolores repellat sit officia a dignissimos sed minus, numquam tempora dolorum accusantium ratione laudantium iusto possimus, cum ut distinctio.
@@ -145,23 +145,19 @@
     </div>
   </div>
 </section>
-
 {% endblock %}
-
-{% block scripts %}
-<script src="{% static 'js/flickity.pkgd.js' %}"></script>
+{% block customscripts %}
 <script>
 (function($){
 
   $(window).resize(function (e) {
 
     if($(window).width() > 960){
-      
 
     } else {
       $('html.no-touchevents .flyers ul').removeClass('flex');
 
-      var _carousel = $('.flyers ul').flickity({
+      var _carousel = $('html.touchevents .flyers ul').flickity({
         autoPlay: true,
         pauseAutoPlayOnHover: true,
         cellSelector: 'li',
@@ -172,8 +168,7 @@
         //freeScroll: true,
         //prevNextButtons: false,
         pageDots: false
-      });      
-    
+      });
     }
 
   });

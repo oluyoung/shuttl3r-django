@@ -515,7 +515,7 @@ body.is-showNavFollow .nav-follow-extra {
 
 .nav-mob-requests {
   position: absolute;
-  top: 50px;
+  top: 48px;
   /* width: 50%; */
   /* padding: 2% 0; */
   font-size: .85rem;
@@ -671,7 +671,8 @@ INDEX
 }
 
 .sheet .top-info,
-.sheet .material-form {
+.sheet .material-form,
+.sheet .confirm-sheet {
   width: 100%;
 /*   border: 1px solid #e9e9e9;
 box-shadow: 2px 2px 4px #ccc, -2px -2px 4px #ccc;  */
@@ -819,6 +820,11 @@ box-shadow: 2px 2px 4px #ccc, -2px -2px 4px #ccc;  */
 
 .material-form textarea:valid {
   border: 1px solid #81C784;
+}
+
+.material-form .leaving-field {
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 .material-form .choose-btn {
@@ -1154,6 +1160,10 @@ small devices: 480px
     font-size: 1.2em;
   }
 
+  .material-form form {
+    font-size: .9rem;
+  }
+
   .material-form input[type=text],
   .material-form input[type=email],
   .material-form input[type=tel],
@@ -1181,6 +1191,6 @@ small devices: 480px
 
 @media (max-width: 374px){
   html.touchevents nav .u-clear {
-    /* top: -32px; */
+    top: -32px;
   }
 }

@@ -57,7 +57,8 @@ class CarOrder(models.Model):
         ('C', 'C'),
     )
     category = models.CharField(max_length=7, choices=CATEGORY_CHOICES)
-    # pickup_time = models.DateTimeField() # time not needed
+    # time not needed
+    pickup_time = models.DateTimeField()
     STATUS_CHOICES = (
         ('Completed', 'Completed'),
         ('Ongoing', 'Ongoing'),
