@@ -143,6 +143,7 @@ class ShuttleOrder(models.Model):
         ('Cancelled', 'Cancelled')
     )
     status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='Not Started')
+    reservation_number = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         verbose_name = "ShuttleOrder"
@@ -154,3 +155,14 @@ class ShuttleOrder(models.Model):
         # morning = "%s: Morning: %s route @ %s from %s." % (self.user.get_full_name(), self.route.route_name, self.morning_pickup_time, self.morning_pickup_stop.stop_location)
         # evening = "Evening: %s route @ %s from %s." % (self.route.route_name, self.evening_pickup_time, self.evening_pickup_stop.stop_location)
         return template.format(self)
+
+
+# class PrivatePickup(models.Model):
+#     """
+#     Description: Model Description
+#     """
+
+
+#     class Meta:
+#         verbose_name = "PrivatePickup"
+#         verbose_name_plural = "PrivatePickups"

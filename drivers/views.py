@@ -35,6 +35,7 @@ def driver_request(request):
             end_date=request.POST['end_date'],
             is_within_lagos=within,
             pickup_address=request.POST['pickup_address'],
+            pickup_time=request.POST['pickup_time'],
             user=User.objects.get(pk=user_id),
         )
 

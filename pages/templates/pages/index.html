@@ -45,7 +45,7 @@
         </li>
       </ul>
     </section>
-    <p class="subtitle text-center full-width"><a href="#driver-request" class="inline-block open-request">REQUEST A DRIVER</a></p>
+    <p class="subtitle text-center full-width"><a href="#driver-order" class="inline-block open-request">REQUEST A DRIVER</a></p>
   </div>
   <div class="index-service index-mid-p">
     <p class="mid-p text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, doloremque necessitatibus dolores repellat sit officia a dignissimos sed minus, numquam tempora dolorum accusantium ratione laudantium iusto possimus, cum ut distinctio.
@@ -111,24 +111,30 @@
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img odd lazy" data-src="{%static 'img/toyota-coaster.png'%}"></div>
+              <div class="img odd lazy" data-src="{%static 'img/route-stops.PNG'%}" style="background-position:right:;"></div>
             </div>
-            <div class="img-title text-center full-width">Get on a shuttle</div>
-            <a href="{% url 'shuttle:index' %}" class="inline-block">BOOK</a>
+            <div class="img-title text-center full-width">Pick a route</div>
           </div>
         </li>
         <li>
           <div class="flyer flex col-nowrap just-center align-flex-center">
             <div class="img-wrap circle">
-              <div class="img even lazy" data-src="{%static 'img/nycairportlimos.jpg'%}"></div>
+              <div class="img odd lazy" data-src="{%static 'img/toyota-coaster.png'%}"></div>
             </div>
-            <div class="img-title text-center full-width">Private pickup</div>
-            <a href="" class="inline-block">REQUEST</a>
+            <div class="img-title text-center full-width">Get on a shuttle</div>
+          </div>
+        </li>
+        <li>
+          <div class="flyer flex col-nowrap just-center align-flex-center">
+            <div class="img-wrap circle">
+              <div class="img odd lazy" data-src="{%static 'img/traffictrails2.jpg'%}"></div>
+            </div>
+            <div class="img-title text-center full-width">Move</div>
           </div>
         </li>
       </ul>
     </section>
-    <p class="subtitle text-center full-width"></p>
+    <p class="subtitle text-center full-width"><a href="{% url 'shuttle:index' %}" class="inline-block">BOOK</a></p>
   </div>
   <div class="index-service index-mid-p" >
     <p class="mid-p text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, doloremque necessitatibus dolores repellat sit officia a dignissimos sed minus, numquam tempora dolorum accusantium ratione laudantium iusto possimus, cum ut distinctio.

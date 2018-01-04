@@ -1,7 +1,7 @@
 (function($){
-  /**
-  NAV BAR
-  **/
+
+  /* NAV BAR
+  */
 
   /* TOGGLE MOBILE NAV
   */
@@ -80,10 +80,13 @@
       e.preventDefault();
       $(this).magnificPopup({
         type: 'inline',
+        tClose: 'Close (Esc)',
+        closeBtnInside: true,
+        enableEscapeKey: true,
         callbacks: {
           close: function(){
             $('.order-form form').find('input[type=reset]').trigger('click');
-          }  
+          }
         }
       });
     });
@@ -128,7 +131,8 @@
   });
 
 
-  /**/
+  /* LAZYLOAD IMAGES
+  */
 
   new LazyLoad({
     elements_selector: ".lazy"
@@ -168,49 +172,90 @@
 
   /* ORDER FORM AJAX REQUEST
   */
-  $('.driver-form form, .car-form form').submit(function(e){
-    e.preventDefault();
-    var form = $(this);
-    var action = form.attr('action');
-    var data = {
-      // hires
-      start_date: form.find('.start-date').val(),
-      end_date: form.find('.end-date').val(),
-      is_within_lagos: form.find('.within').prop('checked'),
-      order_class: form.find('.order_class').val(),
-      pickup_address: form.find('.pickup-addr').val(),
-      pickup_time: form.find('.pickup-time').val(),
-      user: form.find('.user_id').val(),
-      csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
-    };
 
-    $.ajax({
-      url: action,
-      type: 'POST',
-      data: data,
-      error: function(xhr){
-        console.log('error');
-        $('#order-alert').html('Oops! There was an error in ordering, kindly try again or refresh.');
-      },
-      success: function(){
-        console.log('successful');
-        // reset form
-        form.find('input[type=reset]').trigger('click');
-        $('.order-form .choose-btn').removeClass('selected');        
-        // show order alert
-        $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a>');
-      },
-      complete: function(){
-        console.log(data);
-        $('#order-alert').append('<a href="#" id="close-order-alert">x</a>');
-        // show order alert
-        $('#order-alert').css({'display':'block','transform':'translateY(0%)'});
-        // close mag pop
-        $.magnificPopup.close();
-      }
+  $('.order-modal').each(function(){
+    var _modal = $(this);
+    var _form = _modal.find('.order-form');
+    var _confirm_sheet = _modal.find('.confirm-sheet');
+    var _next = _modal.find('.next-btn');
+    var _back = _modal.find('.back-btn');
+    var _confirm_btn = _confirm_sheet.find('.confirm-btn');
+    var data = null;
+    var action = '';
+
+    // Initialize Unsliders for each modal
+
+    var order_modal = _modal.unslider({
+      autoplay: false,
+      arrows: true,
+      keys: false,
+      infinite: false,
+    });
+
+    _back.on('click', function (e) {
+      e.preventDefault();
+      order_modal.unslider('prev');
+    });
+
+    _form.submit(function(e){
+      e.preventDefault();
+      var form = $(this);
+      action = form.attr('action');
+      data = {
+        // hires
+        start_date: form.find('.start-date').val(),
+        end_date: form.find('.end-date').val(),
+        is_within_lagos: form.find('.within').prop('checked'),
+        order_class: form.find('.order_class').val(),
+        pickup_address: form.find('.pickup-addr').val(),
+        pickup_time: form.find('.pickup-time').val(),
+        user: form.find('.user_id').val(),
+        csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
+      };
+      order_modal.unslider('next');
+    });
+
+    // Reset Unslider to first slide by overriding and prototyping the parent magPop close function
+    $.magnificPopup.instance.close = function () {
+      order_modal.unslider('animate:first');
+      $.magnificPopup.proto.close.call(this);
+    }
+
+     _confirm_btn.on('click', function(e){
+      $.ajax({
+        url: action,
+        type: 'POST',
+        data: data,
+        error: function(xhr){
+          console.log('error');
+          $('#order-alert').html('Oops! There was an error in ordering, kindly try again or refresh.');
+        },
+        success: function(){
+          console.log('successful');
+          // reset form
+          form.find('input[type=reset]').trigger('click');
+          $('.order-form .choose-btn').removeClass('selected');        
+          // show order alert
+          $('#order-alert').html('The order was successful. <a href="/users/user/dashboard" class="order-alert-view-orders">VIEW ORDERS</a>');
+        },
+        complete: function(){
+          console.log(data);
+          $('#order-alert').append('<a href="#" id="close-order-alert">x</a>');
+          // show order alert
+          $('#order-alert').css({'display':'block','transform':'translateY(0%)'});
+          // close mag pop
+          $.magnificPopup.close();
+        }
+      });
+    });
+
+    _confirm_btn.on('click', function(e){
+      e.preventDefault();
+      _form.trigger('submit');
     });
 
   });
+
 
   $('.shuttle-form form').submit(function(e){
     e.preventDefault();
@@ -233,10 +278,10 @@
     };
 
     pay_with_paystack(order_obj, action);
-
   });  // end Shuttle Order Submit function
 
-  /* Paytsack Paynment Function */
+  /* Paytsack Paynment Function
+  */
   function pay_with_paystack(orderObj, action){
     var handler = PaystackPop.setup({
       key: 'pk_test_663e2f645c09ff2b3008ea4133c4ab5060e7f934',
@@ -273,7 +318,8 @@
     handler.openIframe();
   }
 
-  /* Show Order Alert */
+  /* Show Order Alert
+  */
   $('#del-acct').on('click', function(e){
     e.preventDefault();
     $('#order-alert').html('Are you sure you want to delete your account? <a href="/users/user/delete" id="del-yes">YES</a> <a href="#" id="del-no">NO</a><a href="#" id="close-order-alert">x</a>');
@@ -289,8 +335,7 @@
   /* Close Order Alert */
   $('#order-alert').on('click', '#del-no, #close-order-alert', function(e){
     e.preventDefault();
-    console.log('clicked');
-    $('#order-alert').hide('1000');
+    $('#order-alert').css('transform', 'translateY(100%)');
   });
 
   /* Google Maps Render for Directions In Shuttle Routes */
@@ -359,7 +404,8 @@
   }); // route outline
 
 
-  /* Parallax */
+  /* Parallax
+  */
   
   var wScroll = $(window).scrollTop();
   $('html.no-touchevents .flyers').each(function(){
@@ -381,14 +427,15 @@
         $flyer.find('li').each(function(i){
           setTimeout(function(){
             $flyer.find('li').eq(i).addClass('is-showing');
-          }, 150 * (i+1));
+          }, 150*(i+1));
         })
       }  
     });
   });
 
 
-  /* Unsliders */
+  /* Unsliders
+  */
   // Checks screen sizes >= tablets
   if($(window).width() >= 768){
     
@@ -445,15 +492,6 @@
     });
 
   }
-
-  // Order Modal should be unaffected by screen size
-
-  $('.order-modal').unslider({
-    autoplay: false,
-    arrows: false,
-    keys: false,
-    infinite: false,
-  });
 
 })(jQuery);
 

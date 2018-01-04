@@ -44,9 +44,9 @@
           </svg>
         </a>
         <ul class="user-nav-menu isloggedin">
-          <li><a href="{% url 'users:dashboard' %}">DASHBOARD</a></li>
-          <li><a href="{% url 'users:account'  %}">EDIT DETAILS</a></li>
-          <li><a href="{% url 'users:logout' %}">LOGOUT</a></li>
+          <li><a href="{% url 'users:dashboard'%}">DASHBOARD</a></li>
+          <li><a href="{% url 'users:account'%}">EDIT DETAILS</a></li>
+          <li><a href="{% url 'users:logout'%}">LOGOUT</a></li>
         </ul>
       {% else %}
         <a href="" class="user-nav-icon notloggedin">
@@ -55,8 +55,8 @@
           </svg>
         </a>
         <ul class="user-nav-menu notloggedin">
-          <li><a href="{% url 'users:login' %}">LOGIN</a></li>
-          <li><a href="{% url 'users:register' %}">SIGN UP</a></li>
+          <li><a href="{% url 'users:login'%}">LOGIN</a></li>
+          <li><a href="{% url 'users:register'%}">SIGN UP</a></li>
         </ul>
       {% endif %}
       </li>
@@ -70,8 +70,8 @@
     </ul>
   </div>
   <div class="nav-mob-requests flex row-nowrap just-between align-flex-center full-width">
-    <a href="#driver-request" class="open-request nav-sections uppercase text-center" id="">Hire Driver</a>
-    <a href="#car-request" class="open-request nav-sections uppercase text-center" id="">Hire Car</a>
+    <a href="#driver-order" class="open-request nav-sections uppercase text-center" id="">Hire Driver</a>
+    <a href="#car-order" class="open-request nav-sections uppercase text-center" id="">Hire Car</a>
     <a href="{% url 'shuttle:index' %}" class="nav-sections uppercase text-center" id="">Book Shuttle</a>
   </div>
   <div class="nav-mob">
@@ -133,15 +133,15 @@
 
 <!-- Order Modals -->
   <!-- DRIVER ORDER SHEET -->
-  <div class="mfp-hide" id="driver-order">
-    <div class="order-modal driver-order">
+  <div class="order-modal mfp-hide" id="driver-order">
+    <div class="driver-order">
       <ul>
         <li>
           <div class="sheet driver-sheet" id="driver-request">
             <div class="driver flex col-nowrap just-center">
               <div class="top-info flex row-nowrap">
                 <div class="class-ranks sub-div">
-                  <h3>Driver Classes</h3>
+                  <h3 class="title">Driver Classes</h3>
                   <div>
                     <p><span class="key">Class A</span><span class="desc"></span></p>
                     <p><span class="key">Class B</span><span class="desc"></span></p>
@@ -152,9 +152,9 @@
               <!-- if user not logged in -->
               <div class="form order-form driver-form material-form">
                 <!-- use action for ajax call -->
-                <form action="/hire/drivers/request/driver/" method="post" class="form flex col-wrap">
+                <form action="/hire/drivers/request/driver/" method="post" class="form flex col-wrap sub-div">
                   <div class="text-center">
-                    <h3>To make a request just fill the form below</h3>
+                    <h3 class="title">To make a request just fill the form below</h3>
                   </div>
                   {% csrf_token %}
                   <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
@@ -178,7 +178,7 @@
                   <div class="flex row-wrap just-between">
                     <div class="half-width">
                       <label for="end-date">Pickup Time</label>
-                      <input type="time" class="pickup-time" name="end_date" value="07:00" required>
+                      <input type="time" class="pickup-time" name="pickup-time" value="07:00" required>
                     </div>
                     <div class="half-width">
                       <label for="within">Driver Class</label>
@@ -190,13 +190,13 @@
                       </select>
                     </div>
                   </div>
-
                   <div class="flex col-nowrap">
                     <label for="pickup-addr" class="">Pickup Address</label>
                     <input type="text" class="pickup-addr" name="pickup_addr" placeholder="Enter a pickup address" value="{{user.default_pickup_addr}}" required>
                   </div>
+
                   {% if user.is_authenticated %}
-                  <input type="submit" class="btn submit-btn" id="drivers-submit-btn" value="REQUEST" />
+                  <input type="submit" class="btn submit-btn" value="REQUEST" />
                   <input type="reset" value="clear" hidden />
                   {% else %}
                   <a href="{% url 'users:login' %}" class="btn login-btn">LOGIN</a>
@@ -209,13 +209,53 @@
         <li>
           <div class="sheet driver-confirm">
             <div class="confirm-sheet">
-              get details from form
-              greeting{Hello auth.user.first_name, this is what you just picked}
-              driver_class
-              start_date
-              end_date
-              pickup_address
-              pickup_time
+                <div class="flex col-nowrap sub-div">
+                  <div class="text-center">
+                    <p class="title">Hello <span style="text-transform:capitalize">{{request.user.first_name}}</span>, have a look over what you picked.</p>
+                  </div>
+                  <div class="flex row-nowrap just-between">
+                    <div class="half-width">
+                      <h4>Driver Class</h4>
+                    </div>
+                    <div class="half-width">
+                      <p class="class_selected"></p>
+                    </div>
+                  </div>
+                  <div class="flex row-nowrap just-between">
+                    <div class="half-width">
+                      <ul class="flex col-nowrap just-center">
+                        <li><h4>Start Date</h4></li>
+                        <li><time class="start_date_selected"></time></li>
+                      </ul>
+                    </div>
+                    <div class="half-width">
+                      <ul class="flex col-nowrap just-center">
+                        <li><h4>End Date</h4></li>
+                        <li><time class="end_date_selected"></time></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="flex row-nowrap just-between">
+                    <div class="half-width">
+                      <h4>Pickup Address</h4>
+                    </div>
+                    <div class="half-width">
+                      <p class="addr_selected"></p>
+                    </div>
+                  </div>
+                  <div class="flex row-nowrap just-between">
+                    <div class="half-width">
+                      <h4>Pickup Time</h4>
+                    </div>
+                    <div class="half-width">
+                      <p class="time_selected"></p>
+                    </div>
+                  </div>
+                  <div class="flex row-nowrap just-between align-flex-center">
+                    <a href="#" class="btn back-btn half-width">GO BACK</a>
+                    <a href="#" class="btn confirm-btn half-width">CONFIRM</a>
+                  </div>
+                </div>
             </div>
           </div>
         </li>
@@ -224,15 +264,15 @@
   </div>
 
   <!-- CAR ORDER SHEET -->
-  <div class="mfp-hide" id="car-order">
-    <div class="order-modal car-order">
+  <div class="order-modal car-order-modal mfp-hide" id="car-order">
+    <div class="car-order">
       <ul>
         <li>
           <div class="sheet car-sheet" id="car-request">
             <div class="content car flex col-nowrap just-center" >
               <div class="top-info flex row-nowrap">
                 <div class="class-ranks sub-div">
-                  <h3>Car Classes</h3>
+                  <h3 class="title">Car Classes</h3>
                   <div>
                     <p><span class="key">Class A</span> - <span class="desc">Saloon cars</span></p>
                     <p><span class="key">Class B</span> - <span class="desc">Luxury cars</span></p>
@@ -242,9 +282,9 @@
               </div>
               <!-- Car Order Form -->
               <div class="order-form car-form material-form">
-                <form action="/hire/cars/request/car/" class="form flex col-wrap" method="post">
+                <form action="/hire/cars/request/car/" class="form flex col-wrap sub-div" method="post">
                   <div class="text-center">
-                    <h3>To make a request just fill the form below</h3>
+                    <h3 class="title">To make a request just fill the form below</h3>
                   </div>
                   {% csrf_token %}
                   <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
@@ -267,7 +307,7 @@
                   <div class="flex row-wrap just-between">
                     <div class="half-width">
                       <label for="end-date">Pickup Time</label>
-                      <input type="time" class="pickup-time" name="end_date" min="" value="07:00" required>
+                      <input type="time" class="pickup-time" name="pickup-time" min="" value="07:00" required>
                     </div>
                     <div class="half-width">
                       <label for="within">Car Class</label>
@@ -286,8 +326,8 @@
                   </div>
 
                   {% if user.is_authenticated %}
-                  <input type="submit" class="btn submit-btn" id="cars-submit-btn" value="REQUEST" />
-                  <input type="reset" value=clear hidden />
+                  <input type="submit" class="btn submit-btn" value="REQUEST" />
+                  <input type="reset" value="clear" hidden />
                   {% else %}
                   <a href="{% url 'users:login'%}" class="btn login-btn">LOGIN</a>
                   {% endif %}
@@ -299,19 +339,59 @@
         <li>
           <div class="sheet car-confirm">
             <div class="confirm-sheet">
-              greeting{Hello user.first_name, this is what you just picked}
-              car_class
-              start_date
-              end_date
-              pickup_address
-              pickup_time
+              <div class="flex col-nowrap sub-div">
+                  <div class="text-center">
+                    <p class="title">Hello <span style="text-transform:capitalize">{{request.user.first_name}}</span>, have a look over what you picked.</p>
+                  </div>
+                  <div class="flex row-nowrap just-between">
+                    <div class="half-width">
+                      <h4>Car Class</h4>
+                    </div>
+                    <div class="half-width">
+                      <p class="class_selected"></p>
+                    </div>
+                  </div>
+                  <div class="flex row-nowrap just-between">
+                    <div class="half-width">
+                      <ul class="flex col-nowrap just-center">
+                        <li><h4>Start Date</h4></li>
+                        <li><time class="start_date_selected"></time></li>
+                      </ul>
+                    </div>
+                    <div class="half-width">
+                      <ul class="flex col-nowrap just-center">
+                        <li><h4>End Date</h4></li>
+                        <li><time class="end_date_selected"></time></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="flex row-nowrap just-between">
+                    <div class="half-width">
+                      <h4>Pickup Address</h4>
+                    </div>
+                    <div class="half-width">
+                      <p class="addr_selected"></p>
+                    </div>
+                  </div>
+                  <div class="flex row-nowrap just-between">
+                    <div class="half-width">
+                      <h4>Pickup Time</h4>
+                    </div>
+                    <div class="half-width">
+                      <p class="time_selected"></p>
+                    </div>
+                  </div>
+                  <div class="flex row-nowrap just-between align-flex-center">
+                    <a href="#" class="btn back-btn half-width">GO BACK</a>
+                    <a href="#" class="btn confirm-btn half-width">CONFIRM</a>
+                  </div>
+              </div>
             </div>
           </div>
         </li>
       </ul>
     </div>
   </div>
-
 
 <script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/lazyload.min.js' %}"></script>

@@ -66,6 +66,7 @@ class CarOrder(models.Model):
         ('Cancelled', 'Cancelled')
     )
     status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='Not Started')
+    reservation_number = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         verbose_name = 'CarOrder'

@@ -670,6 +670,14 @@ INDEX
   align-items: center;
 }
 
+.sheet .title {
+  font-family: Raleway;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0px;
+  margin-bottom: 5px;
+
+}
+
 .sheet .top-info,
 .sheet .material-form,
 .sheet .confirm-sheet {
@@ -685,7 +693,7 @@ box-shadow: 2px 2px 4px #ccc, -2px -2px 4px #ccc;  */
   align-items: center;
 }
 
-.sheet .top-info .sub-div {
+.sheet .sub-div {
   padding: 3.5%;
 }
 
@@ -700,12 +708,9 @@ box-shadow: 2px 2px 4px #ccc, -2px -2px 4px #ccc;  */
 
 .top-info .class-ranks {}
 .top-info h3 {
-  font-size: 1.3em;
-  font-family: Raleway;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 0px;
-  margin-bottom: 5px;
+  font-size: 1.15em;
 }
+
 
 .top-info .class-ranks div p {}
 .top-info .class-ranks div p .key {}
@@ -756,14 +761,7 @@ box-shadow: 2px 2px 4px #ccc, -2px -2px 4px #ccc;  */
 }
 
 .form h3 {
-  font-family: Raleway;
-  font-size: 1.1em;
-  border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
-}
-
-.material-form .form {
-  padding: 3.5%;
 }
 
 .material-form label {

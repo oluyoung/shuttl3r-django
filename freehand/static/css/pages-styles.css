@@ -72,15 +72,18 @@ html.no-touchevents body {
 .index-service .header a {
   display: none;
 }
+.index-service .flyers ul {}
 .index-service .flyers li {
   margin: 0 3%;
 }
 html.no-touchevents .index-service .flyers li {
   transform: translateX(700%);
   transition: all 1s ease-in-out;
+  /* right: 150%; */
 }
 html.no-touchevents .index-service .flyers li.is-showing {
   transform: translateX(0%);
+  /* right: 0%; */
 }
 .index-service .flyer a {
   margin: 10px auto;
@@ -101,12 +104,6 @@ html.no-touchevents .index-service .flyers li.is-showing {
   background-position: center;
   background-size: cover;
   opacity: .85;
-}
-.index-service .flyer .img.odd {
-  background-color: #607D8B;
-}
-.index-service .flyer .img.even {
-  background-color: #FFCCBC;
 }
 
 .index-service .flyer .img-title {
