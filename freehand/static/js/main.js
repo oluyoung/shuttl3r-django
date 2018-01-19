@@ -200,7 +200,9 @@
     _form.submit(function(e){
       e.preventDefault();
       var form = $(this);
+      // gets form action
       action = form.attr('action');
+      // gets form data
       data = {
         // hires
         start_date: form.find('.start-date').val(),
@@ -212,6 +214,15 @@
         user: form.find('.user_id').val(),
         csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
       };
+
+      // give selected information in "confirm sheet"
+      _confirm_sheet.find('.class_selected').text(form.find('.order_class').val());
+      _confirm_sheet.find('.start_date_selected').text(form.find('.start-date').val());
+      _confirm_sheet.find('.end_date_selected').text(form.find('.end-date').val());
+      _confirm_sheet.find('.addr_selected').text(form.find('.pickup-addr').val());
+      _confirm_sheet.find('.time_selected').text(form.find('.pickup-time').val());
+
+      // moves to the next slide i.e. "confirm sheet"
       order_modal.unslider('next');
     });
 
@@ -219,7 +230,7 @@
     $.magnificPopup.instance.close = function () {
       order_modal.unslider('animate:first');
       $.magnificPopup.proto.close.call(this);
-    }
+    } 
 
      _confirm_btn.on('click', function(e){
       $.ajax({

@@ -210,9 +210,6 @@ html.touchevents .moving-obj {
 .unslider {
   width: 100%
 }
-.unslider-nav {
-  display: none;
-}
 
 @media (max-width:767px){
 

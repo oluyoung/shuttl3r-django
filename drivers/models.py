@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from django.utils.crypto import get_random_string
 
 
 # Create your models here.
@@ -68,7 +69,13 @@ class DriverOrder(models.Model):
         ('C', 'C'),
     )
     category = models.CharField(max_length=7, choices=CATEGORY_CHOICES)
-    reservation_number = models.CharField(max_length=255, null=True, blank=True)
+    reservation_number = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        unique=True,
+    )
+    # default=(self.user.first_name[0].upper()+self.user.last_name[0].upper()+self.id+get_random_string(length=8))
 
     class Meta:
         verbose_name = 'DriverOrder'
