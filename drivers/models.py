@@ -1,5 +1,7 @@
 from django.db import models
 from users.models import User
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.utils.crypto import get_random_string
 
 
@@ -75,7 +77,6 @@ class DriverOrder(models.Model):
         blank=True,
         unique=True,
     )
-    # default=(self.user.first_name[0].upper()+self.user.last_name[0].upper()+self.id+get_random_string(length=8))
 
     class Meta:
         verbose_name = 'DriverOrder'
@@ -83,6 +84,11 @@ class DriverOrder(models.Model):
 
     def __str__(self):
         return "%s: %s" % (self.order_date, self.user.get_full_name())
+
+
+@receiver(pre_save, sender=DriverOrder)
+def generate_res_num(sender, instance, *args, **kwargs):
+    instance.reservation_number = (instance.user.first_name[0].upper()+instance.user.last_name[0].upper()+instance.id+get_random_string(length=8))
 
 
 class Driver_CV(models.Model):
