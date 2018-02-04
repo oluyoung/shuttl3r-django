@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
+from django.template.loader import render_to_string
 from django.dispatch import receiver
 from django.utils.crypto import get_random_string
 
@@ -68,7 +69,11 @@ class CarOrder(models.Model):
         ('Not Started', 'Not Started'),
         ('Cancelled', 'Cancelled')
     )
-    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='Not Started')
+    status = models.CharField(
+        max_length=30,
+        choices=STATUS_CHOICES,
+        default='Not Started'
+    )
     reservation_number = models.CharField(
         max_length=255,
         null=True,
@@ -86,4 +91,26 @@ class CarOrder(models.Model):
 
 @receiver(pre_save, sender=CarOrder)
 def generate_res_num(sender, instance, *args, **kwargs):
-    instance.reservation_number = (instance.user.first_name[0].upper()+instance.user.last_name[0].upper()+instance.id+get_random_string(length=8))
+    instance.reservation_number = (
+        "%s%s%d%s" %
+        (
+            instance.user.first_name[0].upper(),
+            instance.user.last_name[0].upper(),
+            instance.id,
+            get_random_string(length=8)
+        )
+    )
+
+
+@receiver(post_save, sender=CarOrder)
+def send_order_email(sender, instance, *args, **kwargs):
+    message = render_to_string('user/reserverd_order.html', {
+        'user': instance.user,
+    })
+    instance.user.email_user(
+        subject='DriveHub Driver Reservation',
+        message='',
+        from_email='freehand@sendgrid.net',
+        to_email=[instance.user.email],
+        fail_silently=False,
+        html_message=message)

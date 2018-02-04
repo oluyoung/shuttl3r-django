@@ -32,7 +32,28 @@ html.contact-pg {
   color: #111;
 }
 
+.contact label[for=remarks] {
+  margin-bottom: 10px;
+}
+
+.contact textarea {
+  min-width: 99%;
+  max-width: 99%;
+  min-height: 100px;
+  max-height: 100px;
+  border-width: 2px;
+}
+
 .contact-pg .footer {
   position: absolute;
   bottom: 0;
+}
+
+@media (max-width:767px){
+  .contact {
+    width: 80%;
+  }
+  .contact-pg .footer {
+    position: relative;
+  }
 }

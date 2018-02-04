@@ -123,13 +123,12 @@
                 <div class="map-canvas" id="routemap-{{route.id}}" ></div>
                 <div class="prices" style="margin-top:15px">
                   <ul class="flex row-wrap just-between" style="font-family:Raleway;font-weight:bold;">
-                    <li class="price price_daily" data-price="{{route.daily_price}}">Daily: <span style="font-weight:normal">N{{route.daily_price}}</span></li>
-                    <li class="price price_weekly" data-price="{{route.weekly_price}}">Weekly: <span style="font-weight:normal">{{route.weekly_price}}</span></li>
-                    <li class="price price_monthly" data-price="{{route.monthly_price}}">Monthly: <span style="font-weight:normal">{{route.monthly_price}}</span></li>
+                    <li class="price price_weekly" data-price="{{route.weekly_price}}">Weekly: <span class="font-weight-normal">{{route.weekly_price}}</span></li>
+                    <li class="price price_monthly" data-price="{{route.monthly_price}}">Monthly: <span class="font-weight-normal">{{route.monthly_price}}</span></li>
                     {% if route.is_available %}
-                    <li style="width:100%;">No. of seats left: <span style="font-weight:normal">{{route.seats_available}}</span></li>
+                    <li class="full-width">No. of seats left: <span class="font-weight-normal">{{route.seats_available}}</span></li>
                     {% else %}
-                    <li style="width:100%; font-style:italic;text-align:center"><span style="font-weight:normal">There are no seats left on this route</span></li>
+                    <li class="full-width font-style-italic text-center"><span class="font-weight-normal">There are no seats left on this route</span></li>
                     {% endif %}
                   </ul>
                 </div></div>
@@ -145,13 +144,12 @@
                   </div>
                   {% csrf_token %}
                   <input type="hidden" class="item_id" name="item_id" value="{{route.id}}">
-                  <input type="hidden" class="user_id" name="user_id" value="{{user.id}}" data-identifier="user{{user.id}}@freehand.ng">
+                  <input type="hidden" class="user_id" name="user_id" value="user{{user.id}}@freehand.ng">
                   <input type="hidden" class="selected_price" name="selected_price">
                   <div class="flex col-nowrap">
                     <label for="subscription-choice">Subscription Choice</label>
                     <select class="subscription-choice" id="subscription-choice"  name="subscription_choice" required>
                         <option value="">Choose subscription</option>
-                        <option value="Daily">Daily</option>
                         <option value="Weekly">Weekly</option>
                         <option value="Monthly">Monthly</option>
                     </select>

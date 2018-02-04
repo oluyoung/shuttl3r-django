@@ -39,33 +39,31 @@ def select(request, id):
 def shuttle_request(request):
     if request.method == 'POST':
         route = ShuttleRoute.objects.get(pk=request.POST['item_id'])
-        user = User.objects.get(pk=request.POST['user'])
+        # user = User.objects.get(pk=request.POST['user'])
         subscription = request.POST['subscription']
         morning_stop = request.POST['morning_stop']
         evening_stop = request.POST['evening_stop']
-        daily_pickup_date = request.POST['daily_pickup_date']
-        if daily_pickup_date == '':
-            daily_pickup_date = None
 
-        ShuttleOrder.objects.create(
-            subscription=subscription,
-            morning_pickup_stop=RouteStop.objects.get(pk=morning_stop),
-            morning_pickup_time=request.POST['morning_time'],
-            evening_pickup_stop=RouteStop.objects.get(pk=evening_stop),
-            evening_pickup_time=request.POST['evening_time'],
-            daily_pickup_date=daily_pickup_date,
-            route=route,
-            user=user,
-            isRenewing=False,
-        )
+        if request.user.is_authenticated:
+            ShuttleOrder.objects.create(
+                subscription=subscription,
+                morning_pickup_stop=RouteStop.objects.get(pk=morning_stop),
+                morning_pickup_time=request.POST['morning_time'],
+                evening_pickup_stop=RouteStop.objects.get(pk=evening_stop),
+                evening_pickup_time=request.POST['evening_time'],
+                # daily_pickup_date=daily_pickup_date,
+                route=route,
+                user=request.user,
+                isRenewing=False,
+            )
 
-        if route.seats_available > 0:
-            route.seats_available -= 1
-        else:
-            route.is_available = False
-        route.save()
+            if route.seats_available > 0:
+                route.seats_available -= 1
+            else:
+                route.is_available = False
+            route.save()
 
-        # check return value of .create
-        # alert user if already subscribed to a route
+            # check return value of .create
+            # alert user if already subscribed to a route
 
-        return HttpResponse('Successful entry')
+            return HttpResponse('Successful entry')

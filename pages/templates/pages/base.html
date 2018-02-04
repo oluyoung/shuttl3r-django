@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" >
   <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0" /><!-- maximum-scale=1.0, minimum-scale=1.0, user-scalable=no -->
-  <title>Freehand {% block title %}{% endblock %}</title>
+  <title>DriveHub {% block title %}{% endblock %}</title>
   {% load staticfiles  %}
   <link rel="shortcut icon" href="{% static 'img/favicon_1.ico' %}" />
   <meta property="og:image" content="" />
@@ -107,20 +107,20 @@
 {% block content %}{% endblock %}
 {% block footer %}
 <section class="footer flex row-wrap just-around full-width">
-  <div class="contact-info">
+  <div class="footer-links contact-info">
     <ul>
       <li><a href="tel:+2348034823999">(234) 803 482 3999</a></li>
       <li><a href="tel:+2348034823999">(234) 803 482 3999</a></li>
-      <li><a href="mailto:contact.us@freehand.ng">contact.us@freehand.ng</a></li>
+      <li><a href="mailto:contact.us@drivehub.ng">contact.us@drivehub.ng</a></li>
     </ul>
   </div>
-  <div class="footer-links">
+  <div class="footer-links links">
     <ul>
       <li><a href="#">Our Team</a></li>
       <li><a href="#">Our Vision</a></li>
     </ul>
   </div>
-  <div class="contact-social">
+  <div class="footer-links contact-social">
     <ul>
       <li><a href="#" target="_blank"><i class="icon icon--facebook--light"></i></a></li>
       <li><a href="#" target="_blank"><i class="icon icon--instagram--light"></i></a></li>
@@ -157,7 +157,7 @@
                     <h3 class="title">To make a request just fill the form below</h3>
                   </div>
                   {% csrf_token %}
-                  <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
+                  <!-- <input type="hidden" class="user_id" name="user_id" value="{{user.id}}"> -->
                   <div class="flex row-nowrap just-start align-flex-end leaving-field">
                     <label for="within">Leaving Lagos?</label>
                     <input type="checkbox" class="within" name="within_lagos" hidden>
@@ -287,7 +287,7 @@
                     <h3 class="title">To make a request just fill the form below</h3>
                   </div>
                   {% csrf_token %}
-                  <input type="hidden" class="user_id" name="user_id" value="{{user.id}}">
+                  <!-- <input type="hidden" class="user_id" name="user_id" value="{{user.id}}"> -->
                   <div class="flex row-nowrap just-start align-flex-end leaving-field">
                     <label for="within">Leaving Lagos?</label>
                     <input type="checkbox" class="within" name="within_lagos" hidden>

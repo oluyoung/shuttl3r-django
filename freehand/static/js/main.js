@@ -211,7 +211,7 @@
         order_class: form.find('.order_class').val(),
         pickup_address: form.find('.pickup-addr').val(),
         pickup_time: form.find('.pickup-time').val(),
-        user: form.find('.user_id').val(),
+        // user: form.find('.user_id').val(),
         csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
       };
 
@@ -226,12 +226,7 @@
       order_modal.unslider('next');
     });
 
-    // Reset Unslider to first slide by overriding and prototyping the parent magPop close function
-    $.magnificPopup.instance.close = function () {
-      order_modal.unslider('animate:first');
-      $.magnificPopup.proto.close.call(this);
-    } 
-
+    // Submit Form
      _confirm_btn.on('click', function(e){
       $.ajax({
         url: action,
@@ -260,10 +255,16 @@
       });
     });
 
-    _confirm_btn.on('click', function(e){
+    // Reset Unslider to first slide by overriding and prototyping the parent magPop close function
+    $.magnificPopup.instance.close = function () {
+      order_modal.unslider('animate:first');
+      $.magnificPopup.proto.close.call(this);
+    }
+
+/*    _confirm_btn.on('click', function(e){
       e.preventDefault();
       _form.trigger('submit');
-    });
+    });*/
 
   });
 
@@ -273,9 +274,10 @@
     var form = $(this),
       action = form.attr('action');
     order_obj = {
-      // 
+      // get amount
       amount: (form.find('.selected_price').val()*100),
-      email: form.find('.user_id').attr('data-identifier'),
+      // use slug instead
+      email: form.find('.user_id').val(),
       // shuttle
       daily_pickup_date: form.find('.daily-pickup-date').val(),
       subscription: form.find('.subscription-choice').val(),
@@ -284,7 +286,7 @@
       evening_stop: form.find('.evening-pickup-stop').val(),
       evening_time: form.find('.evening-pickup-time').val(),
       item_id: form.find('.item_id').val(),
-      user: form.find('.user_id').val(),
+      // user: form.find('.user_id').val(),
       csrfmiddlewaretoken: form.find('input[name=csrfmiddlewaretoken]').val()
     };
 
@@ -481,7 +483,6 @@
       //prevNextButtons: false,
       pageDots: false
     });
-
   }
   // Checks screen sizes < tablets
   else {

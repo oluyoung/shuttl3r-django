@@ -103,6 +103,10 @@ html.touchevents .moving-obj {
   width: 100%
 }
 
+.shuttle-form form {
+  padding: 1em;
+}
+
 .route-list {
   width: 100%;
 }
